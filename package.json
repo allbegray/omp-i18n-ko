@@ -1,0 +1,31 @@
+{
+  "name": "omp-i18n-ko",
+  "version": "0.1.0",
+  "description": "Korean UI language pack for omp (oh-my-pi), built strictly on the official extension API",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "omp": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "scripts": {
+    "test": "bun test"
+  },
+  "keywords": [
+    "omp",
+    "oh-my-pi",
+    "i18n",
+    "korean",
+    "한국어",
+    "localization"
+  ],
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}

@@ -86,7 +86,9 @@ export function createTranslator(table: TranslationTable): Translator {
   function applySuffixes(text: string): string {
     for (const [from, to] of suffixes) {
       if (from.length > 0 && text.length > from.length && text.endsWith(from)) {
-        return text.slice(0, -from.length) + to;
+        // Translate the base too: "Moderate reasoning (~8k tokens) (current)"
+        // must render as "보통 추론 (~8k 토큰) (현재)".
+        return translateCore(text.slice(0, -from.length)) + to;
       }
     }
     return text;

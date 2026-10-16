@@ -51,6 +51,7 @@ omp(oh-my-pi) 한국어 언어팩 프로젝트. 그릴링 완료 (2026-10-16). �
 - **D8. 커버리지 확정**: 코어는 슬래시 메뉴 설명, 인자 자동완성, 선택 설명(nativeDetail), 인라인 힌트, 동적 상태문구. 추가: 작업 표시문(`setWorkingMessage`) → "생각 중…". 제외(18.11.1에서 no-op 스텁): `setTitle`, `setStatus`, `setFooter`, `setHeader`. 불가(기술 제약): 커맨드 이름, 팁, 웰컴, 상태줄 내장, 호스트 알림(상태 공지). 설정 패널은 D11에서 해결.
   - 상태 공지 확인 (2026-10-16): `showStatus` 공지(예: `/rewind`의 "No messages to branch from", "Copied to clipboard", 시작 시 "Connected to MCP server: …")는 `StatusNotice` 컴포넌트로 대화 영역에 직접 삽입된다(`showStatus → present`). 확장 이벤트 목록에 공지/상태 훅이 없고 컴포넌트 교체 경로도 없어 가로채기 불가(18.11.1 기준 리터럴 120여 종). 업스트림 로컬라이제이션·문자열 오버라이드 훅 제안의 근거.
   - 팁·웰컴 확인 (2026-10-16): `Tip: …` 웰컴 팁은 pi-tui `prompt/welcome.ts`가 `tips.txt`를 빌드 타임에 번들해 소유한다. 대체 수단 후보인 `setHeader`/`setFooter`는 현재 런타임에서 no-op 스텁이라 바꿀 수 없다.
+  - 커버리지 재감사 (2026-10-16): 슬래시 메뉴·인자 완성 리터럴 215개 전수 번역(누락 0). 런타임 완성 설명(thinking 메타데이터)에 `(current)` 접미사 베이스 미번역과 `Inherit session default` 누락이 있어 수정. 그 밖의 호스트 소유: 컴팩션 로더 라벨("Compacting context…", statusContainer 소유), 유휴 "F5 to Retry" 행, 키바인딩 편집기 라벨("Move cursor up" 등). 도구 intent는 모델 생성 텍스트라 번역 대상 아님.
 - **D9. 용어집 코어**: 라운드 3 표 그대로. 톤 사례: "설정(settings) 메뉴 열기" / "계획(plan): 꺼짐" / "도구(tools): 12개 활성 / 20개 사용 가능" / "자동 재개" / "생각 중…".
 - **D10. 병기 규칙** (사용자 지시, 2026-10-16). 번역문에서 명령/기능을 가리키는 영어 키워드 W를 한국어 K로 옮길 때 **K(W)**로 병기한다. 예: settings → 설정(settings), plan → 계획(plan), goal → 목표(goal), model → 모델(model).
   - 이유: `/` 메뉴에서 한국어 설명만 보고는 원래 어떤 영어 커맨드를 입력해야 하는지 알기 어렵다. 키보드 타이핑 편의.

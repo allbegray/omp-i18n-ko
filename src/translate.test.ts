@@ -85,6 +85,10 @@ describe("suffixes", () => {
   test("(current) suffix", () => {
     expect(t.translateText("Balanced reasoning (current)")).toBe("Balanced reasoning (현재)");
   });
+
+  test("(current) suffix translates the base too", () => {
+    expect(t.translateText("Moderate reasoning (~8k tokens) (current)")).toBe("보통 추론 (~8k 토큰) (현재)");
+  });
 });
 
 describe("item translation", () => {

@@ -155,6 +155,7 @@
     "Standard service; stop Anthropic low priority": "표준 서비스; Anthropic low priority 중지",
     "Show slow mode status": "저속(slow) 모드 상태 표시",
 
+    "Inherit session default": "세션 기본값 상속",
     "No reasoning": "추론 없음",
     "Very brief reasoning (~1k tokens)": "아주 짧은 추론 (~1k 토큰)",
     "Light reasoning (~2k tokens)": "가벼운 추론 (~2k 토큰)",

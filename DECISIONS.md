@@ -71,6 +71,7 @@ omp(oh-my-pi) 한국어 언어팩 프로젝트. 그릴링 완료 (2026-10-16) �
   - 검증: 임시 HOME 3중 부팅(설치=로드됨 · 무설치=미로드 · 기존 심링크=로드됨), `ready`+`available_commands` 카탈로그에 `/ko` 표시, `extension_error` 0, stderr 0줄. 실사용 환경도 심링크 → 플러그인 링크로 마이그레이션 완료.
   - 수동 심링크는 대안으로 문서 유지(구버전 omp용). 동시 사용 금지(중복 로드).
   - npm 배포는 보류: `npm whoami` 미로그인 + `omp install <npm spec>` 경로는 계정 준비 후 v2 후보.
+  - 문서 자산: README 스크린샷은 실제 omp v18.11.1 TUI를 **VHS**(`brew install vhs`, 테이프 `tmp/shots/*.tape` — 로컬 전용)로 캡처해 `assets/`에 저장. CHANGELOG(Keep a Changelog ko)·SECURITY.md 추가.
 
 ## 그릴링 종료 (2026-10-16)
 

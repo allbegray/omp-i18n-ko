@@ -1,41 +1,173 @@
 {
   "tools.artifactSpillThreshold": {
     "label": "아티팩트 저장 임계값 (KB)",
-    "description": "이 크기를 넘는 도구 출력은 아티팩트로 저장하고 꼬리만 인라인으로 유지"
+    "description": "이 크기를 넘는 도구 출력은 아티팩트로 저장하고 꼬리만 인라인으로 유지",
+    "options": {
+      "1": {
+        "description": "약 250 토큰"
+      },
+      "2.5": {
+        "description": "약 625 토큰"
+      },
+      "5": {
+        "description": "약 1.25K 토큰"
+      },
+      "10": {
+        "description": "약 2.5K 토큰"
+      },
+      "20": {
+        "description": "약 5K 토큰"
+      },
+      "30": {
+        "description": "약 7.5K 토큰"
+      },
+      "50": {
+        "description": "기본; 약 12.5K 토큰"
+      },
+      "75": {
+        "description": "약 19K 토큰"
+      },
+      "100": {
+        "description": "약 25K 토큰"
+      },
+      "200": {
+        "description": "약 50K 토큰"
+      },
+      "500": {
+        "description": "약 125K 토큰"
+      },
+      "1000": {
+        "description": "약 250K 토큰"
+      }
+    }
   },
   "tools.artifactTailBytes": {
     "label": "아티팩트 꼬리 크기 (KB)",
-    "description": "출력이 아티팩트로 넘칠 때 인라인으로 유지하는 꼬리 크기"
+    "description": "출력이 아티팩트로 넘칠 때 인라인으로 유지하는 꼬리 크기",
+    "options": {
+      "1": {
+        "description": "약 250 토큰"
+      },
+      "2.5": {
+        "description": "약 625 토큰"
+      },
+      "5": {
+        "description": "약 1.25K 토큰"
+      },
+      "10": {
+        "description": "약 2.5K 토큰"
+      },
+      "20": {
+        "description": "기본; 약 5K 토큰"
+      },
+      "50": {
+        "description": "약 12.5K 토큰"
+      },
+      "100": {
+        "description": "약 25K 토큰"
+      },
+      "200": {
+        "description": "약 50K 토큰"
+      }
+    }
   },
   "tools.artifactHeadBytes": {
     "label": "아티팩트 머리 크기 (KB)",
-    "description": "출력이 아티팩트로 넘칠 때 꼬리와 함께 인라인 유지하는 머리 크기 (중간 생략). 0=비활성; 꼬리만 유지."
+    "description": "출력이 아티팩트로 넘칠 때 꼬리와 함께 인라인 유지하는 머리 크기 (중간 생략). 0=비활성; 꼬리만 유지.",
+    "options": {
+      "0": {
+        "description": "비활성; 꼬리만 자름"
+      },
+      "1": {
+        "description": "약 250 토큰"
+      },
+      "2.5": {
+        "description": "약 625 토큰"
+      },
+      "5": {
+        "description": "약 1.25K 토큰"
+      },
+      "10": {
+        "description": "약 2.5K 토큰"
+      },
+      "20": {
+        "description": "기본; 약 5K 토큰"
+      },
+      "50": {
+        "description": "약 12.5K 토큰"
+      },
+      "100": {
+        "description": "약 25K 토큰"
+      },
+      "200": {
+        "description": "약 50K 토큰"
+      }
+    }
   },
   "tools.outputMaxColumns": {
     "label": "출력 열 상한",
     "description": "스트리밍 도구 출력(bash, python, js eval)·read의 줄당 바이트 상한. 넘는 줄은 말줄임 처리되고 다음 개행까지 남은 바이트는 버려짐. 0=비활성.",
     "options": {
-      "0": "끔"
+      "0": {
+        "label": "끔",
+        "description": "줄당 상한 없음"
+      },
+      "256": {
+        "description": "타이트"
+      },
+      "768": {
+        "description": "기본"
+      },
+      "4096": {
+        "description": "느슨"
+      }
     }
   },
   "tools.artifactTailLines": {
     "label": "아티팩트 꼬리 줄 수",
     "description": "출력이 아티팩트로 넘칠 때 인라인으로 유지하는 꼬리 최대 줄 수",
     "options": {
-      "50": "50줄",
-      "100": "100줄",
-      "250": "250줄",
-      "500": "500줄",
-      "1000": "1000줄",
-      "2000": "2000줄",
-      "5000": "5000줄"
+      "50": {
+        "label": "50줄",
+        "description": "약 250 토큰"
+      },
+      "100": {
+        "label": "100줄",
+        "description": "약 500 토큰"
+      },
+      "250": {
+        "label": "250줄",
+        "description": "약 1.25K 토큰"
+      },
+      "500": {
+        "label": "500줄",
+        "description": "기본; 약 2.5K 토큰"
+      },
+      "1000": {
+        "label": "1000줄",
+        "description": "약 5K 토큰"
+      },
+      "2000": {
+        "label": "2000줄",
+        "description": "약 10K 토큰"
+      },
+      "5000": {
+        "label": "5000줄",
+        "description": "약 25K 토큰"
+      }
     }
   },
   "tools.artifactMaxBytes": {
     "label": "아티팩트 파일 상한 (MB)",
     "description": "스트리밍 도구 출력(bash, python, js eval)용 아티팩트 파일 최대 크기. 더 큰 출력은 시작부(최대 3 MB)와 최근 나머지를 유지하고 사이에 잘림 안내를 넣음. 0=무제한.",
     "options": {
-      "0": "무제한"
+      "0": {
+        "label": "무제한",
+        "description": "출력 전체 저장"
+      },
+      "16": {
+        "description": "기본"
+      }
     }
   },
   "todo.enabled": {
@@ -60,9 +192,18 @@
     "label": "할 일 자동 생성",
     "description": "첫 메시지 후 자동 할 일 목록 생성을 얼마나 강하게 권장할지",
     "options": {
-      "default": "기본",
-      "preferred": "권장",
-      "always": "항상"
+      "default": {
+        "label": "기본",
+        "description": "모델 재량; 자동 할 일 목록 없음"
+      },
+      "preferred": {
+        "label": "권장",
+        "description": "첫 메시지에서 할 일 목록 제안(리마인더, 강제 아님)"
+      },
+      "always": {
+        "label": "항상",
+        "description": "첫 메시지에서 할 일 목록 강제 생성"
+      }
     }
   },
   "tasks.todoClearDelay": {
@@ -70,7 +211,10 @@
     "description": "완료·포기한 할 일을 todo 위젯에서 제거하기 전 지연",
     "options": {
       "0": "즉시",
-      "60": "1분",
+      "60": {
+        "label": "1분",
+        "description": "기본"
+      },
       "300": "5분",
       "900": "15분",
       "1800": "30분",
@@ -121,9 +265,18 @@
     "label": "Find (의미 검색)",
     "description": "find 도구 활성화: judge 모델 역할이 판정하는 자연어 파일·줄 범위 검색. judge 역할이 네이티브 TypeSafe jev 모델로 해석될 때만 자동 활성화",
     "options": {
-      "auto": "자동",
-      "on": "켬",
-      "off": "끔"
+      "auto": {
+        "label": "자동",
+        "description": "judge 역할이 네이티브 TypeSafe jev 모델이면 활성"
+      },
+      "on": {
+        "label": "켬",
+        "description": "judge 역할 모델과 무관하게 항상 활성"
+      },
+      "off": {
+        "label": "끔",
+        "description": "find 도구 비활성"
+      }
     }
   },
   "debug.enabled": {
@@ -264,9 +417,18 @@
     "label": "xd:// 프롬프트 문서",
     "description": "마운트된 장치 문서·스키마 중 시스템 프롬프트에 인라인할 것 선택. 내장만은 핵심 도구만 인라인 유지하고 MCP·확장 도구는 온디맨드로.",
     "options": {
-      "inline": "모든 장치",
-      "builtins": "내장만",
-      "catalog": "카탈로그만"
+      "inline": {
+        "label": "모든 장치",
+        "description": "모든 마운트 장치의 문서·스키마 인라인."
+      },
+      "builtins": {
+        "label": "내장만",
+        "description": "내장 문서는 인라인; MCP·확장 문서는 필요 시 가져옴."
+      },
+      "catalog": {
+        "label": "카탈로그만",
+        "description": "모든 장치 나열; 문서는 모두 필요 시 가져옴."
+      }
     }
   },
   "tools.xdevInlineDevices": {

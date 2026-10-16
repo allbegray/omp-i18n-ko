@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { translateStyledLine } from "./line-translate";
-import { buildChromeRules, type SettingsKoData } from "./settings-panel";
+import { buildChromeRules, translateOptions, type SettingsKoData } from "./settings-panel";
 
 const strip = (s: string) => s.replace(/\x1b\[[0-9;?]*[A-Za-z]/g, "");
 const width = (s: string) => {
@@ -93,5 +93,45 @@ describe("chrome rules on real panel lines", () => {
   test("leaves unrelated lines untouched", () => {
     const line = "│   Dark Theme                  titanium                                      │";
     expect(translate(line)).toBe(line);
+  });
+});
+
+describe("option translations", () => {
+  const host = [
+    { value: "default", label: "Default", description: "Uses the model's policy" },
+    { value: "always", label: "Always", description: "Force it" },
+    { value: "keep", label: "Keep" },
+  ];
+
+  test("object form replaces label and description", () => {
+    const out = translateOptions(host, {
+      default: { label: "기본", description: "선택된 모델 정책 사용" },
+    }) as any[];
+    expect(out[0]).toEqual({ value: "default", label: "기본", description: "선택된 모델 정책 사용" });
+    expect(out[0]).not.toBe(host[0]);
+  });
+
+  test("string form replaces only the label", () => {
+    const out = translateOptions(host, { always: "항상" }) as any[];
+    expect(out[1]).toEqual({ value: "always", label: "항상", description: "Force it" });
+  });
+
+  test("description-only keeps the host label", () => {
+    const out = translateOptions(host, { keep: { description: "유지" } }) as any[];
+    expect(out[2]).toEqual({ value: "keep", label: "Keep", description: "유지" });
+  });
+
+  test("function descriptions are never replaced", () => {
+    const dynamic = [{ value: "x", label: "X", description: () => "live" }];
+    const out = translateOptions(dynamic, { x: { label: "엑스", description: "정적" } }) as any[];
+    expect(out[0].label).toBe("엑스");
+    expect(typeof out[0].description).toBe("function");
+  });
+
+  test("untouched options and non-arrays pass through", () => {
+    const out = translateOptions(host, {}) as any[];
+    expect(out[1]).toBe(host[1]);
+    expect(translateOptions(undefined, { a: "b" })).toBe(undefined);
+    expect(translateOptions("nope", { a: "b" })).toBe("nope");
   });
 });

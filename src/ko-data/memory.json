@@ -3,11 +3,26 @@
     "label": "메모리 백엔드",
     "description": "끔, 로컬 요약 파이프라인, Mnemopi SQLite, Hindsight 원격 메모리, 또는 Sharpshooter",
     "options": {
-      "off": "끔",
-      "local": "로컬",
-      "hindsight": "Hindsight",
-      "mnemopi": "Mnemopi",
-      "sharpshooter": "Sharpshooter"
+      "off": {
+        "label": "끔",
+        "description": "메모리 서브시스템 비활성"
+      },
+      "local": {
+        "label": "로컬",
+        "description": "로컬 롤아웃 요약 파이프라인(memory_summary.md)"
+      },
+      "hindsight": {
+        "label": "Hindsight",
+        "description": "Vectorize Hindsight 원격 메모리 서비스"
+      },
+      "mnemopi": {
+        "label": "Mnemopi",
+        "description": "선택적 임베딩을 쓰는 로컬 SQLite 회상·보존 백엔드"
+      },
+      "sharpshooter": {
+        "label": "Sharpshooter",
+        "description": "마찰 게이트형 프로젝트 결정 파일(아키텍처·제품·스타일), 백그라운드에서 통합"
+      }
     }
   },
   "sharpshooter.model": {
@@ -34,17 +49,32 @@
     "label": "Mnemopi 범위",
     "description": "global=공유 뱅크 1개; per-project=cwd별 격리 뱅크; per-project-tagged=프로젝트 로컬 쓰기+전역 회상 가시성",
     "options": {
-      "global": "전역",
-      "per-project": "프로젝트별",
-      "per-project-tagged": "프로젝트별 (태그)"
+      "global": {
+        "label": "전역",
+        "description": "모든 프로젝트가 공유하는 Mnemopi 뱅크 1개"
+      },
+      "per-project": {
+        "label": "프로젝트별",
+        "description": "cwd 이름별 프로젝트 로컬 Mnemopi 뱅크"
+      },
+      "per-project-tagged": {
+        "label": "프로젝트별 (태그)",
+        "description": "프로젝트 로컬 뱅크에 쓰되 회상 시 프로젝트 + 공유 결과 병합"
+      }
     }
   },
   "mnemopi.embeddingVariant": {
     "label": "임베딩 변형",
     "description": "로컬 임베딩 모델 계열. en=더 강한 영어 모델; multilingual=교차 언어 모델. 변경 시 다음 시작에 기존 메모리 임베딩을 재구축.",
     "options": {
-      "en": "영어 (bge-base-en-v1.5)",
-      "multilingual": "다국어 (multilingual-e5-large)"
+      "en": {
+        "label": "영어 (bge-base-en-v1.5)",
+        "description": "BAAI/bge-base-en-v1.5 (768차원), 영어 전용"
+      },
+      "multilingual": {
+        "label": "다국어 (multilingual-e5-large)",
+        "description": "intfloat/multilingual-e5-large (1024차원), 교차 언어 회상"
+      }
     }
   },
   "mnemopi.autoRecall": {
@@ -87,9 +117,18 @@
     "label": "Mnemopi LLM 모드",
     "description": "LLM 미사용, 온라인 소형 모델(/models의 TINY 역할, 없으면 @smol), 또는 원격 OpenAI 호환 엔드포인트",
     "options": {
-      "none": "없음",
-      "smol": "온라인 (tiny)",
-      "remote": "원격"
+      "none": {
+        "label": "없음",
+        "description": "Mnemopi LLM 기반 추출 비활성"
+      },
+      "smol": {
+        "label": "온라인 (tiny)",
+        "description": "온라인 tiny 모델 사용(/models의 TINY 역할, 없으면 @smol)"
+      },
+      "remote": {
+        "label": "원격",
+        "description": "아래 Mnemopi 원격 LLM 설정 사용"
+      }
     }
   },
   "mnemopi.llmBaseUrl": {
@@ -120,9 +159,18 @@
     "label": "Hindsight 범위",
     "description": "global=공유 뱅크 1개; per-project=cwd별 격리 뱅크; per-project-tagged=프로젝트 태그가 붙은 공유 뱅크로 회상 시 전역+프로젝트 메모리 병합",
     "options": {
-      "global": "전역",
-      "per-project": "프로젝트별",
-      "per-project-tagged": "프로젝트별 (태그)"
+      "global": {
+        "label": "전역",
+        "description": "공유 뱅크 1개; 모든 프로젝트가 같은 메모리 조회"
+      },
+      "per-project": {
+        "label": "프로젝트별",
+        "description": "cwd 이름별 격리 뱅크; 프로젝트 간 메모리 비공유"
+      },
+      "per-project-tagged": {
+        "label": "프로젝트별 (태그)",
+        "description": "공유 뱅크에 project:<cwd> 태그로 보존. 회상 시 프로젝트 + 태그 없는 전역 메모리를 함께 표시"
+      }
     }
   },
   "hindsight.autoRecall": {
@@ -137,8 +185,14 @@
     "label": "Hindsight 보존 모드",
     "description": "full-session=세션당 문서 1개 upsert, last-turn=청크 단위",
     "options": {
-      "full-session": "전체 세션",
-      "last-turn": "마지막 턴"
+      "full-session": {
+        "label": "전체 세션",
+        "description": "세션당 문서 1개 upsert (권장)"
+      },
+      "last-turn": {
+        "label": "마지막 턴",
+        "description": "턴 경계로 분할한 청크 보존"
+      }
     }
   },
   "hindsight.mentalModelsEnabled": {

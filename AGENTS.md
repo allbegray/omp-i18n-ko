@@ -18,7 +18,7 @@ lint·typecheck·빌드 단계 없음. TypeScript를 bun/omp가 직접 실행한
 
 - `src/index.ts`: 확장 진입점(`package.json` → `omp.extensions`). `/ko`(toggle|on|off|status|reload|settings, 기본 ON)를 등록하고 입력된 `/settings`를 `/ko settings`로 리라우팅한다(내장 커맨드는 `registerCommand`로 덮을 수 없어 공식 `input` 이벤트에서 재작성).
 - `src/translations.json` + `src/translate.ts`: 슬래시 메뉴 번역 테이블. 매칭: `exact` / `labels` / `state`·`statePatterns` / `suffixes`. 전부 전체 문자열 매칭, 부분 치환 없음.
-- `src/ko-data/*.json`: 설정 패널 번역(탭별 파일 + `chrome.json`). `_` 접두 키는 무시(주석용).
+- `src/ko-data/*.json`: 설정 패널 번역(탭별 파일 + `chrome.json`). 옵션 값은 문자열(라벨) 또는 `{ "label", "description" }` 객체. `_` 접두 키는 무시(주석용).
 - `src/ko/line-translate.ts`: ANSI 인식 라인 번역기. 치환 시 **표시 폭 보존**: 패딩 → 뒤 공백 흡수 → 불가능하면 스킵.
 - `src/ko/settings-panel.ts`: 호스트 pi-tui `SettingsSelectorComponent`를 `ui.custom` 오버레이로 재사용. 어느 단계든 실패하면 조용히 영어 `/settings`로 폴백.
 

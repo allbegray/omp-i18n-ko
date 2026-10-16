@@ -26,6 +26,9 @@ type AnyRecord = Record<string, any>;
 // Data shape (loaded from src/ko-data/*.json by index.ts)
 // ---------------------------------------------------------------------------
 
+/** Korean override for one option: a bare label, or label + description. */
+export type OptionTranslation = string | { label?: string; description?: string };
+
 export interface SettingsKoData {
   chrome?: {
     /** Title-line pairs ("Settings" -> "설정"). */
@@ -41,7 +44,10 @@ export interface SettingsKoData {
     /** Free regex patterns applied on every line, `$1`..`$9` supported. */
     patterns?: Array<[string, string]>;
   };
-  settings?: Record<string, { label?: string; description?: string; options?: Record<string, string> }>;
+  settings?: Record<
+    string,
+    { label?: string; description?: string; options?: Record<string, OptionTranslation> }
+  >;
 }
 
 // ---------------------------------------------------------------------------
@@ -255,13 +261,29 @@ function envNote(setting: AnyRecord): string {
   }
 }
 
-function translateOptions(options: unknown, map: Record<string, string> | undefined): unknown {
+export function translateOptions(
+  options: unknown,
+  map: Record<string, OptionTranslation> | undefined,
+): unknown {
   if (!map || !Array.isArray(options)) return options;
   return options.map((option: unknown) => {
     if (!option || typeof option !== "object") return option;
     const value = (option as AnyRecord).value;
-    const label = typeof value === "string" ? map[value] : undefined;
-    return label ? { ...(option as AnyRecord), label } : option;
+    const entry = typeof value === "string" ? map[value] : undefined;
+    if (!entry) return option;
+    const patch: AnyRecord = {};
+    if (typeof entry === "string") {
+      patch.label = entry;
+    } else {
+      if (typeof entry.label === "string") patch.label = entry.label;
+      // Replace literal host descriptions only; a future dynamic (function)
+      // description would keep its live behavior.
+      const hostDesc = (option as AnyRecord).description;
+      if (typeof entry.description === "string" && (hostDesc === undefined || typeof hostDesc === "string")) {
+        patch.description = entry.description;
+      }
+    }
+    return Object.keys(patch).length > 0 ? { ...(option as AnyRecord), ...patch } : option;
   });
 }
 

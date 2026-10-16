@@ -11,9 +11,18 @@
     "label": "심볼 프리셋",
     "description": "아이콘·심볼에 쓸 글리프 세트",
     "options": {
-      "unicode": "유니코드",
-      "nerd": "Nerd Font",
-      "ascii": "ASCII"
+      "unicode": {
+        "label": "유니코드",
+        "description": "표준 심볼 (기본)"
+      },
+      "nerd": {
+        "label": "Nerd Font",
+        "description": "Nerd Font 또는 Glyph Protocol 터미널 필요(아이콘 인밴드 전송)"
+      },
+      "ascii": {
+        "label": "ASCII",
+        "description": "최대 호환성"
+      }
     }
   },
   "colorBlindMode": {
@@ -32,36 +41,90 @@
     "label": "상태줄 프리셋",
     "description": "미리 구성된 상태줄 설정",
     "options": {
-      "default": "기본",
-      "minimal": "최소",
-      "compact": "간단",
-      "full": "전체",
-      "nerd": "Nerd",
-      "ascii": "ASCII",
-      "custom": "사용자 지정"
+      "default": {
+        "label": "기본",
+        "description": "모델, 경로, git, 컨텍스트, 토큰, 비용"
+      },
+      "minimal": {
+        "label": "최소",
+        "description": "경로와 git만"
+      },
+      "compact": {
+        "label": "간단",
+        "description": "모델, git, 비용, 컨텍스트"
+      },
+      "full": {
+        "label": "전체",
+        "description": "시간 포함 전체 세그먼트"
+      },
+      "nerd": {
+        "label": "Nerd",
+        "description": "Nerd Font 아이콘으로 최대 정보"
+      },
+      "ascii": {
+        "label": "ASCII",
+        "description": "특수 문자 없음"
+      },
+      "custom": {
+        "label": "사용자 지정",
+        "description": "사용자 정의 세그먼트"
+      }
     }
   },
   "statusLine.separator": {
     "label": "상태줄 구분자",
     "description": "세그먼트 사이 구분자 스타일",
     "options": {
-      "powerline": "Powerline",
-      "powerline-thin": "얇은 셰브런",
-      "slash": "슬래시",
-      "pipe": "파이프",
-      "block": "블록",
-      "none": "없음",
-      "ascii": "ASCII"
+      "powerline": {
+        "label": "Powerline",
+        "description": "단색 화살표 (Nerd Font)"
+      },
+      "powerline-thin": {
+        "label": "얇은 셰브런",
+        "description": "얇은 화살표 (Nerd Font)"
+      },
+      "slash": {
+        "label": "슬래시",
+        "description": "슬래시 기호"
+      },
+      "pipe": {
+        "label": "파이프",
+        "description": "세로 파이프"
+      },
+      "block": {
+        "label": "블록",
+        "description": "단색 블록"
+      },
+      "none": {
+        "label": "없음",
+        "description": "공백만"
+      },
+      "ascii": {
+        "label": "ASCII",
+        "description": "꺾쇠(>) 기호"
+      }
     }
   },
   "statusLine.contextLine": {
     "label": "컨텍스트 반응선",
     "description": "좌·우 세그먼트 사이 선이 컨텍스트 사용량을 표현하는 방식 (box 컴포저 전용)",
     "options": {
-      "off": "끔",
-      "percentage": "백분율",
-      "annotated": "주석",
-      "embedded": "내장"
+      "off": {
+        "label": "끔",
+        "description": "단색 강조 라인; 컨텍스트 표시 없음"
+      },
+      "percentage": {
+        "label": "백분율",
+        "description": "사용분은 강조색, 나머지는 흐리게"
+      },
+      "annotated": {
+        "label": "주석",
+        "description": "백분율 + 추측·자동 압축 경계 눈금"
+      },
+      "embedded": {
+        "label": "내장",
+        "description": "주석 라인에 컨텍스트 백분율·윈도우를 게이지 안에 포함"
+      }
     }
   },
   "statusLine.sessionAccent": {
@@ -96,9 +159,18 @@
     "label": "스크롤백 재작성",
     "description": "터미널 크기 변경 후 남은 스크롤백 행을 새로 고치는 방식",
     "options": {
-      "append": "추가",
-      "rebuild": "재작성",
-      "preserve": "유지"
+      "append": {
+        "label": "추가",
+        "description": "유지된 이력 아래에 새 폭으로 기록 재생"
+      },
+      "rebuild": {
+        "label": "재작성",
+        "description": "터미널 스크롤백을 모두 지우고 현재 폭으로 기록 1회 재생"
+      },
+      "preserve": {
+        "label": "유지",
+        "description": "뷰포트만 다시 그리고 이력은 기존 폭으로 유지"
+      }
     }
   },
   "terminal.showProgress": {
@@ -125,9 +197,18 @@
     "label": "표 자동 그래프",
     "description": "그래픽 지원 터미널에서 숫자 표 아래에 테마 색으로 차트 표시",
     "options": {
-      "smart": "스마트",
-      "always": "항상",
-      "off": "끔"
+      "smart": {
+        "label": "스마트",
+        "description": "judge 모델이 각 차트를 다듬음: 종류·열·행 이름·그룹화·스케일·유리한 방향·제목"
+      },
+      "always": {
+        "label": "항상",
+        "description": "숫자로 읽히는 모든 표를 내장 추정으로 차트화"
+      },
+      "off": {
+        "label": "끔",
+        "description": "표를 표로 유지"
+      }
     }
   },
   "tui.reactions": {
@@ -146,10 +227,22 @@
     "label": "터미널 제목 스피너",
     "description": "터미널 제목 작업 스피너 글리프 세트: braille 스윕, 차오르는 달, 단일 점 순환, ASCII 안전 라인",
     "options": {
-      "braille": "Braille",
-      "pulse": "Pulse",
-      "dots": "Dots",
-      "line": "Line"
+      "braille": {
+        "label": "Braille",
+        "description": "클래식 ⠋⠙⠹ 스윕 (기본)"
+      },
+      "pulse": {
+        "label": "Pulse",
+        "description": "달이 ○◑●로 차오른 뒤 비워짐"
+      },
+      "dots": {
+        "label": "Dots",
+        "description": "단일 점 순환"
+      },
+      "line": {
+        "label": "Line",
+        "description": "braille 미지원 폰트용 ASCII 라인 (- \\ | /)"
+      }
     }
   },
   "tui.hyperlinks": {
@@ -168,18 +261,36 @@
     "label": "시머",
     "description": "작업·로딩 메시지 애니메이션 스타일",
     "options": {
-      "classic": "클래식",
-      "kitt": "KITT 스캐너",
-      "disabled": "사용 안 함"
+      "classic": {
+        "label": "클래식",
+        "description": "텍스트 위를 부드러운 코사인 파도가 훑고 지나감"
+      },
+      "kitt": {
+        "label": "KITT 스캐너",
+        "description": "나이트 라이더 1982 스타일로 좌우로 튀는 붉은 불빛"
+      },
+      "disabled": {
+        "label": "사용 안 함",
+        "description": "애니메이션 없음; 정적인 흐린 텍스트"
+      }
     }
   },
   "display.pinnedAgents": {
     "label": "고정 에이전트",
     "description": "에디터 위 고정 라이브 에이전트 점프 목록 (끔: 숨김, 접힘: 몇 행+펼치기, 전체: 모두 표시)",
     "options": {
-      "off": "끔",
-      "collapsed": "접힘",
-      "full": "전체"
+      "off": {
+        "label": "끔",
+        "description": "고정 점프 목록 숨김"
+      },
+      "collapsed": {
+        "label": "접힘",
+        "description": "일부 행만 표시하고 펼치기 제공"
+      },
+      "full": {
+        "label": "전체",
+        "description": "활성 에이전트를 항상 전부 나열"
+      }
     }
   },
   "display.subagentLivePreview": {
@@ -226,9 +337,18 @@
     "label": "제목 아이콘",
     "description": "새로 생성·/rename된 세션 제목 앞에 붙는 아이콘과 짧은 코드",
     "options": {
-      "nf+emoji": "Nerd Font + Emoji",
-      "emoji": "Emoji",
-      "boring": "기본"
+      "nf+emoji": {
+        "label": "Nerd Font + Emoji",
+        "description": "Nerd Font 심볼 프리셋이 렌더되는 곳엔 Nerd Font 글리프, 아니면 이모지 (기본)"
+      },
+      "emoji": {
+        "label": "Emoji",
+        "description": "항상 이모지"
+      },
+      "boring": {
+        "label": "기본",
+        "description": "일반 제목: 아이콘·코드 없음"
+      }
     }
   }
 }

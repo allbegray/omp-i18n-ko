@@ -22,17 +22,32 @@
     "label": "Antigravity 엔드포인트 모드",
     "description": "google-antigravity 제공자(chat, search, image, discovery)의 엔드포인트 라우팅 전략",
     "options": {
-      "auto": "자동",
-      "production": "프로덕션만",
-      "sandbox": "샌드박스만"
+      "auto": {
+        "label": "자동",
+        "description": "프로덕션 엔드포인트 시도, 5xx/429면 샌드박스로 페일오버"
+      },
+      "production": {
+        "label": "프로덕션만",
+        "description": "프로덕션 엔드포인트만 강제"
+      },
+      "sandbox": {
+        "label": "샌드박스만",
+        "description": "샌드박스 엔드포인트만 강제"
+      }
     }
   },
   "providers.fireworksTier": {
     "label": "Fireworks 티어",
     "description": "Fireworks 요청의 서빙 경로. Priority는 피크 시간 높은 신뢰성을 위해 더 비싼 `service_tier: \"priority\"` 전송; Standard는 생략. Fast(`-fast`) 모델은 무시; Fast는 자체 서빙 경로.",
     "options": {
-      "standard": "Standard",
-      "priority": "Priority"
+      "standard": {
+        "label": "Standard",
+        "description": "기본 서빙 경로 (service_tier 생략)"
+      },
+      "priority": {
+        "label": "Priority",
+        "description": "Priority 서빙 경로: 신뢰성 높음, 토큰당 프리미엄 요금"
+      }
     }
   },
   "providers.tinyModelDevice": {
@@ -68,18 +83,36 @@
     "label": "Kimi API 형식",
     "description": "Kimi Code 제공자의 API 형식(자동은 라이브 모델 메타데이터를 따름)",
     "options": {
-      "auto": "자동",
-      "openai": "OpenAI",
-      "anthropic": "Anthropic"
+      "auto": {
+        "label": "자동",
+        "description": "모델이 서버에서 선언한 프로토콜 사용"
+      },
+      "openai": {
+        "label": "OpenAI",
+        "description": "api.kimi.com"
+      },
+      "anthropic": {
+        "label": "Anthropic",
+        "description": "api.moonshot.ai"
+      }
     }
   },
   "providers.openaiWebsockets": {
     "label": "OpenAI WebSocket",
     "description": "OpenAI Codex 모델의 웹소켓 정책(자동은 모델 기본, 켬은 강제, 끔은 비활성)",
     "options": {
-      "auto": "자동",
-      "off": "끔",
-      "on": "켬"
+      "auto": {
+        "label": "자동",
+        "description": "모델·제공자 기본 웹소켓 동작 사용"
+      },
+      "off": {
+        "label": "끔",
+        "description": "OpenAI Codex 모델의 웹소켓 비활성"
+      },
+      "on": {
+        "label": "켬",
+        "description": "OpenAI Codex 모델에 웹소켓 강제"
+      }
     }
   },
   "providers.openaiLiveSteering": {
@@ -94,27 +127,54 @@
     "label": "프롬프트 캐시 보존",
     "description": "지원 제공자(Anthropic, Bedrock, OpenRouter, OpenAI)로 전달하는 프롬프트 캐시 보존",
     "options": {
-      "auto": "자동",
-      "short": "짧게 (5분)",
-      "long": "길게 (1시간)",
-      "none": "끔"
+      "auto": {
+        "label": "자동",
+        "description": "제공자 기본값; Anthropic OAuth 구독 세션은 1시간, API 키는 5분. PI_CACHE_RETENTION은 그대로 적용"
+      },
+      "short": {
+        "label": "짧게 (5분)",
+        "description": "가장 저렴한 캐시 쓰기; 유휴 시 짧은 항목 유지를 위해 캐시 워밍과 병용"
+      },
+      "long": {
+        "label": "길게 (1시간)",
+        "description": "지원 제공자는 TTL 1시간; 쓰기 비용이 높고 활성 실행 중에만 워밍"
+      },
+      "none": {
+        "label": "끔",
+        "description": "프롬프트 캐시·캐시 선호 라우팅 비활성"
+      }
     }
   },
   "providers.cacheWarming": {
     "label": "캐시 워밍",
     "description": "프롬프트 캐시 항목 만료 직전에 출력 1토큰 예산으로 마지막 요청 재전송",
     "options": {
-      "off": "끔",
-      "streaming": "스트리밍",
-      "idle": "유휴"
+      "off": {
+        "label": "끔",
+        "description": "캐시 워밍 비활성"
+      },
+      "streaming": {
+        "label": "스트리밍",
+        "description": "긴 도구 실행 동안 비싼 프리픽스 보호; 에이전트가 멈추면 중지"
+      },
+      "idle": {
+        "label": "유휴",
+        "description": "기대 절감이 비용 하한 이상일 때 실행 사이에 5분 항목도 갱신"
+      }
     }
   },
   "providers.streamFirstEventTimeoutSeconds": {
     "label": "스트림 첫 이벤트 타임아웃",
     "description": "첫 모델 스트림 이벤트 대기 초; -1=제공자·환경 기본, 0=워치독 비활성",
     "options": {
-      "-1": "자동",
-      "0": "끔",
+      "-1": {
+        "label": "자동",
+        "description": "제공자 기본값·PI_* 타임아웃 환경 변수 사용"
+      },
+      "0": {
+        "label": "끔",
+        "description": "첫 이벤트 타임아웃 비활성"
+      },
       "300": "5분",
       "600": "10분",
       "1800": "30분"
@@ -124,8 +184,14 @@
     "label": "스트림 유휴 타임아웃",
     "description": "이벤트 사이 모델 스트림이 조용할 수 있는 초; -1=제공자·환경 기본, 0=워치독 비활성",
     "options": {
-      "-1": "자동",
-      "0": "끔",
+      "-1": {
+        "label": "자동",
+        "description": "제공자 기본값·PI_* 타임아웃 환경 변수 사용"
+      },
+      "0": {
+        "label": "끔",
+        "description": "유휴 타임아웃 비활성"
+      },
       "300": "5분",
       "600": "10분",
       "1800": "30분"
@@ -135,7 +201,22 @@
     "label": "OpenRouter 라우팅",
     "description": "OpenRouter 모델 ID 뒤에 붙는 기본 라우팅 변형 접미사(선택자가 이미 변형을 지정하면 재정의)",
     "options": {
-      "default": "기본"
+      "default": {
+        "label": "기본",
+        "description": "접미사 없음; OpenRouter 기본 라우팅 사용"
+      },
+      "exacto": {
+        "description": "고품질 제공자 선별 사용(일부 모델에만 정의)"
+      },
+      "floor": {
+        "description": "가장 저렴한 제공자 우선"
+      },
+      "nitro": {
+        "description": "처리량·최저 지연 우선"
+      },
+      "online": {
+        "description": "OpenRouter 웹 검색 플러그인 활성"
+      }
     }
   },
   "live.voice": {
@@ -213,17 +294,47 @@
     "label": "Fetch 제공자",
     "description": "fetch/read URL 도구의 리더 백엔드 우선순위",
     "options": {
-      "auto": "자동",
-      "native": "네이티브"
+      "auto": {
+        "label": "자동",
+        "description": "우선순위: native > trafilatura > lynx > parallel > firecrawl > jina"
+      },
+      "native": {
+        "label": "네이티브",
+        "description": "프로세스 내장 HTML→Markdown 변환기(항상 사용 가능)"
+      },
+      "firecrawl": {
+        "description": "FIRECRAWL_API_KEY 필요"
+      },
+      "jina": {
+        "description": "r.jina.ai 리더 사용(JINA_API_KEY 선택)"
+      },
+      "lynx": {
+        "description": "lynx 시스템 패키지 필요"
+      },
+      "parallel": {
+        "description": "PARALLEL_API_KEY 필요"
+      },
+      "trafilatura": {
+        "description": "uv/pip로 자동 설치"
+      }
     }
   },
   "codexResets.autoRedeem": {
     "label": "Codex 저장 리셋 자동 사용",
     "description": "저장된 Codex 레이트리밋 리셋 자동 소모: 턴이 막히고 다른 계정이 대신할 수 없을 때 소진된 5시간·주간 창으로 차단된 계정 복원, 곧 만료되는 크레딧 구조. 미설정=첫 사용 전 확인(프롬프트 UI가 없으면 5분 내 만료 리셋만 사용), 예=무확인 사용, 아니오=두 검사 모두 끔.",
     "options": {
-      "unset": "미설정",
-      "yes": "예",
-      "no": "아니오"
+      "unset": {
+        "label": "미설정",
+        "description": "적격성을 확인한 뒤 첫 저장 리셋 사용 전에 질문. 프롬프트 UI가 없으면 5분 내 만료되는 리셋만 사용."
+      },
+      "yes": {
+        "label": "예",
+        "description": "적격 저장 리셋을 묻지 않고 사용."
+      },
+      "no": {
+        "label": "아니오",
+        "description": "저장 리셋 자동 사용 검사 안 함."
+      }
     }
   },
   "codexResets.minBlockedMinutes": {
@@ -242,9 +353,18 @@
     "label": "Claude 저장 리셋 자동 사용",
     "description": "적격 Claude Cedar·Juniper 리셋 자동 소모. Cedar는 보장 한도에만 사용; Juniper는 단독 5시간 차단만 복구 가능. 미설정=첫 사용 전 확인(프롬프트 UI가 없으면 5분 내 만료 리셋만 사용), 예=무확인 사용, 아니오=차단 복구·만료 구조 모두 끔.",
     "options": {
-      "unset": "미설정",
-      "yes": "예",
-      "no": "아니오"
+      "unset": {
+        "label": "미설정",
+        "description": "실시간 적격성을 확인한 뒤 첫 Claude 리셋 사용 전에 질문. 프롬프트 UI가 없으면 5분 내 만료되는 리셋만 사용."
+      },
+      "yes": {
+        "label": "예",
+        "description": "적격 Claude 리셋을 묻지 않고 사용."
+      },
+      "no": {
+        "label": "아니오",
+        "description": "Claude 리셋 자동 사용 검사 안 함."
+      }
     }
   },
   "claudeResets.minBlockedMinutes": {
@@ -263,9 +383,18 @@
     "label": "추가 전용 컨텍스트",
     "description": "시스템 프롬프트+도구 스펙을 캐시하고 추가 전용 메시지 로그를 유지해 제공자 프리픽스 캐시(DeepSeek, Xiaomi/SGLang, Anthropic) 적중률 극대화. 알려진 프리픽스 캐시 제공자는 자동 활성.",
     "options": {
-      "auto": "자동",
-      "on": "켬",
-      "off": "끔"
+      "auto": {
+        "label": "자동",
+        "description": "알려진 프리픽스 캐시 제공자는 자동 활성(권장)"
+      },
+      "on": {
+        "label": "켬",
+        "description": "추가 전용 컨텍스트 항상 활성"
+      },
+      "off": {
+        "label": "끔",
+        "description": "추가 전용 컨텍스트 비활성"
+      }
     }
   },
   "telemetry.otlpExportEnabled": {

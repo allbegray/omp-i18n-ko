@@ -3,8 +3,14 @@
     "label": "모델 역할 저장 위치",
     "description": "모델 선택기의 역할 지정을 저장할 위치",
     "options": {
-      "global": "전역",
-      "project": "프로젝트별"
+      "global": {
+        "label": "전역",
+        "description": "활성 프로필 설정에 역할 모델 저장(기존 동작)"
+      },
+      "project": {
+        "label": "프로젝트별",
+        "description": ".omp/config.yml에 프로젝트 역할 모델 저장; 없는 프로젝트 역할은 전역 기본값 사용"
+      }
     }
   },
   "prewalk.enabled": {
@@ -67,9 +73,18 @@
     "label": "인라인 도구 설명",
     "description": "시스템 프롬프트에 전체 도구 설명을 렌더하고 제공자 도구 스키마의 설명을 제거해 한 번만 전송. Gemini는 자동으로 켜지고 그 외는 꺼짐",
     "options": {
-      "auto": "자동",
-      "on": "켬",
-      "off": "끔"
+      "auto": {
+        "label": "자동",
+        "description": "Gemini 모델은 설명을 인라인으로; 그 외는 도구 스키마에 유지"
+      },
+      "on": {
+        "label": "켬",
+        "description": "시스템 프롬프트에 항상 설명 인라인"
+      },
+      "off": {
+        "label": "끔",
+        "description": "제공자 도구 스키마에만 설명 유지"
+      }
     }
   },
   "includeModelInPrompt": {
@@ -88,61 +103,178 @@
     "label": "페르소나",
     "description": "시스템 프롬프트의 페르소나 블록에 반영되는 소통 스타일",
     "options": {
-      "default": "기본",
-      "friendly": "친근",
-      "pragmatic": "실용",
-      "none": "없음"
+      "default": {
+        "label": "기본",
+        "description": "간결하고 근거 우선인 엔지니어; 밀도 높은 행동 지향 답변"
+      },
+      "friendly": {
+        "label": "친근",
+        "description": "추진력과 사기를 중시하는 따뜻하고 격려하는 협업자"
+      },
+      "pragmatic": {
+        "label": "실용",
+        "description": "명료함과 엄밀함을 중시하는 직설적이고 효율적인 엔지니어"
+      },
+      "none": {
+        "label": "없음",
+        "description": "성격 블록 완전히 생략"
+      }
     }
   },
   "temperature": {
     "label": "Temperature",
     "description": "샘플링 온도 (0=결정적, 1=창의적, -1=제공자 기본)",
     "options": {
-      "-1": "기본"
+      "-1": {
+        "label": "기본",
+        "description": "제공자 기본값 사용"
+      },
+      "0": {
+        "description": "결정적"
+      },
+      "0.2": {
+        "description": "집중"
+      },
+      "0.5": {
+        "description": "균형"
+      },
+      "0.7": {
+        "description": "창의적"
+      },
+      "1": {
+        "description": "최대 다양성"
+      }
     }
   },
   "topP": {
     "label": "Top P",
     "description": "Nucleus 샘플링 컷오프 (0-1, -1=제공자 기본)",
     "options": {
-      "-1": "기본"
+      "-1": {
+        "label": "기본",
+        "description": "제공자 기본값 사용"
+      },
+      "0.1": {
+        "description": "매우 집중"
+      },
+      "0.3": {
+        "description": "집중"
+      },
+      "0.5": {
+        "description": "균형"
+      },
+      "0.9": {
+        "description": "넓음"
+      },
+      "1": {
+        "description": "Nucleus 필터링 없음"
+      }
     }
   },
   "topK": {
     "label": "Top K",
     "description": "상위 K개 토큰에서 샘플링 (-1=제공자 기본)",
     "options": {
-      "-1": "기본"
+      "-1": {
+        "label": "기본",
+        "description": "제공자 기본값 사용"
+      },
+      "1": {
+        "description": "최상위 토큰만 (greedy)"
+      },
+      "20": {
+        "description": "집중"
+      },
+      "40": {
+        "description": "균형"
+      },
+      "100": {
+        "description": "넓음"
+      }
     }
   },
   "minP": {
     "label": "Min P",
     "description": "최소 확률 임계값 (0-1, -1=제공자 기본)",
     "options": {
-      "-1": "기본"
+      "-1": {
+        "label": "기본",
+        "description": "제공자 기본값 사용"
+      },
+      "0.01": {
+        "description": "매우 관대"
+      },
+      "0.05": {
+        "description": "균형"
+      },
+      "0.1": {
+        "description": "엄격"
+      }
     }
   },
   "presencePenalty": {
     "label": "Presence Penalty",
     "description": "이미 등장한 토큰의 재등장 페널티 (-1=제공자 기본)",
     "options": {
-      "-1": "기본"
+      "-1": {
+        "label": "기본",
+        "description": "제공자 기본값 사용"
+      },
+      "0": {
+        "description": "페널티 없음"
+      },
+      "0.5": {
+        "description": "약한 새로움"
+      },
+      "1": {
+        "description": "새로움 장려"
+      },
+      "2": {
+        "description": "강한 새로움"
+      }
     }
   },
   "repetitionPenalty": {
     "label": "Repetition Penalty",
     "description": "반복 토큰 페널티 (-1=제공자 기본)",
     "options": {
-      "-1": "기본"
+      "-1": {
+        "label": "기본",
+        "description": "제공자 기본값 사용"
+      },
+      "0.8": {
+        "description": "반복 허용"
+      },
+      "1": {
+        "description": "페널티 없음"
+      },
+      "1.1": {
+        "description": "약한 페널티"
+      },
+      "1.2": {
+        "description": "균형"
+      },
+      "1.5": {
+        "description": "강한 페널티"
+      }
     }
   },
   "textVerbosity": {
     "label": "응답 상세도",
     "description": "OpenAI Responses·Codex 응답의 상세도 (low·medium·high)",
     "options": {
-      "low": "낮음",
-      "medium": "중간",
-      "high": "높음"
+      "low": {
+        "label": "낮음",
+        "description": "간결한 응답 선호"
+      },
+      "medium": {
+        "label": "중간",
+        "description": "간결함과 상세함의 균형 (기본)"
+      },
+      "high": {
+        "label": "높음",
+        "description": "상세한 응답 선호"
+      }
     }
   },
   "tier.openai": {
@@ -230,9 +362,18 @@
     "label": "폴백 트리거",
     "description": "어떤 실패 요청이 구성된 폴백 모델로 전환될 수 있는지",
     "options": {
-      "any": "모든 오류",
-      "usage-limit": "사용량 한도만",
-      "except-usage-limit": "사용량 한도 제외"
+      "any": {
+        "label": "모든 오류",
+        "description": "모든 제공자 오류에서 모델 전환 가능"
+      },
+      "usage-limit": {
+        "label": "사용량 한도만",
+        "description": "사용량 한도에서만 전환; 다른 오류는 같은 모델로 재시도 후 표면화"
+      },
+      "except-usage-limit": {
+        "label": "사용량 한도 제외",
+        "description": "사용량 한도는 대기하거나 표면화; 다른 오류는 전환"
+      }
     }
   },
   "retry.usageAwareFallback": {
@@ -243,20 +384,44 @@
     "label": "잔여 마진",
     "description": "코딩 플랜 모델의 남은 비율이 이 값 미만이면 한도 근접으로 취급. 알 수 없거나 미매핑된 사용량은 기본 모델 유지.",
     "options": {
-      "5": "5%",
-      "10": "10%",
-      "15": "15%",
-      "20": "20%",
-      "25": "25%"
+      "5": {
+        "label": "5%",
+        "description": "거의 소진됐을 때만 동작"
+      },
+      "10": {
+        "label": "10%",
+        "description": "균형 잡힌 안전 마진"
+      },
+      "15": {
+        "label": "15%",
+        "description": "보수적"
+      },
+      "20": {
+        "label": "20%",
+        "description": "이른 보호"
+      },
+      "25": {
+        "label": "25%",
+        "description": "매우 보수적"
+      }
     }
   },
   "retry.usageReservePolicy": {
     "label": "잔여 정책",
     "description": "모든 같은 제공자 코딩 플랜 계정이 잔여 마진 안일 때의 동작.",
     "options": {
-      "confirm": "대화형 확인",
-      "auto": "자동 폴백",
-      "fail-closed": "실패 처리"
+      "confirm": {
+        "label": "대화형 확인",
+        "description": "대화형 세션은 확인 전까지 주 모델 유지; 백그라운드 에이전트는 자동 폴백"
+      },
+      "auto": {
+        "label": "자동 폴백",
+        "description": "항상 다음 적격 폴백 선택"
+      },
+      "fail-closed": {
+        "label": "실패 처리",
+        "description": "예비 쿼터 소비·폴백 선택 안 함"
+      }
     }
   },
   "retry.fallbackChains": {
@@ -267,8 +432,14 @@
     "label": "폴백 복귀 정책",
     "description": "폴백 후 기본 모델로 돌아가는 시점",
     "options": {
-      "cooldown-expiry": "쿨다운 만료 시",
-      "never": "안 함"
+      "cooldown-expiry": {
+        "label": "쿨다운 만료 시",
+        "description": "억제 기간이 끝나면 주 모델로 복귀"
+      },
+      "never": {
+        "label": "안 함",
+        "description": "수동 변경 전까지 폴백 모델 유지"
+      }
     }
   },
   "providers.anthropic.serverSideFallback": {
@@ -279,8 +450,14 @@
     "label": "auto 사고 상한",
     "description": "auto 분류기가 해석할 수 있는 최고 effort. xhigh는 분류기를 한 단계 아래로 유지해 명시적 ultrathink만 max 도달; max는 분류기가 예외적으로 판단한 턴이 최상위 티어를 쓸 수 있게 함.",
     "options": {
-      "xhigh": "xhigh",
-      "max": "max"
+      "xhigh": {
+        "label": "xhigh",
+        "description": "분류기는 xhigh에서 멈춤 (기본)"
+      },
+      "max": {
+        "label": "max",
+        "description": "모델이 지원하면 분류기가 max까지 선택 가능"
+      }
     }
   },
   "advisor.enabled": {
@@ -295,10 +472,16 @@
     "label": "어드바이저 면제 턴",
     "description": "어드바이저 우려/차단이 개입한 뒤 이 턴 수 동안 추가 우려를 비개입 곁가지로 라우팅. 차단은 쿨다운 예외.",
     "options": {
-      "0": "0단계",
+      "0": {
+        "label": "0단계",
+        "description": "쿨다운 없음."
+      },
       "1": "1단계",
       "2": "2단계",
-      "3": "3단계",
+      "3": {
+        "label": "3단계",
+        "description": "기본."
+      },
       "4": "4단계",
       "5": "5단계"
     }
@@ -307,15 +490,24 @@
     "label": "어드바이저 검토 모드",
     "description": "WATCHDOG.yml 명단이 없을 때 기본 검토 주기. 매 턴=모든 기본 턴, 에이전트 종료=최종 산출물만.",
     "options": {
-      "turn": "매 턴",
-      "agent-end": "에이전트 종료 시"
+      "turn": {
+        "label": "매 턴",
+        "description": "모든 기본 업데이트마다 검토 (도구 호출 라운드)."
+      },
+      "agent-end": {
+        "label": "에이전트 종료 시",
+        "description": "최종 양보 시에만 검토 (실행당 1회)."
+      }
     }
   },
   "advisor.reviewInterval": {
     "label": "어드바이저 검토 간격",
     "description": "WATCHDOG.yml 명단이 없을 때 기본 검토 주기: N번째 적격 기본 업데이트마다 검토. 1=매 업데이트. 건너뛴 업데이트는 다음 예약 검토에 함께 전송.",
     "options": {
-      "1": "매 업데이트",
+      "1": {
+        "label": "매 업데이트",
+        "description": "기본."
+      },
       "2": "2번째마다",
       "3": "3번째마다",
       "5": "5번째마다",
@@ -326,10 +518,16 @@
     "label": "업데이트당 최대 노트",
     "description": "어드바이저 프롬프트 업데이트당 허용되는 최대 비차단 조언 노트 수 (1–32; UI 빠른 선택 1–5). 차단은 예외.",
     "options": {
-      "1": "1개",
+      "1": {
+        "label": "1개",
+        "description": "플러딩 방지 (엄격)."
+      },
       "2": "2개",
       "3": "3개",
-      "4": "4개",
+      "4": {
+        "label": "4개",
+        "description": "프런티어 추론 모델. 기본."
+      },
       "5": "5개"
     }
   },

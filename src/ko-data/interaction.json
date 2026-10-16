@@ -27,18 +27,36 @@
     "label": "Vim 모드 표시",
     "description": "상태줄에 현재 Vim 모드를 표시하는 방식",
     "options": {
-      "text": "텍스트",
-      "icon": "아이콘",
-      "none": "숨김"
+      "text": {
+        "label": "텍스트",
+        "description": "전체 모드 이름: NORMAL, INSERT, VISUAL, V-LINE, REPLACE"
+      },
+      "icon": {
+        "label": "아이콘",
+        "description": "모드별 단일 컴팩트 글리프"
+      },
+      "none": {
+        "label": "숨김",
+        "description": "상태줄에 모드 표시 안 함"
+      }
     }
   },
   "loop.mode": {
     "label": "루프 모드",
     "description": "프롬프트 재제출 전 /loop 반복 사이에 하는 일",
     "options": {
-      "prompt": "프롬프트",
-      "compact": "압축",
-      "reset": "리셋"
+      "prompt": {
+        "label": "프롬프트",
+        "description": "프롬프트를 후속 메시지로 재제출(기존 동작)"
+      },
+      "compact": {
+        "label": "압축",
+        "description": "세션 컨텍스트를 압축한 뒤 프롬프트 재제출"
+      },
+      "reset": {
+        "label": "리셋",
+        "description": "새 세션을 시작한 뒤 프롬프트 재제출"
+      }
     }
   },
   "loop.conditionTimeoutMs": {
@@ -91,11 +109,26 @@
     "label": "단어 자동완성",
     "description": "예측 단어 완성을 인라인 힌트로 표시: ⇥=공백과 함께 수락, →=공백 없이 수락",
     "options": {
-      "off": "끔",
-      "auto": "자동",
-      "ngram": "N-gram",
-      "smollm": "SmolLM",
-      "apple": "Apple"
+      "off": {
+        "label": "끔",
+        "description": "단어 완성 없음"
+      },
+      "auto": {
+        "label": "자동",
+        "description": "N-gram(다운로드 없음)"
+      },
+      "ngram": {
+        "label": "N-gram",
+        "description": "프롬프트 이력에서 사용자 어휘 학습"
+      },
+      "smollm": {
+        "label": "SmolLM",
+        "description": "N-gram과 혼합한 소형 온디바이스 언어 모델(첫 사용 시 가중치 다운로드)"
+      },
+      "apple": {
+        "label": "Apple",
+        "description": "macOS 사전 완성"
+      }
     }
   },
   "composer.predictions": {
@@ -149,18 +182,36 @@
     "label": "마켓플레이스 자동 업데이트",
     "description": "시작 시 플러그인 업데이트 확인",
     "options": {
-      "off": "끔",
-      "notify": "알림",
-      "auto": "자동"
+      "off": {
+        "label": "끔",
+        "description": "플러그인 업데이트 확인 안 함"
+      },
+      "notify": {
+        "label": "알림",
+        "description": "시작 시 확인 후 업데이트 있으면 알림"
+      },
+      "auto": {
+        "label": "자동",
+        "description": "시작 시 확인 후 업데이트 자동 설치"
+      }
     }
   },
   "startup.changelogMode": {
     "label": "시작 체인지로그",
     "description": "업데이트 노트를 요약·전체·숨김 중 어떻게 시작할지",
     "options": {
-      "summary": "요약",
-      "expanded": "펼침",
-      "hidden": "숨김"
+      "summary": {
+        "label": "요약",
+        "description": "릴리스·변경 건수를 /changelog 안내와 함께 표시"
+      },
+      "expanded": {
+        "label": "펼침",
+        "description": "최근 릴리스 노트 전체 표시"
+      },
+      "hidden": {
+        "label": "숨김",
+        "description": "시작 시 릴리스 노트 표시 안 함"
+      }
     }
   },
   "magicKeywords.enabled": {
@@ -225,19 +276,40 @@
     "label": "절전 방지",
     "description": "활성 세션 동안 시스템 절전 방지. 각 단계는 누적; 하위 단계 플래그를 모두 포함.",
     "options": {
-      "off": "끔",
-      "idle": "유휴 절전 방지",
-      "display": "화면 절전 방지",
-      "system": "시스템 절전 방지"
+      "off": {
+        "label": "끔",
+        "description": "절전 방지 안 함"
+      },
+      "idle": {
+        "label": "유휴 절전 방지",
+        "description": "세션이 열려 있는 동안 시스템을 깨어 있게 유지 (macOS `caffeinate -i`)"
+      },
+      "display": {
+        "label": "화면 절전 방지",
+        "description": "화면 유휴 절전도 방지 (macOS `caffeinate -i -d`)"
+      },
+      "system": {
+        "label": "시스템 절전 방지",
+        "description": "AC에서 시스템 절전까지 모두 차단하고 사용자를 활성으로 선언 (macOS `caffeinate -i -d -s -u`)"
+      }
     }
   },
   "features.unexpectedStopDetection": {
     "label": "예기치 않은 중단",
     "description": "어시스턴트가 보이는 메시지 없이 멈추면 자동 복구. 스마트는 텍스트만 있는 중단도 소형 모델로 분류.",
     "options": {
-      "none": "없음",
-      "mechanical": "기계적",
-      "smart": "스마트"
+      "none": {
+        "label": "없음",
+        "description": "비활성"
+      },
+      "mechanical": {
+        "label": "기계적",
+        "description": "어시스턴트 메시지 없이 멈추면 재시도; 도구 호출은 제외 (기본)"
+      },
+      "smart": {
+        "label": "스마트",
+        "description": "기계적 감지 + 텍스트만 멈춘 경우 소형 모델 분류"
+      }
     }
   },
   "tools.approval": {
@@ -248,9 +320,18 @@
     "label": "도구 승인",
     "description": "도구 호출의 기본 승인 동작. '항상 묻기'=읽기 전용 도구만 자동 승인. '쓰기'=읽기·워크스페이스 쓰기 자동 승인. 'Yolo'=모든 등급 자동 승인; 사용자 정책이 여전히 프롬프트·차단 가능.",
     "options": {
-      "always-ask": "항상 묻기",
-      "write": "쓰기",
-      "yolo": "Yolo"
+      "always-ask": {
+        "label": "항상 묻기",
+        "description": "읽기 전용 도구는 자동 승인; 쓰기·실행 도구는 확인 필요."
+      },
+      "write": {
+        "label": "쓰기",
+        "description": "읽기·쓰기 도구 자동 승인; bash·eval·browser·task 등 실행 도구는 확인 필요."
+      },
+      "yolo": {
+        "label": "Yolo",
+        "description": "읽기·쓰기·실행 도구 자동 승인. 사용자 정책이 확인·차단을 요구할 수 있음."
+      }
     }
   },
   "skills.registryUrl": {
@@ -287,9 +368,18 @@
     "label": "자동 시작",
     "description": "모든 대화형 세션 시작 시 collab.relayUrl로 호스팅하고 로컬 레지스트리에 게시(omp collab list); 세션 전환 시 방 교체",
     "options": {
-      "off": "끔",
-      "view": "보기",
-      "control": "제어"
+      "off": {
+        "label": "끔",
+        "description": "/collab 실행 시에만 공유"
+      },
+      "view": {
+        "label": "보기",
+        "description": "자동 호스팅; 레지스트리가 보기 전용 링크 발급(omp collab link --view)"
+      },
+      "control": {
+        "label": "제어",
+        "description": "자동 호스팅; 레지스트리가 세션에 프롬프트할 수 있는 제어 링크 발급"
+      }
     }
   },
   "share.serverUrl": {
@@ -300,8 +390,14 @@
     "label": "공유 저장소",
     "description": "/share가 암호화 세션 blob을 업로드할 곳",
     "options": {
-      "blob": "암호화 Blob",
-      "gist": "GitHub Gist"
+      "blob": {
+        "label": "암호화 Blob",
+        "description": "공유 서버로 업로드(GitHub 계정 불필요; gist API 레이트 리밋 회피)"
+      },
+      "gist": {
+        "label": "GitHub Gist",
+        "description": "비공개 gist로 푸시(gh 인증 필요); 실패 시 공유 서버로 폴백"
+      }
     }
   },
   "share.redactSecrets": {

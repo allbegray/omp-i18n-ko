@@ -9,7 +9,21 @@
   },
   "edit.fuzzyThreshold": {
     "label": "퍼지 매칭 임계값",
-    "description": "퍼지 매칭 허용 유사도 임계값 (0-1)"
+    "description": "퍼지 매칭 허용 유사도 임계값 (0-1)",
+    "options": {
+      "0.85": {
+        "description": "관대"
+      },
+      "0.90": {
+        "description": "보통"
+      },
+      "0.95": {
+        "description": "기본"
+      },
+      "0.98": {
+        "description": "엄격"
+      }
+    }
   },
   "edit.streamingAbort": {
     "label": "미리보기 실패 시 중단",

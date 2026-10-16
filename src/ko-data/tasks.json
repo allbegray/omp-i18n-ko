@@ -7,15 +7,42 @@
     "label": "격리 백엔드",
     "description": "서브에이전트 격리·워크트리 복제에 쓰는 백엔드",
     "options": {
-      "auto": "자동",
-      "apfs": "APFS",
-      "btrfs": "btrfs",
-      "zfs": "ZFS",
-      "reflink": "Reflink",
-      "overlayfs": "Overlayfs",
-      "projfs": "ProjFS",
-      "block-clone": "블록 클론",
-      "rcopy": "재귀 복사"
+      "auto": {
+        "label": "자동",
+        "description": "PAL이 사용 가능한 최선 백엔드 선택"
+      },
+      "apfs": {
+        "label": "APFS",
+        "description": "macOS clonefile reflink (APFS)"
+      },
+      "btrfs": {
+        "label": "btrfs",
+        "description": "btrfs 서브볼륨 스냅샷"
+      },
+      "zfs": {
+        "label": "ZFS",
+        "description": "ZFS 스냅샷 + 클론"
+      },
+      "reflink": {
+        "label": "Reflink",
+        "description": "리눅스 FICLONE 파일 단위 reflink"
+      },
+      "overlayfs": {
+        "label": "Overlayfs",
+        "description": "리눅스 커널 오버레이(fuse-overlayfs 폴백)"
+      },
+      "projfs": {
+        "label": "ProjFS",
+        "description": "Windows Projected File System"
+      },
+      "block-clone": {
+        "label": "블록 클론",
+        "description": "Windows FSCTL_DUPLICATE_EXTENTS_TO_FILE (NTFS/ReFS)"
+      },
+      "rcopy": {
+        "label": "재귀 복사",
+        "description": "가능하면 git worktree, 아니면 재귀 복사"
+      }
     }
   },
   "worktree.clone": {
@@ -30,18 +57,36 @@
     "label": "시작 시 워크트리",
     "description": "새 대화형 세션이 새 링크드 워크트리에서 시작할지",
     "options": {
-      "off": "끔",
-      "ask": "묻기",
-      "create": "생성"
+      "off": {
+        "label": "끔",
+        "description": "현재 체크아웃에서 시작"
+      },
+      "ask": {
+        "label": "묻기",
+        "description": "세션 시작 시 질문"
+      },
+      "create": {
+        "label": "생성",
+        "description": "항상 `wt/*` 브랜치의 새 워크트리에서 시작"
+      }
     }
   },
   "worktree.onExit": {
     "label": "종료 시 워크트리",
     "description": "omp 시작 이후 생성된(시작 시 또는 `/wt`) 워크트리를 종료할 때 처리",
     "options": {
-      "keep": "유지",
-      "ask": "묻기",
-      "remove": "제거"
+      "keep": {
+        "label": "유지",
+        "description": "워크트리를 그대로 둠"
+      },
+      "ask": {
+        "label": "묻기",
+        "description": "종료 시 질문"
+      },
+      "remove": {
+        "label": "제거",
+        "description": "깨끗한 워크트리는 제거; 미커밋 변경·새 커밋이 있으면 질문. gitignore된 파일(예: `.env`)도 삭제"
+      }
     }
   },
   "task.isolation.apply": {
@@ -52,16 +97,28 @@
     "label": "격리 병합 전략",
     "description": "격리 작업 변경 통합 방식(패치 적용 또는 브랜치 병합)",
     "options": {
-      "patch": "패치",
-      "branch": "브랜치"
+      "patch": {
+        "label": "패치",
+        "description": "diff 병합 후 git apply"
+      },
+      "branch": {
+        "label": "브랜치",
+        "description": "작업별 커밋 후 --no-ff 병합"
+      }
     }
   },
   "task.isolation.commits": {
     "label": "격리 커밋 스타일",
     "description": "중첩 저장소 변경의 커밋 메시지 스타일(일반 또는 AI 생성)",
     "options": {
-      "generic": "일반",
-      "ai": "AI"
+      "generic": {
+        "label": "일반",
+        "description": "고정 커밋 메시지"
+      },
+      "ai": {
+        "label": "AI",
+        "description": "diff에서 AI 생성 커밋 메시지"
+      }
     }
   },
   "worktree.base": {
@@ -72,9 +129,18 @@
     "label": "작업 위임 선호",
     "description": "서브에이전트로 위임을 얼마나 강하게 권장할지",
     "options": {
-      "default": "기본",
-      "preferred": "권장",
-      "always": "항상"
+      "default": {
+        "label": "기본",
+        "description": "선택된 모델 정책 사용; 일부 모델은 명시적 위임 요청 필요"
+      },
+      "preferred": {
+        "label": "권장",
+        "description": "시스템 프롬프트에 위임 지침 추가"
+      },
+      "always": {
+        "label": "항상",
+        "description": "프롬프트 지침 + 첫 턴 위임 리마인더"
+      }
     }
   },
   "task.batch": {
@@ -126,7 +192,10 @@
     "label": "최대 서브에이전트 런타임",
     "description": "서브에이전트당 하드 월클록 한도(ms). 0=비활성. 추론 계층 워치독을 벗어난 제공자 스트림 행 대비; 'timed out' 사유의 정상 중단을 트리거.",
     "options": {
-      "0": "무제한",
+      "0": {
+        "label": "무제한",
+        "description": "기본"
+      },
       "300000": "5분",
       "900000": "15분",
       "1800000": "30분",
@@ -148,7 +217,10 @@
       "0": "비활성",
       "90": "90회",
       "150": "150회",
-      "200": "200회"
+      "200": {
+        "label": "200회",
+        "description": "기본"
+      }
     }
   },
   "task.softRequestBudgetNotice": {
@@ -195,8 +267,14 @@
     "label": "제목 생성기",
     "description": "사용자 메시지로 제목 없는 세션의 이름을 짓는 주체",
     "options": {
-      "fork": "Fork",
-      "tiny": "Tiny"
+      "fork": {
+        "label": "Fork",
+        "description": "세션 모델로 답변의 곁가지 턴 실행: 프롬프트 캐시 재사용, 카드 아이콘 추가 (기본)"
+      },
+      "tiny": {
+        "label": "Tiny",
+        "description": "title 모델 역할만 사용; 카드 없는 일반 제목"
+      }
     }
   },
   "title.refreshOnReplan": {

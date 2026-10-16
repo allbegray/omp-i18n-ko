@@ -66,6 +66,12 @@ omp(oh-my-pi) 한국어 언어팩 프로젝트. 그릴링 완료 (2026-10-16) �
   - 검증: 실렌더 라인 기반 51 테스트 + omp 내부 E2E 프로브(`tmp/panel-probe.ts`) — 제목·탭(11개)·사이드바·리스트 그룹 헤더·푸터(기본/검색/섹션 모드)·검색 배너(`N건`)까지 한국어, 영문판과 표시 폭 동일(110/110). 탭이 좁은 폭에서 아이콘만 남는 것은 **영문판과 동일한 컴포넌트 반응형 동작**.
   - 기준 v18.11.1. 업스트림 업데이트로 모듈 경로·시그니처가 바뀌면 이 기능만 비활성(영어 폴백) — CLI는 불변.
 
+- **D12. 배포·설치 방식** (사용자 지시: "한줄 설치 가이드", 2026-10-16) — 1차 설치 경로를 omp **공식 `omp install`**(플러그인 링크)로 승격. README 한 줄: `git clone https://github.com/allbegray/omp-i18n-ko.git ~/omp-i18n-ko && omp install ~/omp-i18n-ko`.
+  - 근거: `omp install <path>`는 `~/.omp/plugins/node_modules/<name>` 심링크 + `omp-plugins.lock.json` 등록을 만들고, 확장 로더(`extensions/loader.ts`)가 `getAllPluginExtensionPaths`로 플러그인 `omp.extensions` 매니페스트를 로드한다 — 공식 경로, 관리(`omp plugin list/uninstall/enable/disable`)까지 붙는다.
+  - 검증: 임시 HOME 3중 부팅(설치=로드됨 · 무설치=미로드 · 기존 심링크=로드됨), `ready`+`available_commands` 카탈로그에 `/ko` 표시, `extension_error` 0, stderr 0줄. 실사용 환경도 심링크 → 플러그인 링크로 마이그레이션 완료.
+  - 수동 심링크는 대안으로 문서 유지(구버전 omp용). 동시 사용 금지(중복 로드).
+  - npm 배포는 보류: `npm whoami` 미로그인 + `omp install <npm spec>` 경로는 계정 준비 후 v2 후보.
+
 ## 그릴링 종료 (2026-10-16)
 
 프론티어 소진 — 모든 결정 확정. 구현 시작.

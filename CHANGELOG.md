@@ -2,6 +2,19 @@
 
 [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/) 형식을 따르며 [유의적 버전](https://semver.org/lang/ko/)을 사용합니다.
 
+## [0.1.4] — 2026-10-16
+
+커버리지 재감사 릴리즈. 기준: **omp v18.11.1**.
+
+### 수정
+
+- `/effort` 드롭다운 현재값이 `Moderate reasoning (~8k tokens) (현재)`처럼 베이스가 영어로 남던 문제 수정 (접미사 치환이 베이스를 번역하지 않던 버그).
+- 런타임 메타데이터 잔여 문자열 `Inherit session default` 번역 추가.
+
+### 문서
+
+- D8 보강: 상태 공지(StatusNotice)·웰컴 팁(빌드 타임 번들)·`setFooter`/`setHeader` no-op 확인, 슬래시 메뉴·인자 완성 215개 전수 커버 재감사 기록.
+
 ## [0.1.3] — 2026-10-16
 
 설정 패널 옵션 한국어 전수화 릴리즈. 기준: **omp v18.11.1**.

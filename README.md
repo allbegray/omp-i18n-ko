@@ -34,10 +34,11 @@ omp -e /path/to/omp-ko/src/index.ts
 | `/ko` · `/ko toggle` | 켜기 ↔ 끄기 |
 | `/ko on` | 켜기 |
 | `/ko off` | 끄기 (영어 원문 표시) |
-| `/ko status` | 현재 상태 · 로드된 번역 항목 수 |
-| `/ko reload` | `translations.json` 다시 로드 (편집 후 즉시 반영) |
+| `/ko status` | 현재 상태 · 로드된 번역 항목 수 · 설정 패널 상태 |
+| `/ko reload` | `translations.json`·`ko-data` 다시 로드 (편집 후 즉시 반영) |
+| `/ko settings` | 한국어 설정 패널 열기 (내장 `/settings`와 같은 화면) |
 
-토글 직후에는 이미 그려진 메뉴가 그대로 남을 수 있고, **다음 슬래시 메뉴 렌더부터** 반영됩니다(omp 확장 API에 강제 리페인트 훅이 없음).
+토글 직후에는 이미 그려진 메뉴가 그대로 남을 수 있고, **다음 슬래시 메뉴 렌더부터** 반영됩니다(omp 확장 API에 강제 리페인트 훅이 없음). 평소처럼 **`/settings`를 입력해도** 한국어 설정 패널이 열립니다 — 확장이 꺼져 있거나 로드에 실패하면 내장 영어판이 그대로 동작합니다.
 
 ## 커버리지
 
@@ -47,10 +48,20 @@ omp -e /path/to/omp-ko/src/index.ts
 - 선택 항목 상세(`nativeDetail`)와 동적 상태(`state`) — 예: `Plan: off` → `계획(plan): 꺼짐`
 - 상태 문자열 패턴 — 예: `Tools: 12 active / 20 available` → `도구(tools): 12개 활성 / 20개 사용 가능`
 - 작업 표시문 — `생각 중…` (`setWorkingMessage`)
+- **설정 패널** — 제목·탭·섹션명·푸터·검색 배너와 전 탭 설정 라벨·설명·옵션까지 한국어 (아래 “설정 패널” 참고)
 
 커버 불가 (omp 내부 제약, 소스 확인):
 
-- 커맨드 이름 자체, 팁 라인, 웰컴/설정 마법사, 설정 패널, 내장 상태줄 세그먼트, 호스트 알림
+- 커맨드 이름 자체, 팁 라인, 웰컴 마법사, 내장 상태줄 세그먼트, 호스트 알림
+
+## 설정 패널
+
+`/ko settings`로 열거나, 평소처럼 **`/settings`를 입력**하면 같은 한국어 패널이 열립니다. 내장 설정 패널이 쓰는 omp 자신의 컴포넌트(pi-tui `SettingsSelectorComponent`)에 한국어 데이터를 얹어 띄우는 방식이며, 재구현이 아닙니다.
+
+- 값 변경(토글·숫자·경로·선택)은 omp의 정상 설정 스코프에 **그대로 저장**됩니다 — `/settings` 영문판과 동일하게 동작합니다.
+- 번역 데이터는 `src/ko-data/`의 탭별 JSON입니다. 편집 후 `/ko reload`로 재적용하세요.
+- 설정 라벨·설명은 `한국어(english)` 병기를 생략합니다(폭·가독성). 샘플링 파라미터(Temperature, Top P, Top K, Min P …)처럼 관례적으로 영어를 쓰는 라벨은 영어 유지.
+- 어떤 단계든 실패하면 내장 영어 `/settings`가 그대로 동작합니다 — CLI는 영향을 받지 않습니다.
 
 ## 안전 설계
 
@@ -61,7 +72,7 @@ omp -e /path/to/omp-ko/src/index.ts
 
 ## 번역 수정
 
-`src/translations.json`을 편집한 뒤 omp에서 `/ko reload`를 실행하세요.
+`src/translations.json`을 편집한 뒤 omp에서 `/ko reload`를 실행하세요. 설정 패널 문구는 `src/ko-data/*.json`(탭별 설정)과 `src/ko-data/chrome.json`(패널 크롬)에서 수정합니다.
 
 구조 (전부 **전체 문자열 매칭**, 부분 치환 없음):
 
@@ -91,5 +102,6 @@ Korean UI localization for the [omp (oh-my-pi)](https://github.com/can1357/oh-my
 - **Never breaks the CLI**: every failure path is isolated and falls back to the original English string. Removing the extension leaves no trace.
 - **Identifiers stay English**: command names, model ids, MCP/SSH/LSP names remain typeable.
 - **Command keywords are annotated** as `한국어(english)` (e.g. `설정(settings) 메뉴 열기`) so you can read Korean and still recognize the original command.
-- Install by symlinking `src/index.ts` into `~/.omp/agent/extensions/`, then use `/ko` (`toggle` / `on` / `off` / `status` / `reload`; default ON).
+- **Korean settings panel**: `/ko settings`, or simply type `/settings` — the host's own settings component with translated labels, descriptions and chrome; every value is stored through the normal omp settings scopes and the built-in English panel remains the fallback.
+- Install by symlinking `src/index.ts` into `~/.omp/agent/extensions/`, then use `/ko` (`toggle` / `on` / `off` / `status` / `reload` / `settings`; default ON).
 - Baseline: omp v18.11.1 (2026-10-15). Translated strings that omp later changes simply fall back to English.

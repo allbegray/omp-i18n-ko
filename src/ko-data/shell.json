@@ -1,0 +1,78 @@
+{
+  "bash.enabled": {
+    "label": "Bash",
+    "description": "셸 명령 실행용 bash 도구 활성화"
+  },
+  "bash.allowCompoundCommands": {
+    "label": "복합 명령 허용",
+    "description": "리터럴 && 체인을 명령별로 평가; 매칭되지 않는 명령은 일반 bash 승인 정책·모드 사용"
+  },
+  "bash.autoBackground.enabled": {
+    "label": "Bash 자동 백그라운드",
+    "description": "오래 걸리는 bash 명령을 자동으로 백그라운드화하고 결과를 나중에 전달"
+  },
+  "bash.gitGuard": {
+    "label": "Git 가드",
+    "description": "공유 작업을 버리거나 옮기는 git 명령을 bash 도구에서 거부: stash, reset --hard 또는 다른 커밋으로 reset, 병합·리베이스 충돌 밖에서의 checkout/switch/restore"
+  },
+  "bash.patterns": {
+    "label": "Bash 승인 패턴",
+    "description": "순서 있는 bash 명령 승인 규칙. 각 항목은 match·approval 필드; '*' 와일드카드만 지원."
+  },
+  "bashInterceptor.enabled": {
+    "label": "Bash 인터셉터",
+    "description": "전용 도구가 있는 셸 명령 차단"
+  },
+  "bash.direnv": {
+    "label": "direnv 자동 로드",
+    "description": "저장소의 direnv/devenv `.envrc`를 bash 세션에 자동 로드해 devenv 도구·환경 변수를 수동 `direnv exec` 없이 사용. direnv 허용 목록 준수: `direnv allow`하지 않은 `.envrc`는 실행하지 않음"
+  },
+  "bash.direnvLoadTimeoutMs": {
+    "label": "direnv 로드 타임아웃 (ms)",
+    "description": "첫 `direnv export` 최대 대기(차가운 devenv 셸은 느릴 수 있음); 타임아웃 시 direnv 환경 없이 세션 실행"
+  },
+  "shellMinimizer.enabled": {
+    "label": "셸 출력 압축",
+    "description": "에이전트에 반환하기 전 장황한 셸 출력(git, npm, cargo 등) 압축"
+  },
+  "shellMinimizer.sourceOutlineLevel": {
+    "label": "셸 압축 소스 개요",
+    "description": "소스 파일 cat/read용 소스 개요 모드: 기본 또는 공격적",
+    "options": {
+      "default": "기본",
+      "aggressive": "공격적"
+    }
+  },
+  "eval.py": {
+    "label": "Python eval 백엔드",
+    "description": "eval 도구가 Python 셀을 IPython 커널로 보내도록 허용"
+  },
+  "eval.js": {
+    "label": "JavaScript eval 백엔드",
+    "description": "eval 도구가 JavaScript 셀을 인프로세스 런타임으로 보내도록 허용"
+  },
+  "eval.autoProvision": {
+    "label": "Eval 환경 자동 구성",
+    "description": "첫 설치 시 관리형 JavaScript eval 패키지 환경 자동 생성"
+  },
+  "eval.tools.enabled": {
+    "label": "Eval 정의 도구",
+    "description": "eval 셀에서 도구 정의 허용 (@tool in Python, tool(fn) in JS) — task, agent(), workpool() 서브에이전트가 호출 가능"
+  },
+  "eval.workpool.freshAgents": {
+    "label": "Workpool 새 에이전트",
+    "description": "워커 재사용·대기 항목 일괄 처리 대신 workpool 항목마다 새 서브에이전트 생성"
+  },
+  "eval.autoBackground.enabled": {
+    "label": "Eval 자동 백그라운드",
+    "description": "오래 걸리는 eval 셀을 자동으로 백그라운드화하고 결과를 나중에 전달"
+  },
+  "python.kernelMode": {
+    "label": "Python 커널 모드",
+    "description": "eval 호출 간 IPython 커널 유지 또는 매번 새로 시작"
+  },
+  "python.interpreter": {
+    "label": "Python 인터프리터",
+    "description": "정확한 Python 실행 파일 경로(선택). 설정 시 자동 Python 런타임 탐색을 건너뜀."
+  }
+}

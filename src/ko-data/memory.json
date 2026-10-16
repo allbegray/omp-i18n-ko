@@ -1,0 +1,152 @@
+{
+  "memory.backend": {
+    "label": "메모리 백엔드",
+    "description": "끔, 로컬 요약 파이프라인, Mnemopi SQLite, Hindsight 원격 메모리, 또는 Sharpshooter",
+    "options": {
+      "off": "끔",
+      "local": "로컬",
+      "hindsight": "Hindsight",
+      "mnemopi": "Mnemopi",
+      "sharpshooter": "Sharpshooter"
+    }
+  },
+  "sharpshooter.model": {
+    "label": "Sharpshooter 모델",
+    "description": "추출·통합용 모델 선택자; 비우면 smol 역할"
+  },
+  "autolearn.enabled": {
+    "label": "자동 학습 (실험적)",
+    "description": "에이전트가 멈추면 교훈을 메모리에 캡처하고 격리된 관리 스킬을 생성·개선하도록 유도"
+  },
+  "autolearn.autoContinue": {
+    "label": "중단 시 캡처 자동 실행",
+    "description": "켜면 중단 시 비공개 캡처 턴 1회를 자동 실행(추가 토큰 사용). 끄면 상시 자동 학습 안내만 남음."
+  },
+  "mnemopi.dbPath": {
+    "label": "Mnemopi DB 경로",
+    "description": "선택적 SQLite DB 경로. 기본: 에이전트 메모리 디렉터리."
+  },
+  "mnemopi.bank": {
+    "label": "Mnemopi 뱅크",
+    "description": "선택적 공유 뱅크 기본 이름. 프로젝트별 모드는 여기서 프로젝트 로컬 뱅크를 파생."
+  },
+  "mnemopi.scoping": {
+    "label": "Mnemopi 범위",
+    "description": "global=공유 뱅크 1개; per-project=cwd별 격리 뱅크; per-project-tagged=프로젝트 로컬 쓰기+전역 회상 가시성",
+    "options": {
+      "global": "전역",
+      "per-project": "프로젝트별",
+      "per-project-tagged": "프로젝트별 (태그)"
+    }
+  },
+  "mnemopi.embeddingVariant": {
+    "label": "임베딩 변형",
+    "description": "로컬 임베딩 모델 계열. en=더 강한 영어 모델; multilingual=교차 언어 모델. 변경 시 다음 시작에 기존 메모리 임베딩을 재구축.",
+    "options": {
+      "en": "영어 (bge-base-en-v1.5)",
+      "multilingual": "다국어 (multilingual-e5-large)"
+    }
+  },
+  "mnemopi.autoRecall": {
+    "label": "Mnemopi 자동 회상",
+    "description": "각 세션 첫 턴에 로컬 메모리를 회상"
+  },
+  "mnemopi.autoRetain": {
+    "label": "Mnemopi 자동 보존",
+    "description": "완료된 대화 턴을 로컬 Mnemopi 메모리에 보존"
+  },
+  "mnemopi.polyphonicRecall": {
+    "label": "Mnemopi 다성 회상",
+    "description": "그래프·사실·벡터·시간 목소리를 융합해 키워드 일치 없이도 연결된 메모리를 표면화"
+  },
+  "mnemopi.enhancedRecall": {
+    "label": "Mnemopi 강화 회상",
+    "description": "동일 옵션의 반복·유사 쿼리 회상 결과를 캐시; 메모리 쓰기 시 캐시 클리어"
+  },
+  "mnemopi.proactiveLinking": {
+    "label": "Mnemopi 사전 연결",
+    "description": "새 메모리를 저장할 때 에피소드 그래프에 수집해 관련 엔터티·메모리와 연결"
+  },
+  "mnemopi.noEmbeddings": {
+    "label": "Mnemopi 임베딩 비활성",
+    "description": "벡터 임베딩 대신 결정적 FTS 전용 회상 강제"
+  },
+  "mnemopi.embeddingModel": {
+    "label": "Mnemopi 임베딩 모델",
+    "description": "고급: 변형을 재정의하는 명시적 임베딩 모델 id. 비우면 mnemopi.embeddingVariant 사용."
+  },
+  "mnemopi.embeddingApiUrl": {
+    "label": "Mnemopi 임베딩 API URL",
+    "description": "Mnemopi에 전달할 선택적 OpenAI 호환 임베딩 엔드포인트"
+  },
+  "mnemopi.embeddingApiKey": {
+    "label": "Mnemopi 임베딩 API 키",
+    "description": "Mnemopi에 전달할 선택적 임베딩 API 키"
+  },
+  "mnemopi.llmMode": {
+    "label": "Mnemopi LLM 모드",
+    "description": "LLM 미사용, 온라인 소형 모델(/models의 TINY 역할, 없으면 @smol), 또는 원격 OpenAI 호환 엔드포인트",
+    "options": {
+      "none": "없음",
+      "smol": "온라인 (tiny)",
+      "remote": "원격"
+    }
+  },
+  "mnemopi.llmBaseUrl": {
+    "label": "Mnemopi LLM 베이스 URL",
+    "description": "Mnemopi 원격 모드용 선택적 OpenAI 호환 LLM 엔드포인트"
+  },
+  "mnemopi.llmApiKey": {
+    "label": "Mnemopi LLM API 키",
+    "description": "Mnemopi 원격 모드용 선택적 LLM API 키"
+  },
+  "mnemopi.llmModel": {
+    "label": "Mnemopi LLM 모델",
+    "description": "Mnemopi 원격 모드용 선택적 LLM 모델 이름"
+  },
+  "hindsight.apiUrl": {
+    "label": "Hindsight API URL",
+    "description": "Hindsight 서버 URL (Cloud 또는 자체 호스팅)"
+  },
+  "hindsight.apiToken": {
+    "label": "Hindsight API 토큰",
+    "description": "인증 Hindsight 서버용 Bearer 토큰"
+  },
+  "hindsight.bankId": {
+    "label": "Hindsight 뱅크 ID",
+    "description": "메모리 뱅크 식별자 (기본: 프로젝트 이름)"
+  },
+  "hindsight.scoping": {
+    "label": "Hindsight 범위",
+    "description": "global=공유 뱅크 1개; per-project=cwd별 격리 뱅크; per-project-tagged=프로젝트 태그가 붙은 공유 뱅크로 회상 시 전역+프로젝트 메모리 병합",
+    "options": {
+      "global": "전역",
+      "per-project": "프로젝트별",
+      "per-project-tagged": "프로젝트별 (태그)"
+    }
+  },
+  "hindsight.autoRecall": {
+    "label": "Hindsight 자동 회상",
+    "description": "각 세션 첫 턴에 메모리를 회상"
+  },
+  "hindsight.autoRetain": {
+    "label": "Hindsight 자동 보존",
+    "description": "N턴마다 그리고 세션 경계에서 트랜스크립트 보존"
+  },
+  "hindsight.retainMode": {
+    "label": "Hindsight 보존 모드",
+    "description": "full-session=세션당 문서 1개 upsert, last-turn=청크 단위",
+    "options": {
+      "full-session": "전체 세션",
+      "last-turn": "마지막 턴"
+    }
+  },
+  "hindsight.mentalModelsEnabled": {
+    "label": "Hindsight 멘탈 모델",
+    "description": "부팅 시 정리된 reflect 요약(멘탈 모델)을 개발자 지시로 읽기. 뱅크의 기존 모델만 로드(쓰기 없음). hindsight.mentalModelAutoSeed와 함께 쓰면 내장 시드 세트도 자동 생성."
+  },
+  "hindsight.mentalModelAutoSeed": {
+    "label": "Hindsight 멘탈 모델 자동 시드",
+    "description": "세션 시작 시 뱅크에 아직 없는 내장 멘탈 모델(project-conventions, project-decisions, user-preferences)을 생성."
+  }
+}

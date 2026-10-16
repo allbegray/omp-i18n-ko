@@ -1,0 +1,381 @@
+{
+  "tools.artifactSpillThreshold": {
+    "label": "아티팩트 저장 임계값 (KB)",
+    "description": "이 크기를 넘는 도구 출력은 아티팩트로 저장하고 꼬리만 인라인으로 유지"
+  },
+  "tools.artifactTailBytes": {
+    "label": "아티팩트 꼬리 크기 (KB)",
+    "description": "출력이 아티팩트로 넘칠 때 인라인으로 유지하는 꼬리 크기"
+  },
+  "tools.artifactHeadBytes": {
+    "label": "아티팩트 머리 크기 (KB)",
+    "description": "출력이 아티팩트로 넘칠 때 꼬리와 함께 인라인 유지하는 머리 크기 (중간 생략). 0=비활성 — 꼬리만 유지."
+  },
+  "tools.outputMaxColumns": {
+    "label": "출력 열 상한",
+    "description": "스트리밍 도구 출력(bash, python, js eval)·read의 줄당 바이트 상한. 넘는 줄은 말줄임 처리되고 다음 개행까지 남은 바이트는 버려짐. 0=비활성.",
+    "options": {
+      "0": "끔"
+    }
+  },
+  "tools.artifactTailLines": {
+    "label": "아티팩트 꼬리 줄 수",
+    "description": "출력이 아티팩트로 넘칠 때 인라인으로 유지하는 꼬리 최대 줄 수",
+    "options": {
+      "50": "50줄",
+      "100": "100줄",
+      "250": "250줄",
+      "500": "500줄",
+      "1000": "1000줄",
+      "2000": "2000줄",
+      "5000": "5000줄"
+    }
+  },
+  "tools.artifactMaxBytes": {
+    "label": "아티팩트 파일 상한 (MB)",
+    "description": "스트리밍 도구 출력(bash, python, js eval)용 아티팩트 파일 최대 크기. 더 큰 출력은 시작부(최대 3 MB)와 최근 나머지를 유지하고 사이에 잘림 안내를 넣음. 0=무제한.",
+    "options": {
+      "0": "무제한"
+    }
+  },
+  "todo.enabled": {
+    "label": "할 일",
+    "description": "작업 추적용 todo 도구 활성화"
+  },
+  "todo.reminders": {
+    "label": "할 일 알림",
+    "description": "중단 전 할 일 완료를 에이전트에 알림"
+  },
+  "todo.remindersMax": {
+    "label": "할 일 알림 한도",
+    "description": "포기 전 최대 할 일 알림 횟수",
+    "options": {
+      "1": "1회",
+      "2": "2회",
+      "3": "3회",
+      "5": "5회"
+    }
+  },
+  "todo.eager": {
+    "label": "할 일 자동 생성",
+    "description": "첫 메시지 후 자동 할 일 목록 생성을 얼마나 강하게 권장할지",
+    "options": {
+      "default": "기본",
+      "preferred": "권장",
+      "always": "항상"
+    }
+  },
+  "tasks.todoClearDelay": {
+    "label": "할 일 자동 정리 지연",
+    "description": "완료·포기한 할 일을 todo 위젯에서 제거하기 전 지연",
+    "options": {
+      "0": "즉시",
+      "60": "1분",
+      "300": "5분",
+      "900": "15분",
+      "1800": "30분",
+      "3600": "1시간",
+      "-1": "안 함"
+    }
+  },
+  "glob.enabled": {
+    "label": "Glob",
+    "description": "glob 기반 파일 조회용 glob 도구 활성화"
+  },
+  "grep.enabled": {
+    "label": "Grep",
+    "description": "정규식 내용 검색용 grep 도구 활성화"
+  },
+  "grep.contextBefore": {
+    "label": "Grep 앞 문맥",
+    "description": "각 grep 일치 앞 문맥 줄 수",
+    "options": {
+      "0": "0줄",
+      "1": "1줄",
+      "2": "2줄",
+      "3": "3줄",
+      "5": "5줄"
+    }
+  },
+  "grep.contextAfter": {
+    "label": "Grep 뒤 문맥",
+    "description": "각 grep 일치 뒤 문맥 줄 수",
+    "options": {
+      "0": "0줄",
+      "1": "1줄",
+      "2": "2줄",
+      "3": "3줄",
+      "5": "5줄",
+      "10": "10줄"
+    }
+  },
+  "astGrep.enabled": {
+    "label": "AST Grep",
+    "description": "구조적 AST 검색용 ast_grep 도구 활성화"
+  },
+  "astEdit.enabled": {
+    "label": "AST Edit",
+    "description": "구조적 AST 재작성용 ast_edit 도구 활성화"
+  },
+  "find.enabled": {
+    "label": "Find (의미 검색)",
+    "description": "find 도구 활성화: judge 모델 역할이 판정하는 자연어 파일·줄 범위 검색. judge 역할이 네이티브 TypeSafe jev 모델로 해석될 때만 자동 활성화",
+    "options": {
+      "auto": "자동",
+      "on": "켬",
+      "off": "끔"
+    }
+  },
+  "debug.enabled": {
+    "label": "Debug",
+    "description": "DAP 기반 디버깅용 debug 도구 활성화"
+  },
+  "launch.enabled": {
+    "label": "서비스",
+    "description": "이름 있는 bash 서비스와 공유 장기 프로젝트 프로세스용 proc:// 감독 활성화"
+  },
+  "speechgen.enabled": {
+    "label": "음성 생성",
+    "description": "온디바이스(Kokoro) 또는 xAI Grok Voice 음성 파일 합성용 tts 도구 활성화"
+  },
+  "generate_image.enabled": {
+    "label": "이미지 생성",
+    "description": "generate_image 도구 활성화(텍스트→이미지 생성·편집). tools.xdev가 켜져 있으면 xd:// 장치로 노출.",
+    "options": {}
+  },
+  "computer.enabled": {
+    "label": "컴퓨터",
+    "description": "스크립트 가능한 호스트 데스크톱 eval 프렐류드 활성화(스크린샷, 입력, 접근성)"
+  },
+  "ratchet.enabled": {
+    "label": "Ratchet",
+    "description": "ratchet eval/힐클라임 프렐류드 활성화; /ratchet이 현재 세션에서 켬"
+  },
+  "archive.enabled": {
+    "label": "아카이브",
+    "description": "읽기 전용 archive eval 프렐류드 활성화: 프롬프트 기록, 최근 프로젝트, 과거 세션·리캡"
+  },
+  "computer.display": {
+    "label": "컴퓨터 디스플레이",
+    "description": "활성 창의 디스플레이(active), 모든 디스플레이(all), 또는 네이티브 디스플레이 id"
+  },
+  "computer.maxWidth": {
+    "label": "컴퓨터 스크린샷 너비",
+    "description": "스크린샷 최대 너비(픽셀)"
+  },
+  "computer.maxHeight": {
+    "label": "컴퓨터 스크린샷 높이",
+    "description": "스크린샷 최대 높이(픽셀)"
+  },
+  "images.questionTimeoutMs": {
+    "label": "이미지 질문 타임아웃",
+    "description": "read의 ?q= 이미지 질문 뒤 비전 모델 호출의 요청당 타임아웃(ms). 멈춘 공급자는 수동 중단까지 기다리지 않고 타임아웃 오류로 빠르게 실패. 0=타임아웃 비활성.",
+    "options": {
+      "0": "비활성",
+      "60000": "1분",
+      "120000": "2분",
+      "180000": "3분",
+      "300000": "5분"
+    }
+  },
+  "checkpoint.enabled": {
+    "label": "체크포인트/되감기",
+    "description": "컨텍스트 체크포인트용 checkpoint·rewind 도구 활성화"
+  },
+  "fetch.enabled": {
+    "label": "URL 읽기",
+    "description": "read 도구가 URL을 가져와 처리하도록 허용"
+  },
+  "vault.enabled": {
+    "label": "Obsidian 볼트",
+    "description": "Obsidian CLI로 Obsidian 볼트 내용을 읽고 편집하는 vault:// 내부 URL 활성화. 끄면 vault:// 해석이 거부되고 시스템 프롬프트에서 vault:// 항목이 생략됨."
+  },
+  "github.enabled": {
+    "label": "GitHub CLI",
+    "description": "github 도구 활성화(op 기반 저장소·이슈·PR·diff·검색·checkout·push·Actions watch 워크플로 디스패치)"
+  },
+  "github.cache.enabled": {
+    "label": "GitHub 뷰 캐시",
+    "description": "렌더된 이슈/PR 뷰 출력을 ~/.omp/cache/github-cache.db에 캐시해 반복 읽기 무료화"
+  },
+  "github.cache.softTtlSec": {
+    "label": "GitHub 캐시 소프트 TTL",
+    "description": "이 기간 안에는 캐시된 이슈/PR 뷰 행을 바로 반환 (초; 기본 5분)"
+  },
+  "github.cache.hardTtlSec": {
+    "label": "GitHub 캐시 하드 TTL",
+    "description": "소프트 TTL 이후엔 캐시 행을 반환하고 백그라운드 갱신; 하드 TTL 이후엔 삭제 (초; 기본 7일)"
+  },
+  "web_search.enabled": {
+    "label": "웹 검색",
+    "description": "실시간 웹 결과용 web_search 도구 활성화"
+  },
+  "security.enabled": {
+    "label": "보안",
+    "description": "OMP 네이티브 보안 스캔 계획·실행과 읽기 전용 security:// 리소스 네임스페이스 활성화"
+  },
+  "ask.enabled": {
+    "label": "Ask",
+    "description": "대화형 사용자 질문용 ask 도구 활성화"
+  },
+  "tools.intentTracing": {
+    "label": "의도 추적",
+    "description": "실행 전 각 도구 호출의 의도를 설명하도록 에이전트에 요청"
+  },
+  "tools.abortOnFabricatedResult": {
+    "label": "조작된 도구 결과 시 중단",
+    "description": "인밴드 도구 호출에서 모델이 턴 중간에 도구 결과를 환각하기 시작하면 즉시 중단. 끄면 생성을 끝내게 두고 조작된 이어쓰기를 버림."
+  },
+  "tools.speculativeExecution.enabled": {
+    "label": "실험적 투기 실행",
+    "description": "폐기 안전한 첫 조각 활성화: 직접 read 호출과 중첩 eval을 통한 검증된 로컬 읽기. 네트워크 요청·공급자 완성·실시간 파일 쓰기는 이 기준선에 없음."
+  },
+  "tools.speculativeExecution.maxInFlight": {
+    "label": "투기 실행 동시성",
+    "description": "정상 디스패치 전 허용되는 검증된 로컬 읽기 최대 동시 수",
+    "options": {
+      "1": "1개",
+      "2": "2개",
+      "3": "3개",
+      "4": "4개"
+    }
+  },
+  "tools.maxTimeout": {
+    "label": "최대 도구 타임아웃",
+    "description": "에이전트가 도구에 설정할 수 있는 최대 타임아웃(초) (0=무제한)",
+    "options": {
+      "0": "무제한",
+      "30": "30초",
+      "60": "60초",
+      "120": "120초",
+      "300": "5분",
+      "600": "10분"
+    }
+  },
+  "async.enabled": {
+    "label": "비동기 실행",
+    "description": "비동기 bash 명령과 백그라운드 작업 실행 활성화"
+  },
+  "tools.xdev": {
+    "label": "xd:// 도구",
+    "description": "드물게 쓰는(탐색 가능) 도구를 매 요청 스키마 전송 대신 read/write로 구동하는 xd:// 장치 URL로 마운트. 명시 도구 목록이 read를 허용하고 write를 생략한 세션은 장치 전용 write 전송으로 장치 마운트(장치 외엔 local:// 스크래치만 쓰기 가능). 끄면 활성 도구 전부를 최상위로 노출."
+  },
+  "tools.xdevDocs": {
+    "label": "xd:// 프롬프트 문서",
+    "description": "마운트된 장치 문서·스키마 중 시스템 프롬프트에 인라인할 것 선택. 내장만은 핵심 도구만 인라인 유지하고 MCP·확장 도구는 온디맨드로.",
+    "options": {
+      "inline": "모든 장치",
+      "builtins": "내장만",
+      "catalog": "카탈로그만"
+    }
+  },
+  "tools.xdevInlineDevices": {
+    "label": "xd:// 인라인 장치",
+    "description": "xd:// 프롬프트 문서가 '내장만'일 때 이름이 이 glob 패턴과 일치하는 동적 장치를 인라인 (예: mcp__context_mode_*). '카탈로그만'은 이 설정 무시."
+  },
+  "dev.autoqa": {
+    "label": "자동 QA",
+    "description": "자동 도구 이슈 보고(xd://report_issue). 기본 켜짐; 첫 보고 시 동의 요청, 거부하면 명시적으로 재활성화할 때까지 끔"
+  },
+  "dev.autoqaPush.endpoint": {
+    "label": "자동 QA 푸시 엔드포인트",
+    "description": "Auto QA JSON 보고를 받는 전체 URL (기본 https://qa.omp.sh/v1/grievances)"
+  },
+  "extensionHandlers.toolCallTimeoutMs": {
+    "label": "도구 호출 핸들러 타임아웃 (ms)",
+    "description": "확장 tool_call 핸들러의 양수 유한 활성 작업 타임아웃; 잘못된 값은 30000ms, OMP 소유 대화상자 대기 시간은 제외"
+  },
+  "browser.enabled": {
+    "label": "브라우저",
+    "description": "스크립트 Chromium 자동화(Puppeteer)용 browser eval 프렐류드 활성화"
+  },
+  "browser.cdpUrl": {
+    "label": "브라우저 CDP URL",
+    "description": "브라우저 실행 대신 연결할 기본 HTTP CDP 검색 엔드포인트 (예: http://127.0.0.1:9222). 도구 호출의 명시적 app.cdp_url·app.path가 우선."
+  },
+  "browser.relay": {
+    "label": "브라우저 릴레이",
+    "description": "omp 브라우저 릴레이로 내 Chrome 탭 구동. 확장을 한 번 설치(`omp browser-relay install`); 필요 시 릴레이 서버 자동 시작. '브라우저 CDP URL'보다 우선; PI_BROWSER_RELAY=0/1로 재정의."
+  },
+  "browser.relayUrl": {
+    "label": "브라우저 릴레이 URL",
+    "description": "omp 브라우저 릴레이 엔드포인트 (기본 http://127.0.0.1:9224)."
+  },
+  "browser.headless": {
+    "label": "헤드리스 브라우저",
+    "description": "헤드리스 모드로 브라우저 실행(끄면 브라우저 UI 표시)"
+  },
+  "browser.cmux": {
+    "label": "cmux 브라우저",
+    "description": "cmux 소켓이 있으면 브라우저 자동화에 cmux WKWebView 표면 사용. PI_BROWSER_CMUX=0/1로 재정의."
+  },
+  "browser.tern": {
+    "label": "Tern 브라우저",
+    "description": "Tern 창 안에서 헤드리스 Chromium 대신 omp 창 위 PIP로 브라우저 탭 열기(네이티브 웹뷰); 호스팅할 Tern 창이 없으면 Chromium으로 폴백. 명시적 app 옵션·릴레이·CDP URL이 우선; app.tern:false로 개별 해제. PI_BROWSER_TERN=0/1로 재정의."
+  },
+  "browser.freezeOnTurnEnd": {
+    "label": "턴 종료 시 탭 동결",
+    "description": "턴이 끝나면 OMP 소유 헤드리스 브라우저 탭을 동결해 애니메이션 페이지가 유휴 중 CPU/GPU를 소모하지 않게 함. 다음 사용 시 자동 해제; open에 persist:true로 개별 제외."
+  },
+  "browser.idleCloseSec": {
+    "label": "브라우저 유휴 종료 타임아웃",
+    "description": "이 초보다 오래 유휴인 OMP 소유 헤드리스 탭·Tern PIP를 닫음 (0=안 함; 세션 정리 시엔 회수). 릴레이·CDP·외부 브라우저·다른 세션 탭은 건드리지 않음.",
+    "options": {
+      "0": "안 함",
+      "900": "15분",
+      "1800": "30분",
+      "3600": "1시간"
+    }
+  },
+  "browser.screenshotDir": {
+    "label": "스크린샷 디렉터리",
+    "description": "스크린샷 저장 디렉터리. 미설정 시 임시 파일로 저장. ~ 지원. 예: ~/Downloads, ~/Desktop, /sdcard/Download (Android)"
+  },
+  "ida.enabled": {
+    "label": "IDA Pro",
+    "description": "`read`로 읽는 실행 파일을 IDA Pro(idalib)에서 열고 `ida` 도구 활성화; IDA 설치가 없으면 비활성"
+  },
+  "ida.python": {
+    "label": "IDA Python",
+    "description": "ida_domain·idapro를 임포트할 수 있는 Python 인터프리터; 비우면 자동 감지"
+  },
+  "ida.installDir": {
+    "label": "IDA 설치 디렉터리",
+    "description": "libidalib가 있는 디렉터리, IDADIR로 내보냄; 비우면 자동 감지 ($IDADIR, ida-config.json, 표준 설치 경로)"
+  },
+  "ida.maxOpen": {
+    "label": "IDA 최대 열린 DB",
+    "description": "프로젝트당 동시에 열리는 IDA 데이터베이스(omp ps의 omp.ida.* 데몬) 최대 수; 초과 시 가장 오래 안 쓴 유휴 DB를 저장 후 닫음"
+  },
+  "ida.idleCloseSec": {
+    "label": "IDA 유휴 종료 타임아웃",
+    "description": "이 초보다 오래 유휴인 IDA DB를 저장 후 닫음 (0=안 함); 재개 시 exec 네임스페이스 초기화",
+    "options": {
+      "0": "안 함",
+      "300": "5분",
+      "900": "15분",
+      "1800": "30분",
+      "3600": "1시간"
+    }
+  },
+  "mcp.enableProjectConfig": {
+    "label": "MCP 프로젝트 설정",
+    "description": "프로젝트 루트의 .mcp.json/mcp.json 로드"
+  },
+  "mcp.startupTimeoutMs": {
+    "label": "MCP 시작 대기",
+    "description": "초기 MCP 도구 탐색을 기다리는 시간(ms); 0은 연결이 정리될 때까지 대기"
+  },
+  "mcp.renderMarkdownResults": {
+    "label": "MCP Markdown 결과",
+    "description": "비JSON MCP 텍스트 결과를 트랜스크립트에 Markdown으로 렌더"
+  },
+  "mcp.notifications": {
+    "label": "MCP 업데이트 주입",
+    "description": "MCP 리소스 업데이트를 에이전트 대화에 주입"
+  },
+  "mcp.notificationDebounceMs": {
+    "label": "MCP 알림 디바운스",
+    "description": "MCP 리소스 업데이트를 대화에 주입하기 전 디바운스 창(ms)"
+  }
+}

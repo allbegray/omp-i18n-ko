@@ -1,0 +1,319 @@
+{
+  "autoResume": {
+    "label": "자동 재개",
+    "description": "현재 디렉터리의 가장 최근 세션을 자동으로 재개"
+  },
+  "git.enabled": {
+    "label": "Git 연동",
+    "description": "TUI에 git 브랜치·상태·PR 정보를 표시하고 저장소 메타데이터를 감시."
+  },
+  "steeringMode": {
+    "label": "스티어링 모드",
+    "description": "에이전트 작업 중 대기 메시지를 처리하는 방식"
+  },
+  "followUpMode": {
+    "label": "후속 메시지 모드",
+    "description": "턴 완료 후 후속 메시지를 소진하는 방식"
+  },
+  "interruptMode": {
+    "label": "중단 모드",
+    "description": "스티어링 메시지가 도구 실행을 중단하는 시점"
+  },
+  "tui.vimMode": {
+    "label": "Vim 편집 모드",
+    "description": "모달 프롬프트 편집. ⎋로 삽입 모드 탈출; 노멀 모드에서 hjkl, 0, $, ^, w, b, e, gg, G, 카운트, x/D/C, dd/yy, p, u 지원; 오퍼레이터는 모션·텍스트 오브젝트(diw, ca(, dap)를 받고 v/V는 y로 복사·d로 삭제하는 비주얼 선택 시작"
+  },
+  "tui.vimModeDisplay": {
+    "label": "Vim 모드 표시",
+    "description": "상태줄에 현재 Vim 모드를 표시하는 방식",
+    "options": {
+      "text": "텍스트",
+      "icon": "아이콘",
+      "none": "숨김"
+    }
+  },
+  "loop.mode": {
+    "label": "루프 모드",
+    "description": "프롬프트 재제출 전 /loop 반복 사이에 하는 일",
+    "options": {
+      "prompt": "프롬프트",
+      "compact": "압축",
+      "reset": "리셋"
+    }
+  },
+  "loop.conditionTimeoutMs": {
+    "label": "루프 조건 타임아웃 (ms)",
+    "description": "/loop --while/--until 조건 명령을 고장으로 보고 루프를 멈추기까지의 최대 대기. 0=무한 대기",
+    "options": {
+      "0": "무제한",
+      "10000": "10초",
+      "30000": "30초",
+      "120000": "2분"
+    }
+  },
+  "composer.recallClearedDrafts": {
+    "label": "지운 초안 불러오기",
+    "description": "⌃C로 지운 초안을 종료까지 로컬 ↑/↓ 기록에 유지; 끄면 이후 지우기에 적용"
+  },
+  "doubleEscapeAction": {
+    "label": "⎋ 두 번 동작",
+    "description": "빈 에디터에서 ⎋를 두 번 누르면: 트랜스크립트 되감기 선택기 열기, 세션 트리 열기, 또는 아무것도 안 함"
+  },
+  "input.bareExitOnEmptySession": {
+    "label": "빈 세션 단독 종료어",
+    "description": "첫 메시지 전에 `exit`, `quit`, `q`(대소문자 무관)를 제출하면 모델 호출 대신 종료"
+  },
+  "input.bareSlashCommands": {
+    "label": "슬래시 없는 명령",
+    "description": "선행 `/` 없이 명령 이름만 제출(예: `model`, `compact`)하면 해당 슬래시 명령 실행; 세션에 메시지가 있으면 Enter 두 번으로 확인"
+  },
+  "treeFilterMode": {
+    "label": "세션 트리 필터",
+    "description": "세션 트리를 열 때 기본 필터 모드"
+  },
+  "autocompleteMaxVisible": {
+    "label": "자동완성 항목",
+    "description": "자동완성 드롭다운 최대 표시 항목 (3-20)",
+    "options": {
+      "3": "3개",
+      "5": "5개",
+      "7": "7개",
+      "10": "10개",
+      "15": "15개",
+      "20": "20개"
+    }
+  },
+  "spelling.typoDetection": {
+    "label": "오타 감지 (macOS)",
+    "description": "활성 macOS 사전으로 프롬프트의 오타 단어 표시"
+  },
+  "spelling.autocomplete": {
+    "label": "단어 자동완성",
+    "description": "예측 단어 완성을 인라인 힌트로 표시: ⇥=공백과 함께 수락, →=공백 없이 수락",
+    "options": {
+      "off": "끔",
+      "auto": "자동",
+      "ngram": "N-gram",
+      "smollm": "SmolLM",
+      "apple": "Apple"
+    }
+  },
+  "composer.predictions": {
+    "label": "컴포저 예측",
+    "description": "턴 완료 후 활성 모델에게 다음 메시지를 예측하게 해 빈 컴포저에 고스트 텍스트로 표시; ⇥나 →로 전송 없이 삽입. 추가 사용량: 완료 턴마다 대화 전체에 청구 요청 1회 추가(/stats에 집계)"
+  },
+  "spelling.autocorrect": {
+    "label": "자동 교정 (macOS)",
+    "description": "완성된 단어에 확신 있는 macOS 맞춤법 교정 적용"
+  },
+  "emojiAutocomplete": {
+    "label": "이모지 자동완성",
+    "description": "`:name:` 숏코드로 이모지를 제안하고 `:D`·`:-)` 같은 텍스트 이모티콘을 확장"
+  },
+  "paste.largeMenuThreshold": {
+    "label": "대형 붙여넣기 메뉴",
+    "description": "붙여넣기가 이 줄 수에 도달하면 코드 블록 감싸기·XML 태그 감싸기·파일 저장 메뉴 제공. 0=메뉴 끔(큰 붙여넣기는 여전히 [Paste]로 접힘).",
+    "options": {
+      "0": "끔",
+      "100": "100줄",
+      "250": "250줄",
+      "500": "500줄",
+      "1000": "1000줄"
+    }
+  },
+  "startup.quiet": {
+    "label": "조용한 시작",
+    "description": "환영 화면과 시작 상태 메시지 생략"
+  },
+  "startup.showSplash": {
+    "label": "시작 스플래시 표시",
+    "description": "설정 재실행 없이 일반 대화형 시작 시 전체 애니메이션 스플래시 표시. 조용한 시작이 켜져 있으면 여전히 억제됨."
+  },
+  "startup.setupWizard": {
+    "label": "설정 마법사",
+    "description": "새로 추가된 온보딩 단계를 설정 버전당 한 번 표시"
+  },
+  "startup.checkUpdate": {
+    "label": "업데이트 확인",
+    "description": "시작 시 omp 업데이트 확인"
+  },
+  "update.channel": {
+    "label": "업데이트 채널",
+    "description": "omp update와 시작 업데이트 확인이 쓰는 채널",
+    "options": {
+      "stable": "Stable",
+      "canary": "Canary"
+    }
+  },
+  "marketplace.autoUpdate": {
+    "label": "마켓플레이스 자동 업데이트",
+    "description": "시작 시 플러그인 업데이트 확인",
+    "options": {
+      "off": "끔",
+      "notify": "알림",
+      "auto": "자동"
+    }
+  },
+  "startup.changelogMode": {
+    "label": "시작 체인지로그",
+    "description": "업데이트 노트를 요약·전체·숨김 중 어떻게 시작할지",
+    "options": {
+      "summary": "요약",
+      "expanded": "펼침",
+      "hidden": "숨김"
+    }
+  },
+  "magicKeywords.enabled": {
+    "label": "매직 키워드",
+    "description": "단독 ultrathink, orchestrate, workflowz, jevify 키워드의 숨은 안내 활성화"
+  },
+  "magicKeywords.ultrathink": {
+    "label": "ultrathink 키워드",
+    "description": "단독 ultrathink이 최대 자동 사고를 요청하고 숨은 안내를 덧붙이도록 허용"
+  },
+  "magicKeywords.orchestrate": {
+    "label": "orchestrate 키워드",
+    "description": "단독 orchestrate가 숨은 다중 에이전트 오케스트레이션 안내를 덧붙이도록 허용"
+  },
+  "magicKeywords.workflow": {
+    "label": "workflow 키워드",
+    "description": "단독 workflowz가 숨은 eval 워크플로 안내를 덧붙이도록 허용"
+  },
+  "magicKeywords.jevify": {
+    "label": "jevify 키워드",
+    "description": "단독 jevify가 숨은 일괄 심사 분류 안내를 덧붙이도록 허용"
+  },
+  "completion.notify": {
+    "label": "완료 알림",
+    "description": "에이전트가 턴을 끝내면 알림"
+  },
+  "error.notify": {
+    "label": "오류 알림",
+    "description": "에이전트가 오류로 멈추면 알림"
+  },
+  "ask.timeout": {
+    "label": "ask 타임아웃",
+    "description": "이 초 후 권장 ask 옵션 자동 선택 (0=끔). cfg:// 승인 프롬프트에도 적용; 응답 없는 승인은 자동 선택 대신 쓰기 거부",
+    "options": {
+      "0": "사용 안 함",
+      "15": "15초",
+      "30": "30초",
+      "60": "60초",
+      "120": "120초"
+    }
+  },
+  "ask.notify": {
+    "label": "ask 알림",
+    "description": "ask 도구가 입력을 기다릴 때 알림"
+  },
+  "recap.enabled": {
+    "label": "유휴 리캡",
+    "description": "터미널이 유휴 상태가 되면 상황을 요약하는 짧은 LLM 리캡 생성"
+  },
+  "recap.idleSeconds": {
+    "label": "유휴 리캡 지연",
+    "description": "리캡 표시 전 유휴 대기 초",
+    "options": {
+      "60": "1분",
+      "120": "2분",
+      "240": "4분",
+      "300": "5분",
+      "600": "10분"
+    }
+  },
+  "power.sleepPrevention": {
+    "label": "절전 방지",
+    "description": "활성 세션 동안 시스템 절전 방지. 각 단계는 누적 — 하위 단계 플래그를 모두 포함.",
+    "options": {
+      "off": "끔",
+      "idle": "유휴 절전 방지",
+      "display": "화면 절전 방지",
+      "system": "시스템 절전 방지"
+    }
+  },
+  "features.unexpectedStopDetection": {
+    "label": "예기치 않은 중단",
+    "description": "어시스턴트가 보이는 메시지 없이 멈추면 자동 복구. 스마트는 텍스트만 있는 중단도 소형 모델로 분류.",
+    "options": {
+      "none": "없음",
+      "mechanical": "기계적",
+      "smart": "스마트"
+    }
+  },
+  "tools.approval": {
+    "label": "도구 승인 정책",
+    "description": "도구별 승인 정책. 'allow'=자동 승인, 'prompt'=확인 요구, 'deny'=차단. 재정의는 모든 승인 모드에서 존중됨."
+  },
+  "tools.approvalMode": {
+    "label": "도구 승인",
+    "description": "도구 호출의 기본 승인 동작. '항상 묻기'=읽기 전용 도구만 자동 승인. '쓰기'=읽기·워크스페이스 쓰기 자동 승인. 'Yolo'=모든 등급 자동 승인; 사용자 정책이 여전히 프롬프트·차단 가능.",
+    "options": {
+      "always-ask": "항상 묻기",
+      "write": "쓰기",
+      "yolo": "Yolo"
+    }
+  },
+  "skills.registryUrl": {
+    "label": "스킬 레지스트리",
+    "description": "`omp skill`의 설치·검색·배포에 쓰는 Skillshare 레지스트리 (https://host[:port])"
+  },
+  "stt.enabled": {
+    "label": "음성→텍스트",
+    "description": "마이크로 음성→텍스트 입력 활성화"
+  },
+  "stt.submitTrigger": {
+    "label": "음성→텍스트 제출 트리거",
+    "description": "받아쓰기 자동 제출 시점: 안 함, 놓을 때(2단어 이상), 놓을 때(완전 문장), '제출'이라고 말할 때.",
+    "options": {
+      "never": "안 함",
+      "release": "놓을 때",
+      "release-complete": "놓을 때(완전 문장)",
+      "say-submit": "'제출'이라고 말할 때"
+    }
+  },
+  "collab.relayUrl": {
+    "label": "릴레이 URL",
+    "description": "/collab이 쓰는 릴레이 (wss://host[:port])"
+  },
+  "collab.webUrl": {
+    "label": "웹 UI URL",
+    "description": "/collab 링크가 쓰는 브라우저 UI; 비우면 collab.relayUrl에서 유도; http:// 명시는 localhost 전용"
+  },
+  "collab.displayName": {
+    "label": "표시 이름",
+    "description": "다른 협업 참여자에게 보이는 이름 (기본: OS 사용자 이름)"
+  },
+  "collab.autoStart": {
+    "label": "자동 시작",
+    "description": "모든 대화형 세션 시작 시 collab.relayUrl로 호스팅하고 로컬 레지스트리에 게시(omp collab list); 세션 전환 시 방 교체",
+    "options": {
+      "off": "끔",
+      "view": "보기",
+      "control": "제어"
+    }
+  },
+  "share.serverUrl": {
+    "label": "공유 서버",
+    "description": "/share가 쓰는 뷰어·업로드 베이스 (암호화 blob 업로드+뷰어; 링크=<base>/<id>#<key>)"
+  },
+  "share.store": {
+    "label": "공유 저장소",
+    "description": "/share가 암호화 세션 blob을 업로드할 곳",
+    "options": {
+      "blob": "암호화 Blob",
+      "gist": "GitHub Gist"
+    }
+  },
+  "share.redactSecrets": {
+    "label": "공유 비밀 가리기",
+    "description": "업로드 전 /share 스냅샷에 비밀 가리기를 실행 (secrets.* 설정 사용)"
+  },
+  "stream.serverUrl": {
+    "label": "스트림 서버",
+    "description": "`omp stream`이 쓰는 라이브 스트림 서버 (https://host[:port]); 시청자는 <base>/<Stencil 사용자 이름>에서 봄"
+  },
+  "stream.redactPatterns": {
+    "label": "추가 가리기 패턴",
+    "description": "env/secrets.yml 값과 내장 자격 증명 형태에 더해 모든 스트림 행에서 가릴 추가 정규식"
+  }
+}

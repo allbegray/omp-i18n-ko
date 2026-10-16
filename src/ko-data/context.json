@@ -1,0 +1,212 @@
+{
+  "workspace.additionalDirectories": {
+    "label": "추가 워크스페이스 디렉터리",
+    "description": "모든 세션에 추가 루트로 더하는 워크스페이스 디렉터리(멀티 루트). /add-dir·/remove-dir로 실시간 관리. 경로는 cwd 기준 상대 해석; 절대 경로 권장. 에이전트는 이 루트들의 존재를 안내받고 read/grep/glob 가능."
+  },
+  "contextFiles.extra": {
+    "label": "추가 컨텍스트 파일",
+    "description": "AGENTS.md 옆에 추가로 로드할 지시 파일 이름 목록. 경로가 아닌 이름의 JSON 배열, 예: [\"AGENTS.local.md\"]; []면 비활성. 새 세션 시작 시 로드."
+  },
+  "contextPromotion.enabled": {
+    "label": "컨텍스트 자동 승격",
+    "description": "컨텍스트 오버플로 시 압축 대신 모델의 contextPromotionTarget으로 승격. 재시도 폴백 전환은 '모델 폴백 재시도'가 제어"
+  },
+  "extendedContext": {
+    "label": "확장 컨텍스트",
+    "description": "지원되는 곳에서 더 큰 컨텍스트 창 사용; 프리미엄 요금이 발생할 수 있음. 끄면 기본·표준 요금 창 유지"
+  },
+  "compaction.enabled": {
+    "label": "자동 압축",
+    "description": "컨텍스트가 너무 커지면 자동으로 압축"
+  },
+  "compaction.experimentalContextManagement": {
+    "label": "노트 기반 컨텍스트 창 (실험적)",
+    "description": "컨텍스트 창을 넘나들며 지속 노트와 검색 가능한 원본 이력을 유지."
+  },
+  "compaction.midTurnEnabled": {
+    "label": "턴 중간 압축",
+    "description": "다음 공급자 요청 전 안전한 턴 중간 도구 루프 경계에서 임계값 확인; 서브에이전트는 할당 전체가 한 턴이라 항상 확인"
+  },
+  "compaction.methodOrder": {
+    "label": "압축 방식 순서",
+    "description": "자동 컨텍스트 유지의 선호 폴백 순서; 사용 불가·실패한 방식은 다음 후보로 진행",
+    "options": {
+      "remote": "서버 압축",
+      "snapcompact": "Snapcompact",
+      "handoff": "핸드오프",
+      "soft": "소프트 압축",
+      "shake": "셰이크"
+    }
+  },
+  "compaction.thresholdPercent": {
+    "label": "압축 임계값",
+    "description": "컨텍스트 유지 비율 임계값; '기본'을 고르면 기존 예약 기반 동작",
+    "options": {
+      "default": "기본"
+    }
+  },
+  "compaction.thresholdTokens": {
+    "label": "압축 토큰 한도",
+    "description": "컨텍스트 유지 고정 토큰 한도; 설정 시 백분율보다 우선",
+    "options": {
+      "default": "기본",
+      "25000": "25K 토큰",
+      "50000": "50K 토큰",
+      "100000": "100K 토큰",
+      "150000": "150K 토큰",
+      "200000": "200K 토큰",
+      "300000": "300K 토큰",
+      "500000": "500K 토큰"
+    }
+  },
+  "compaction.handoffSaveToDisk": {
+    "label": "핸드오프 문서 저장",
+    "description": "자동 핸드오프 흐름의 생성 핸드오프 문서를 markdown 파일로 저장"
+  },
+  "compaction.remoteStreamingV2Enabled": {
+    "label": "원격 압축 V2",
+    "description": "호환 원격 압축 모델에 Responses 스트리밍 압축 사용"
+  },
+  "compaction.asyncEnabled": {
+    "label": "비동기 압축",
+    "description": "컨텍스트가 임계값에 가까워지면 백그라운드에서 미리 요약하고, 임계값을 넘으면 준비된 결과를 이어 붙임"
+  },
+  "compaction.idleEnabled": {
+    "label": "유휴 압축",
+    "description": "토큰 수가 임계값을 넘으면 유휴 중에 압축"
+  },
+  "compaction.idleThresholdTokens": {
+    "label": "유휴 압축 임계값",
+    "description": "유휴 압축이 발동하는 토큰 수 기준",
+    "options": {
+      "100000": "100K 토큰",
+      "200000": "200K 토큰",
+      "300000": "300K 토큰",
+      "400000": "400K 토큰",
+      "500000": "500K 토큰",
+      "600000": "600K 토큰",
+      "700000": "700K 토큰",
+      "800000": "800K 토큰",
+      "900000": "900K 토큰"
+    }
+  },
+  "compaction.idleTimeoutSeconds": {
+    "label": "유휴 압축 지연",
+    "description": "유휴 후 압축까지 대기 초",
+    "options": {
+      "60": "1분",
+      "120": "2분",
+      "300": "5분",
+      "600": "10분",
+      "1800": "30분",
+      "3600": "1시간"
+    }
+  },
+  "compaction.supersedeReads": {
+    "label": "오래된 읽기 대체",
+    "description": "같은 파일을 다시 읽으면 이전 읽기 결과를 제거 (캐시 인지, 매 턴 실행)"
+  },
+  "compaction.dropUseless": {
+    "label": "무의미 결과 제거",
+    "description": "컨텍스트상 무의미(일치 없음, 시간 초과)로 표시된 도구 결과를 소비 후 제거 (캐시 인지)"
+  },
+  "snapcompact.systemPrompt": {
+    "label": "Snapcompact 시스템 프롬프트",
+    "description": "실험적: 선택한 시스템 프롬프트 텍스트를 고밀도 PNG 이미지로 렌더해 첫 사용자 메시지에 첨부(비전 모델 전용). 토큰 절약; 이미지화된 텍스트는 프롬프트 캐시 손실.",
+    "options": {
+      "none": "없음",
+      "agents-md": "AGENTS.md",
+      "all": "전체"
+    }
+  },
+  "snapcompact.toolResults": {
+    "label": "Snapcompact 도구 결과",
+    "description": "실험적: 큰 도구 결과(최신 포함)를 텍스트 대신 고밀도 PNG로 렌더(비전 모델 전용). 누적된 검색·명령 출력의 토큰을 절약; 이미지에서 정확히 편집하는 것으로 알려진 모델이 아니면 읽기 결과는 텍스트 유지."
+  },
+  "tools.format": {
+    "label": "도구 호출 모드",
+    "description": "도구를 모델에 노출하는 방식. 자동=공급자 네이티브 도구 호출(미지원 모델은 GLM 소유 방언으로 폴백). Native=네이티브 강제; 나머지는 해당 소유 방언 강제.",
+    "options": {
+      "auto": "자동",
+      "native": "Native",
+      "glm": "GLM",
+      "hermes": "Hermes",
+      "kimi": "Kimi",
+      "xml": "XML",
+      "anthropic": "Anthropic",
+      "deepseek": "DeepSeek",
+      "harmony": "Harmony",
+      "qwen3": "Qwen3",
+      "gemini": "Gemini",
+      "gemma": "Gemma",
+      "minimax": "MiniMax"
+    }
+  },
+  "snapcompact.shape": {
+    "label": "Snapcompact 프레임",
+    "description": "Snapcompact이 텍스트를 인쇄하는 프레임 모양(압축 아카이브·인라인 이미징). 자동=현재 모델에 맞춘 모양.",
+    "options": {
+      "auto": "자동",
+      "8x8r-bw": "8x8 반복, 검정",
+      "8x8r-sent": "8x8 반복, 문장 색조",
+      "8x8u-bw": "8x8, 검정",
+      "8x8u-sent": "8x8, 문장 색조",
+      "6x6u-bw": "6x6 고밀도, 검정",
+      "6x6u-sent": "6x6 고밀도, 문장 색조"
+    }
+  },
+  "branchSummary.enabled": {
+    "label": "브랜치 요약",
+    "description": "브랜치를 떠날 때 요약 프롬프트"
+  },
+  "ttsr.enabled": {
+    "label": "TTSR",
+    "description": "출력이 규칙 패턴과 일치하면 스트림 중간에 에이전트를 중단 (Time-Traveling Stream Rules)"
+  },
+  "ttsr.judge": {
+    "label": "판정 규칙",
+    "description": "완료된 답변·추론·도구 호출에 대해 judge 모델 역할에 각 `question` 규칙을 질의; '예'면 규칙을 경고로 주입",
+    "options": {
+      "auto": "자동",
+      "on": "켬",
+      "off": "끔"
+    }
+  },
+  "ttsr.contextMode": {
+    "label": "TTSR 컨텍스트 모드",
+    "description": "TTSR 발동 시 부분 출력 처리 방식"
+  },
+  "ttsr.interruptMode": {
+    "label": "TTSR 중단 모드",
+    "description": "스트림 중간 중단 vs 완료 후 경고 주입 시점",
+    "options": {
+      "always": "항상",
+      "prose-only": "산문만",
+      "tool-only": "도구만",
+      "never": "안 함"
+    }
+  },
+  "ttsr.repeatMode": {
+    "label": "TTSR 반복 모드",
+    "description": "규칙 반복 방식: 세션당 1회 또는 메시지 간격 후"
+  },
+  "ttsr.repeatGap": {
+    "label": "TTSR 반복 간격",
+    "description": "규칙이 다시 발동되기까지의 메시지 수",
+    "options": {
+      "5": "5개 메시지",
+      "10": "10개 메시지",
+      "15": "15개 메시지",
+      "20": "20개 메시지",
+      "30": "30개 메시지"
+    }
+  },
+  "ttsr.builtinRules": {
+    "label": "내장 규칙",
+    "description": "에이전트에 포함된 기본 규칙 로드 (ttsr.disabledRules로 개별 재정의)"
+  },
+  "ttsr.disabledRules": {
+    "label": "비활성 규칙",
+    "description": "완전히 무시할 규칙 이름 (기본 제공·사용자 규칙 모두 적용)"
+  }
+}

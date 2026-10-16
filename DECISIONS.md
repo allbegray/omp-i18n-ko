@@ -23,7 +23,7 @@ omp(oh-my-pi) 한국어 언어팩 프로젝트. 그릴링 완료 (2026-10-16) �
 - 중요 발견: 커맨드 정의에 `description`(TUI)과 `acpDescription`(RPC/ACP 클라이언트 목록)이 **별도로 존재**. 우리 범위는 TUI만 — `acpDescription`은 번역하지 않음 (`omp --mode rpc --no-ui` 실측으로 교차 확인).
 - `/switch`·`/effort`·`/loop` 상세 설명은 테마 키 글리프(⌥P, ⇧⇥ 등)가 포함된 동적 문자열 → `textPatterns`(전체문자열 정규식, 캡처 보존)로 커버.
 - 스모크: 스텁 `pi`로 factory 캡처 → 가짜 아이템의 `description`/`nativeDetail`/`state` 번역 확인, `/ko off` 시 영어 원문 복원, `/ko reload` 재로드(224개), 심링크 경로(`tmp/linktest`)에서도 translations.json 로드 확인. 실제 omp는 RPC 모드 부팅 스모크(`ready` + `available_commands` 정상)로 확인. 대화형 `/` 메뉴 최종 확인은 사용자 육안.
-- 알려진 미커버(기술 제약): 커맨드 이름, 팁 라인, 웰컴/설정 패널, 내장 상태줄, 호스트 알림, headless(RPC/ACP) 경로, 사용자 커스텀 커맨드·스킬 설명.
+- 알려진 미커버(기술 제약): 커맨드 이름, 팁 라인, 웰컴, 내장 상태줄, 호스트 알림, headless(RPC/ACP) 경로, 사용자 커스텀 커맨드·스킬 설명. (설정 패널은 D11에서 공식 API만으로 해결.)
 
 ## 팩트
 
@@ -55,6 +55,16 @@ omp(oh-my-pi) 한국어 언어팩 프로젝트. 그릴링 완료 (2026-10-16) �
   - 범위: 기능/명령 키워드(모드·주요 엔티티)에 적용. 일반 동작 낱말(복사·공유·제거 등)과 이미 영어인 식별자(MCP·SSH·OAuth 등)는 병기 대상 아님.
   - 번역문 안에서 첫 등장 1회만 병기. 한 문자열에 서로 다른 명령 키워드가 주제로 나오면 각각 병기 가능.
   - 커맨드 이름 자체(`/settings`)는 omp가 항상 영어로 표시 — 우리가 건드리지 않음(추가 정보 병기일 뿐).
+
+- **D11. 설정 패널 한글화** (사용자 지시: "세팅쪽이 가장 중요", 2026-10-16) — 호스트의 실제 `SettingsSelectorComponent`(pi-tui)를 **공식 확장 API의 `ui.custom` 오버레이**로 그대로 띄우고, (a) 레지스트리 설정 데이터(라벨·설명·옵션 라벨)를 한국어로 바꿔 주입, (b) 렌더 결과의 크롬(제목·탭·섹션명·푸터·검색 배너)을 ANSI 인식·폭보존 라인 번역기로 치환한다.
+  - 경로: `ui.custom`에서 `SettingsRuntimeContext`를 구현 — 레지스트리 `lookup()/all()` + `orderedSettings()` + CONDITIONS(settings-ui.ts 재현) + theme/model 조회. `pi.pi.settings` 스코프 핸들(`layered()` 읽기 / `set()` 쓰기)로 저장·즉시 반영.
+  - 재구현·포크 아님: 컴포넌트 클래스는 호스트 모듈 그대로(`@oh-my-pi/pi-tui/overlays/settings-selector`를 **동적 import** — omp 로더가 호스트 인스턴스로 해석). 어떤 단계든 실패하면 조용히 내장 영어 `/settings`가 동작.
+  - native describe 경로 숨김: Proxy로 `describe`/`describeScreen`/`describeSurface`를 가려 ANSI 렌더 경로를 강제 → 라인 번역기가 개입할 여지 확보.
+  - `/settings` 리다이렉트: `registerCommand`는 내장 커맨드를 못 덮으므로 공식 `input` 이벤트에서 `text.trim() === "/settings"`이고 (활성 · 모듈 로드 성공 · `mode === "tui"`)일 때만 `{ text: "/ko settings" }`로 재작성. 그 외엔 내장 영문판 그대로.
+  - 번역 데이터: `src/ko-data/*.json` — 탭별 412개 설정 + `chrome.json`(제목·탭·섹션명·힌트·패턴). `_` 접두 키는 무시. `/ko reload`가 재읽기(핫 반복).
+  - 폭 제약: 한글은 2셀 — 치환은 표시 폭을 보존(좁으면 패딩, 넓으면 뒤 공백 흡수, 불가 시 스킵). 설정 라벨/설명에는 `한국어(english)` 병기를 하지 않음(D10 예외 — 폭·가독성; 영어 원문은 설정 id로 복구 가능).
+  - 검증: 실렌더 라인 기반 51 테스트 + omp 내부 E2E 프로브(`tmp/panel-probe.ts`) — 제목·탭(11개)·사이드바·리스트 그룹 헤더·푸터(기본/검색/섹션 모드)·검색 배너(`N건`)까지 한국어, 영문판과 표시 폭 동일(110/110). 탭이 좁은 폭에서 아이콘만 남는 것은 **영문판과 동일한 컴포넌트 반응형 동작**.
+  - 기준 v18.11.1. 업스트림 업데이트로 모듈 경로·시그니처가 바뀌면 이 기능만 비활성(영어 폴백) — CLI는 불변.
 
 ## 그릴링 종료 (2026-10-16)
 

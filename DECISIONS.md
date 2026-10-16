@@ -78,6 +78,7 @@ omp(oh-my-pi) 한국어 언어팩 프로젝트. 그릴링 완료 (2026-10-16) �
   - 워크플로(`.github/workflows/publish.yml`): 태그 = package.json 버전 검증, 이미 게시된 버전은 스킵(멱등 — 과거 태그 재푸시 안전), `permissions: id-token: write` + `npm publish --access public`. npm CLI는 `npm@latest`로 최신화(11.15+ 필요). 테스트 CI(`test.yml`)는 push/PR마다 `bun test`.
   - npm 패키지 내용: `src/**`(테스트 제외)·README·CHANGELOG·LICENSE — `npm pack --dry-run` 20개 파일/60.6kB 확인. `prepublishOnly: bun test` 게이트로 로컬 게시 사고 방지.
   - 부트스트랩 실측 (2026-10-16): npmjs TOTP 단종 → **패스키** 2FA 활성화(`npm profile get` → `auth-and-writes`). `npm publish`는 브라우저 인증 흐름(`Authenticate your account at: https://www.npmjs.com/auth/cli/…` — ENTER로 브라우저 열고 승인)으로 0.1.0 게시. 신규 패키지는 npm이 **`0.0.0-stage` 자리표시자를 자동 생성**한 뒤 0.1.0을 공개 — 2026-10-02부터 신규 패키지 게시가 스테이징 체계로 바뀌어 자리표시자 버전이 versions 목록에 남는다(무해, latest=0.1.0). `npm trust github omp-i18n-ko --file publish.yml --repo allbegray/omp-i18n-ko --allow-publish -y`로 신뢰 관계 등록(id `e7bc451c…`, permissions: `publish, stage publish`). 등록 후 2일(48시간) 내 OIDC 실제 게시로 검증해야 하므로 **v0.1.1 태그로 즉시 검증**.
+  - 검증 완료 (2026-10-16): v0.1.1 태그 → Publish 워크플로 성공 → **`omp-i18n-ko@0.1.1` 공개, `dist.attestations.provenance` = SLSA Provenance v1 첨부 확인** — 첫 OIDC 게시가 그 자리에서 2일 검증 창을 충족. v0.1.0 태그 런은 "이미 게시된 버전" 가드로 스킵(멱등 확인). 격리 HOME에서 `omp install omp-i18n-ko` → `Installed omp-i18n-ko@0.1.1`, RPC 부팅 `ready` 1 · 카탈로그 `ko`(한국어 설명) · `extension_error` 0 · stderr 0줄 — npm 경로의 실설치·로드 검증.
 
 ## 그릴링 종료 (2026-10-16)
 

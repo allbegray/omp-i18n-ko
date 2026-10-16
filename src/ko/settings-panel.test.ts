@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { translateStyledLine } from "./line-translate";
-import { buildChromeRules, translateOptions, type SettingsKoData } from "./settings-panel";
+import { buildChromeRules, annotateValueSpans, translateOptions, type SettingsKoData } from "./settings-panel";
 
 const strip = (s: string) => s.replace(/\x1b\[[0-9;?]*[A-Za-z]/g, "");
 const width = (s: string) => {
@@ -149,5 +149,28 @@ describe("option translations", () => {
     expect(out[1]).toBe(host[1]);
     expect(translateOptions(undefined, { a: "b" })).toBe(undefined);
     expect(translateOptions("nope", { a: "b" })).toBe("nope");
+  });
+});
+
+describe("row value annotations", () => {
+  const rows = [{ label: "메모리 백엔드", value: "local", annotated: "로컬(local)" }];
+  const run = (line: string) =>
+    translateStyledLine(line, [{ candidates: (plain) => annotateValueSpans(plain, rows) }]);
+
+  test("annotates the value cell after the row label", () => {
+    const line = `│ ❯ 메모리 백엔드           local${" ".repeat(30)}█ │`;
+    const out = run(line);
+    expect(strip(out)).toContain("메모리 백엔드           로컬(local)");
+    expect(width(out)).toBe(width(line));
+  });
+
+  test("ignores a row whose value does not match", () => {
+    const line = `│   메모리 백엔드           remote${" ".repeat(30)}█ │`;
+    expect(run(line)).toBe(line);
+  });
+
+  test("ignores prose that merely mentions the label", () => {
+    const line = "│   설명: 메모리 백엔드 값을 로컬로 바꿉니다";
+    expect(run(line)).toBe(line);
   });
 });

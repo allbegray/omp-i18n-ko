@@ -274,6 +274,64 @@ function annotateValueLabel(value: string, label: string): string {
   return `${label}${glue}(${value})`;
 }
 
+/** One list-row value that should render as `한국어(원값)`. */
+export interface ValueAnnotation {
+  /** Rendered row label (Korean). */
+  label: string;
+  /** Raw option value as displayed in the value cell. */
+  value: string;
+  /** Replacement text, e.g. `로컬(local)`. */
+  annotated: string;
+}
+
+/**
+ * Spans for list rows whose value cell shows a translated option value.
+ * Matches `<label><2+ spaces><value><boundary>`; requiring both the rendered
+ * label and the exact raw value keeps descriptions and other prose out.
+ */
+export function annotateValueSpans(plain: string, rows: readonly ValueAnnotation[]): Span[] {
+  const spans: Span[] = [];
+  for (const row of rows) {
+    if (!row.label || !row.value) continue;
+    let index = plain.indexOf(row.label);
+    while (index !== -1) {
+      let pos = index + row.label.length;
+      const padStart = pos;
+      while (pos < plain.length && plain[pos] === " ") pos++;
+      if (pos - padStart >= 2 && plain.startsWith(row.value, pos)) {
+        const after = pos + row.value.length;
+        const boundary = after < plain.length ? plain[after] : "";
+        if (boundary === "" || boundary === " " || boundary === "█" || boundary === "│") {
+          spans.push({ start: pos, end: after, text: row.annotated });
+        }
+      }
+      index = plain.indexOf(row.label, index + row.label.length);
+    }
+  }
+  return spans;
+}
+
+interface ValueAnnotationRow {
+  label: string;
+  path: string;
+  annotations: Map<string, string>;
+}
+
+/** Raw value → annotated label for one setting's option map. */
+function optionAnnotations(
+  map: Record<string, OptionTranslation> | undefined,
+): Map<string, string> | null {
+  if (!map) return null;
+  const out = new Map<string, string>();
+  for (const [value, entry] of Object.entries(map)) {
+    const label = typeof entry === "string" ? entry : entry?.label;
+    if (typeof label !== "string") continue;
+    const annotated = annotateValueLabel(value, label);
+    if (annotated !== label) out.set(value, annotated);
+  }
+  return out.size > 0 ? out : null;
+}
+
 export function translateOptions(
   options: unknown,
   map: Record<string, OptionTranslation> | undefined,
@@ -350,6 +408,7 @@ function buildHost(mods: SettingsModules, data: SettingsKoData, scope: unknown):
   const settings = typeof mods.allSettings.orderedSettings === "function"
     ? mods.allSettings.orderedSettings()
     : mods.registry.all?.() ?? [];
+  const valueRows: ValueAnnotationRow[] = [];
 
   for (const setting of Array.isArray(settings) ? settings : []) {
     try {
@@ -374,6 +433,13 @@ function buildHost(mods: SettingsModules, data: SettingsKoData, scope: unknown):
         condition: typeof ui?.condition === "string" ? conditions[ui.condition] : undefined,
       };
       perTab.get(tab)!.push(entry);
+
+      // Rows whose value cell should read `한국어(원값)`.
+      const annotations = optionAnnotations(translation?.options);
+      const renderedLabel = entry.ui.label;
+      if (annotations && typeof renderedLabel === "string" && /[가-힣]/u.test(renderedLabel)) {
+        valueRows.push({ label: renderedLabel, path: setting.id, annotations });
+      }
     } catch {
       // A single unreadable setting never blocks the panel.
     }
@@ -389,6 +455,7 @@ function buildHost(mods: SettingsModules, data: SettingsKoData, scope: unknown):
     unset: (path: string) => mods.registry.lookup?.(path)?.unset?.(scope),
     normalizeProviderLimits,
     validateProviderLimits,
+    valueRows,
   };
 }
 
@@ -582,9 +649,37 @@ export async function openSettingsPanel(options: OpenSettingsOptions): Promise<b
   }
 
   try {
-    const rules = buildChromeRules(data);
-    const translate = (line: string): string => translateStyledLine(line, rules);
     const host = buildHost(mods, data, scope);
+    const rules = buildChromeRules(data);
+
+    // The list's value cells show raw option values; annotate the ones our
+    // data translates so a row reads `로컬(local)`. The table is rebuilt on
+    // the next render after any change (see onChange below).
+    const valueRows = (host.valueRows as ValueAnnotationRow[] | undefined) ?? [];
+    let valueTable: ValueAnnotation[] | null = null;
+    const computeValueTable = (): ValueAnnotation[] => {
+      const table: ValueAnnotation[] = [];
+      for (const row of valueRows) {
+        try {
+          const current = mods.registry.lookup?.(row.path)?.layered?.(scope);
+          if (typeof current !== "string" && typeof current !== "number") continue;
+          const raw = String(current);
+          const annotated = row.annotations.get(raw);
+          if (annotated) table.push({ label: row.label, value: raw, annotated });
+        } catch {
+          // A single unreadable setting never affects the others.
+        }
+      }
+      return table;
+    };
+    const valueRule: ChromeRule = {
+      candidates: (plain) => {
+        const table = valueTable ?? (valueTable = computeValueTable());
+        return table.length > 0 ? annotateValueSpans(plain, table) : [];
+      },
+    };
+    const allRules = [...rules, valueRule];
+    const translate = (line: string): string => translateStyledLine(line, allRules);
     const plugins = buildPluginHost(mods, typeof ctx.cwd === "string" ? ctx.cwd : process.cwd());
     const availableThemes = await loadThemes(ctx, pi.pi ?? null);
     const providers = loadProviders(ctx);
@@ -621,7 +716,10 @@ export async function openSettingsPanel(options: OpenSettingsOptions): Promise<b
               requestRender: () => renderRef.request?.(),
             },
             {
-              onChange: (path: string, value: unknown) => onChangeEffect(pi, path, value),
+              onChange: (path: string, value: unknown) => {
+                valueTable = null;
+                onChangeEffect(pi, path, value);
+              },
               onCancel: () => {
                 try {
                   done(undefined);

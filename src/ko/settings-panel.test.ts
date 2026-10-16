@@ -107,13 +107,13 @@ describe("option translations", () => {
     const out = translateOptions(host, {
       default: { label: "기본", description: "선택된 모델 정책 사용" },
     }) as any[];
-    expect(out[0]).toEqual({ value: "default", label: "기본", description: "선택된 모델 정책 사용" });
+    expect(out[0]).toEqual({ value: "default", label: "기본(default)", description: "선택된 모델 정책 사용" });
     expect(out[0]).not.toBe(host[0]);
   });
 
   test("string form replaces only the label", () => {
     const out = translateOptions(host, { always: "항상" }) as any[];
-    expect(out[1]).toEqual({ value: "always", label: "항상", description: "Force it" });
+    expect(out[1]).toEqual({ value: "always", label: "항상(always)", description: "Force it" });
   });
 
   test("description-only keeps the host label", () => {
@@ -121,10 +121,26 @@ describe("option translations", () => {
     expect(out[2]).toEqual({ value: "keep", label: "Keep", description: "유지" });
   });
 
+  test("labels that already read as the value stay unannotated", () => {
+    const out = translateOptions(
+      [{ value: "mnemopi", label: "Mnemopi" }],
+      { mnemopi: "Mnemopi" },
+    ) as any[];
+    expect(out[0].label).toBe("Mnemopi");
+  });
+
+  test("labels ending in a paren get a separating space", () => {
+    const out = translateOptions(
+      [{ value: "short", label: "짧게 (5분)" }],
+      { short: "짧게 (5분)" },
+    ) as any[];
+    expect(out[0].label).toBe("짧게 (5분) (short)");
+  });
+
   test("function descriptions are never replaced", () => {
     const dynamic = [{ value: "x", label: "X", description: () => "live" }];
     const out = translateOptions(dynamic, { x: { label: "엑스", description: "정적" } }) as any[];
-    expect(out[0].label).toBe("엑스");
+    expect(out[0].label).toBe("엑스(x)");
     expect(typeof out[0].description).toBe("function");
   });
 

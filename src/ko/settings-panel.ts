@@ -261,6 +261,19 @@ function envNote(setting: AnyRecord): string {
   }
 }
 
+/**
+ * Option labels keep the raw value checkable in the same shape as the slash
+ * menu's `한국어(english)` pattern: `로컬(local)`. A label that already reads
+ * as the value (case-insensitive) stays untouched, and a label ending in `)`
+ * gets one space to avoid `)(` collisions.
+ */
+function annotateValueLabel(value: string, label: string): string {
+  const trimmed = label.trim();
+  if (!trimmed || trimmed.toLowerCase() === value.toLowerCase()) return label;
+  const glue = trimmed.endsWith(")") ? " " : "";
+  return `${label}${glue}(${value})`;
+}
+
 export function translateOptions(
   options: unknown,
   map: Record<string, OptionTranslation> | undefined,
@@ -273,9 +286,9 @@ export function translateOptions(
     if (!entry) return option;
     const patch: AnyRecord = {};
     if (typeof entry === "string") {
-      patch.label = entry;
+      patch.label = annotateValueLabel(value as string, entry);
     } else {
-      if (typeof entry.label === "string") patch.label = entry.label;
+      if (typeof entry.label === "string") patch.label = annotateValueLabel(value as string, entry.label);
       // Replace literal host descriptions only; a future dynamic (function)
       // description would keep its live behavior.
       const hostDesc = (option as AnyRecord).description;

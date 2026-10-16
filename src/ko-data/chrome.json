@@ -101,7 +101,15 @@
     ["to go back", "뒤로"],
     ["to configure", "구성"],
     ["jump sections", "섹션 이동"],
-    ["switch tabs", "탭 전환"]
+    ["switch tabs", "탭 전환"],
+    ["to save", "저장"],
+    ["Clear field to unset", "필드 비우면 해제"],
+    ["to edit provider", "제공자 편집"],
+    ["Click", "클릭"],
+    ["to toggle", "토글"],
+    ["drag selected items to reorder", "선택 항목 드래그로 재정렬"],
+    ["←/→ move", "←/→ 이동"],
+    ["1-9 place", "1-9 배치"]
   ],
   "patterns": [["(\\d+) match(?:es)?", "$1건"]]
 }

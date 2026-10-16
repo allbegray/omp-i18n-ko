@@ -229,7 +229,33 @@
   },
   "task.maxEffort": {
     "label": "스폰별 최대 Effort",
-    "description": "task 도구의 스폰별 effort 힌트에 허용되는 최대 추론 effort. 낮추면 호출자가 이 상한 위로 에스컬레이션 불가; 기본은 모델의 전체 범위 보존."
+    "description": "task 도구의 스폰별 effort 힌트에 허용되는 최대 추론 effort. 낮추면 호출자가 이 상한 위로 에스컬레이션 불가; 기본은 모델의 전체 범위 보존.",
+    "options": {
+      "minimal": {
+        "label": "최소",
+        "description": "아주 짧은 추론(약 1k 토큰)"
+      },
+      "low": {
+        "label": "낮음",
+        "description": "가벼운 추론(약 2k 토큰)"
+      },
+      "medium": {
+        "label": "중간",
+        "description": "보통 추론(약 8k 토큰)"
+      },
+      "high": {
+        "label": "높음",
+        "description": "깊은 추론(약 16k 토큰)"
+      },
+      "xhigh": {
+        "label": "매우 높음",
+        "description": "확장 추론(약 32k 토큰)"
+      },
+      "max": {
+        "label": "최대",
+        "description": "모델이 지원하는 최대 추론"
+      }
+    }
   },
   "task.prewalk": {
     "label": "일반 task 프리워크",

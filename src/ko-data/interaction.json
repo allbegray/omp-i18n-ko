@@ -346,10 +346,22 @@
     "label": "음성→텍스트 제출 트리거",
     "description": "받아쓰기 자동 제출 시점: 안 함, 놓을 때(2단어 이상), 놓을 때(완전 문장), '제출'이라고 말할 때.",
     "options": {
-      "never": "안 함",
-      "release": "놓을 때",
-      "release-complete": "놓을 때(완전 문장)",
-      "say-submit": "'제출'이라고 말할 때"
+      "never": {
+        "label": "안 함",
+        "description": "자동 제출 안 함; 받아쓰기 내용을 삽입하고 편집기에 머무름."
+      },
+      "release": {
+        "label": "놓을 때",
+        "description": "발화에 2단어 이상이면 키를 놓을 때 제출(실수 전송 방지)."
+      },
+      "release-complete": {
+        "label": "놓을 때(완전 문장)",
+        "description": "발화가 문장 부호(. ? ! 등)로 끝나면 놓을 때 제출."
+      },
+      "say-submit": {
+        "label": "'제출'이라고 말할 때",
+        "description": "발화가 'submit'이 포함된 단어로 끝나면 제출(제출 전 그 단어는 제거)."
+      }
     }
   },
   "collab.relayUrl": {

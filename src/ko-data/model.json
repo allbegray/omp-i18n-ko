@@ -23,7 +23,37 @@
   },
   "defaultThinkingLevel": {
     "label": "사고 수준",
-    "description": "사고 지원 모델의 추론 깊이"
+    "description": "사고 지원 모델의 추론 깊이",
+    "options": {
+      "auto": {
+        "label": "자동",
+        "description": "프롬프트마다 자동 감지"
+      },
+      "minimal": {
+        "label": "최소",
+        "description": "아주 짧은 추론(약 1k 토큰)"
+      },
+      "low": {
+        "label": "낮음",
+        "description": "가벼운 추론(약 2k 토큰)"
+      },
+      "medium": {
+        "label": "중간",
+        "description": "보통 추론(약 8k 토큰)"
+      },
+      "high": {
+        "label": "높음",
+        "description": "깊은 추론(약 16k 토큰)"
+      },
+      "xhigh": {
+        "label": "매우 높음",
+        "description": "확장 추론(약 32k 토큰)"
+      },
+      "max": {
+        "label": "최대",
+        "description": "모델이 지원하는 최대 추론"
+      }
+    }
   },
   "hideThinkingBlock": {
     "label": "사고 블록 숨기기",
@@ -281,20 +311,44 @@
     "label": "OpenAI 서비스 티어",
     "description": "OpenAI/OpenAI-Codex 및 OpenRouter 경유 OpenAI 계열 요청의 처리 티어 (none=생략). service_tier로 전송.",
     "options": {
-      "none": "없음",
-      "auto": "자동",
-      "default": "기본",
-      "flex": "Flex",
-      "scale": "Scale",
-      "priority": "Priority",
-      "ultrafast": "Ultrafast"
+      "none": {
+        "label": "없음",
+        "description": "service_tier 생략(표준 처리)"
+      },
+      "auto": {
+        "label": "자동",
+        "description": "제공자 기본 티어 선택"
+      },
+      "default": {
+        "label": "기본",
+        "description": "표준 우선순위 처리"
+      },
+      "flex": {
+        "label": "Flex",
+        "description": "지원 시 비용 낮음, 지연 높음"
+      },
+      "scale": {
+        "label": "Scale",
+        "description": "지원 시 Scale Tier 크레딧"
+      },
+      "priority": {
+        "label": "Priority",
+        "description": "더 빠르고 비용 높음(프리미엄 요청)"
+      },
+      "ultrafast": {
+        "label": "Ultrafast",
+        "description": "최저 지연 서빙; OpenAI API 프리뷰 접근 또는 이를 제공하는 Codex 모델"
+      }
     }
   },
   "tier.anthropic": {
     "label": "Anthropic 서비스 티어",
     "description": "Claude 요청의 처리 티어. priority는 지원되는 직접 Anthropic 모델에서 빠른 모드를 실현; Bedrock/Vertex Claude·OpenRouter에서는 무시.",
     "options": {
-      "none": "없음",
+      "none": {
+        "label": "없음",
+        "description": "표준 처리"
+      },
       "priority": "Priority"
     }
   },
@@ -302,37 +356,94 @@
     "label": "Google 서비스 티어",
     "description": "Gemini(Google AI Studio+Vertex) 및 OpenRouter 경유 Google 계열 요청의 처리 티어 (none=생략). 최상위 serviceTier 필드로 전송.",
     "options": {
-      "none": "없음",
-      "flex": "Flex",
-      "priority": "Priority"
+      "none": {
+        "label": "없음",
+        "description": "표준 처리"
+      },
+      "flex": {
+        "label": "Flex",
+        "description": "비용 낮음, 지연 높음(Gemini API + Vertex)"
+      },
+      "priority": {
+        "label": "Priority",
+        "description": "더 빠르고 신뢰성 높음(Gemini API + Vertex)"
+      }
     }
   },
   "tier.subagent": {
     "label": "서브에이전트 서비스 티어",
     "description": "생성된 task/eval 서브에이전트의 서비스 티어. 상속=메인 에이전트의 계열별 라이브 티어 추종(/fast 연동); 값을 고르면 서브에이전트 모델 계열에 적용.",
     "options": {
-      "inherit": "상속",
-      "none": "없음",
-      "auto": "자동",
-      "default": "기본",
-      "flex": "Flex",
-      "scale": "Scale",
-      "priority": "Priority",
-      "ultrafast": "Ultrafast"
+      "inherit": {
+        "label": "상속",
+        "description": "메인 에이전트의 계열별 라이브 티어 추종"
+      },
+      "none": {
+        "label": "없음",
+        "description": "표준 처리"
+      },
+      "auto": {
+        "label": "자동",
+        "description": "제공자 기본 티어 선택(OpenAI 계열)"
+      },
+      "default": {
+        "label": "기본",
+        "description": "표준 우선순위 처리(OpenAI 계열)"
+      },
+      "flex": {
+        "label": "Flex",
+        "description": "유연 용량 티어(OpenAI/Google 계열)"
+      },
+      "scale": {
+        "label": "Scale",
+        "description": "Scale Tier 크레딧(OpenAI 계열)"
+      },
+      "priority": {
+        "label": "Priority",
+        "description": "스폰된 모델이 지원하는 모든 계열에서 Priority"
+      },
+      "ultrafast": {
+        "label": "Ultrafast",
+        "description": "Ultrafast 서빙(OpenAI 계열, 지원되는 경우)"
+      }
     }
   },
   "tier.advisor": {
     "label": "어드바이저 서비스 티어",
     "description": "어드바이저 모델의 서비스 티어. 없음=표준 처리; 상속=메인 에이전트의 계열별 라이브 티어 추종; 값을 고르면 어드바이저 모델 계열에 적용.",
     "options": {
-      "inherit": "상속",
-      "none": "없음",
-      "auto": "자동",
-      "default": "기본",
-      "flex": "Flex",
-      "scale": "Scale",
-      "priority": "Priority",
-      "ultrafast": "Ultrafast"
+      "inherit": {
+        "label": "상속",
+        "description": "메인 에이전트의 계열별 라이브 티어 추종"
+      },
+      "none": {
+        "label": "없음",
+        "description": "표준 처리"
+      },
+      "auto": {
+        "label": "자동",
+        "description": "제공자 기본 티어 선택(OpenAI 계열)"
+      },
+      "default": {
+        "label": "기본",
+        "description": "표준 우선순위 처리(OpenAI 계열)"
+      },
+      "flex": {
+        "label": "Flex",
+        "description": "유연 용량 티어(OpenAI/Google 계열)"
+      },
+      "scale": {
+        "label": "Scale",
+        "description": "Scale Tier 크레딧(OpenAI 계열)"
+      },
+      "priority": {
+        "label": "Priority",
+        "description": "스폰된 모델이 지원하는 모든 계열에서 Priority"
+      },
+      "ultrafast": {
+        "label": "Ultrafast",
+        "description": "Ultrafast 서빙(OpenAI 계열, 지원되는 경우)"
+      }
     }
   },
   "retry.maxRetries": {
@@ -543,13 +654,170 @@
     "label": "이미지 URL 백엔드",
     "description": "이미지를 제공자 접근용으로 게시할 때 시도할 순서 있는 대상",
     "options": {
-      "direct": "직접 공개 URL",
-      "shared-folder": "공유 폴더",
-      "provider-files": "모델 제공자 파일",
-      "command": "업로더 명령",
-      "ssh": "SSH 역터널",
-      "cloudflared": "Cloudflare 빠른 터널",
-      "named-cloudflared": "지정 Cloudflare 터널"
+      "direct": {
+        "label": "직접 공개 URL",
+        "description": "로컬 제공"
+      },
+      "shared-folder": {
+        "label": "공유 폴더",
+        "description": "파일 시스템"
+      },
+      "provider-files": {
+        "label": "모델 제공자 파일",
+        "description": "제공자 파일 참조는 공개 이미지 URL이 아닌 API 로컬 참조."
+      },
+      "command": {
+        "label": "업로더 명령",
+        "description": "외부 명령"
+      },
+      "ssh": {
+        "label": "SSH 역터널",
+        "description": "터널"
+      },
+      "cloudflared": {
+        "label": "Cloudflare 빠른 터널",
+        "description": "터널"
+      },
+      "named-cloudflared": {
+        "label": "지정 Cloudflare 터널",
+        "description": "터널"
+      },
+      "imgur": {
+        "description": "Imgur 액세스 토큰 또는 클라이언트 ID가 필요함."
+      },
+      "imageshack": {
+        "description": "유료 구독이 필요한 API."
+      },
+      "flickr": {
+        "description": "이미지 호스트"
+      },
+      "chevereto": {
+        "description": "자체 호스팅"
+      },
+      "vgyme": {
+        "description": "이미지 호스트"
+      },
+      "dropbox": {
+        "description": "클라우드 파일"
+      },
+      "ftp": {
+        "description": "파일 전송"
+      },
+      "onedrive": {
+        "description": "클라우드 파일"
+      },
+      "google-drive": {
+        "description": "클라우드 파일"
+      },
+      "puush": {
+        "label": "puush 호환 엔드포인트",
+        "description": "공개 서비스는 종료됨; 대체 엔드포인트 필요."
+      },
+      "box": {
+        "description": "클라우드 파일"
+      },
+      "amazon-s3": {
+        "description": "S3"
+      },
+      "google-cloud-storage": {
+        "description": "오브젝트 스토리지"
+      },
+      "azure-storage": {
+        "description": "오브젝트 스토리지"
+      },
+      "backblaze-b2": {
+        "description": "네이티브 B2 애플리케이션 키 또는 S3 호환 액세스 키 설정 필요."
+      },
+      "owncloud": {
+        "description": "WebDAV"
+      },
+      "mediafire": {
+        "label": "MediaFire 호환 엔드포인트",
+        "description": "공개 API는 지원 종료; 대체 엔드포인트 필요."
+      },
+      "sendspace": {
+        "label": "SendSpace 호환 엔드포인트",
+        "description": "공개 검색 API는 지원 종료; 대체 엔드포인트 필요."
+      },
+      "localhostr": {
+        "label": "Hostr 호환 엔드포인트",
+        "description": "공개 서비스가 오프라인; 대체 엔드포인트 필요."
+      },
+      "lambda": {
+        "label": "Lambda 호환 엔드포인트",
+        "description": "공개 서비스가 오프라인; 대체 엔드포인트 필요."
+      },
+      "pomf": {
+        "description": "Pomf"
+      },
+      "uguu": {
+        "description": "공개 업로드는 약 3시간 후 만료."
+      },
+      "seafile": {
+        "description": "클라우드 파일"
+      },
+      "s-ul": {
+        "description": "파일 호스트"
+      },
+      "lobfile": {
+        "label": "LobFile 호환 엔드포인트",
+        "description": "공개 서비스가 오프라인; 대체 엔드포인트 필요."
+      },
+      "transfer-sh": {
+        "label": "transfer.sh 호환 엔드포인트",
+        "description": "공개 엔드포인트가 차단됨; 자체 호스팅 대체 필요."
+      },
+      "plik": {
+        "description": "자체 호스팅"
+      },
+      "catbox": {
+        "description": "익명 호스트"
+      },
+      "litterbox": {
+        "description": "업로드는 임시."
+      },
+      "0x0": {
+        "description": "공개 업로드는 파일 크기에 따라 정해진 기간 후 만료."
+      },
+      "tmpfiles": {
+        "description": "공개 업로드는 임시."
+      },
+      "discord": {
+        "description": "메시징"
+      },
+      "ngrok": {
+        "description": "터널"
+      },
+      "tailscale": {
+        "description": "터널"
+      },
+      "localhost-run": {
+        "description": "터널"
+      },
+      "pinggy": {
+        "description": "터널"
+      },
+      "devtunnel": {
+        "description": "devtunnel CLI에 로컬 로그인 필요."
+      },
+      "zrok": {
+        "description": "로컬 zrok 환경 활성화 필요."
+      },
+      "bore": {
+        "description": "터널"
+      },
+      "r2": {
+        "description": "S3"
+      },
+      "tigris": {
+        "description": "S3"
+      },
+      "minio": {
+        "description": "S3"
+      },
+      "garage": {
+        "description": "S3"
+      }
     }
   },
   "images.urls.command": {

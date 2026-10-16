@@ -54,29 +54,113 @@
     "label": "소형 모델 장치",
     "description": "로컬 소형 모델(제목+메모리) 추론 백엔드: ONNX 실행 제공자, 또는 Apple 실리콘에서 MLX 가중치를 내려받아 mlx-lm으로 실행하는 `mlx`. 기본은 CPU 전용 ONNX. PI_TINY_DEVICE 환경 변수가 우선.",
     "options": {
-      "default": "기본",
-      "gpu": "GPU",
-      "cpu": "CPU",
+      "default": {
+        "label": "기본",
+        "description": "CPU 전용 추론"
+      },
+      "gpu": {
+        "label": "GPU",
+        "description": "가속 제공자(WebGPU/Metal, CUDA, DirectML 중 하나)"
+      },
+      "cpu": {
+        "label": "CPU",
+        "description": "CPU 전용 추론"
+      },
       "mlx": "MLX",
-      "metal": "Metal",
-      "webgpu": "WebGPU",
-      "cuda": "CUDA",
-      "dml": "DirectML",
-      "coreml": "CoreML",
-      "auto": "자동",
-      "wasm": "WASM",
-      "webnn": "WebNN",
-      "webnn-gpu": "WebNN GPU",
-      "webnn-cpu": "WebNN CPU",
-      "webnn-npu": "WebNN NPU"
+      "metal": {
+        "label": "Metal",
+        "description": "MLX 별칭"
+      },
+      "webgpu": {
+        "label": "WebGPU",
+        "description": "WebGPU/Metal 백엔드"
+      },
+      "cuda": {
+        "label": "CUDA",
+        "description": "NVIDIA CUDA (Linux x64)"
+      },
+      "dml": {
+        "label": "DirectML",
+        "description": "DirectML 백엔드 (Windows)"
+      },
+      "coreml": {
+        "label": "CoreML",
+        "description": "Apple CoreML(옵트인; 로드 실패 가능)"
+      },
+      "auto": {
+        "label": "자동",
+        "description": "ONNX Runtime이 실행 제공자 선택"
+      },
+      "wasm": {
+        "label": "WASM",
+        "description": "WebAssembly 백엔드"
+      },
+      "webnn": {
+        "label": "WebNN",
+        "description": "WebNN 백엔드"
+      },
+      "webnn-gpu": {
+        "label": "WebNN GPU",
+        "description": "WebNN GPU 장치"
+      },
+      "webnn-cpu": {
+        "label": "WebNN CPU",
+        "description": "WebNN CPU 장치"
+      },
+      "webnn-npu": {
+        "label": "WebNN NPU",
+        "description": "WebNN NPU 장치"
+      }
     }
   },
   "providers.tinyModelDtype": {
     "label": "소형 모델 정밀도",
     "description": "로컬 소형 모델의 ONNX 양자화·정밀도. 기본은 각 모델의 제공 dtype(q4); 낮을수록 빠르고 높을수록 충실. MLX 백엔드는 무시(저장소가 4비트 사전 양자화). PI_TINY_DTYPE 환경 변수가 우선.",
     "options": {
-      "default": "기본",
-      "auto": "자동"
+      "default": {
+        "label": "기본",
+        "description": "모델별 기본 dtype(현재 q4)"
+      },
+      "auto": {
+        "label": "자동",
+        "description": "transformers.js가 장치별로 선택"
+      },
+      "bnb4": {
+        "description": "bitsandbytes 4비트"
+      },
+      "fp16": {
+        "description": "16비트 부동소수; 정밀도 높고 용량 큼"
+      },
+      "fp32": {
+        "description": "전체 정밀도; 가장 크고 느림"
+      },
+      "int8": {
+        "description": "부호 있는 8비트 정수"
+      },
+      "q1": {
+        "description": "1비트 가중치"
+      },
+      "q1f16": {
+        "description": "1비트 가중치 + fp16 활성값"
+      },
+      "q2": {
+        "description": "2비트 가중치"
+      },
+      "q2f16": {
+        "description": "2비트 가중치 + fp16 활성값"
+      },
+      "q4": {
+        "description": "4비트 가중치; 가장 작고 빠름"
+      },
+      "q4f16": {
+        "description": "4비트 가중치 + fp16 활성값"
+      },
+      "q8": {
+        "description": "8비트 양자화"
+      },
+      "uint8": {
+        "description": "부호 없는 8비트 정수"
+      }
     }
   },
   "providers.kimiApiFormat": {

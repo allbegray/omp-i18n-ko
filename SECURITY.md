@@ -20,9 +20,3 @@
 - 번역 데이터는 선언적 문자열·정규식이며 `eval` 등으로 실행되지 않습니다.
 - 모든 경로가 예외 격리 + 영어 폴백이라 데이터가 손상되거나 omp가 업데이트돼도 CLI 동작에 영향을 주지 않습니다.
 - 확장은 omp와 같은 사용자 권한으로 실행됩니다(omp 확장 모델의 본질). 이 프로젝트는 그 권한을 설정 UI 번역 목적으로만 사용합니다.
-
-## English
-
-Report vulnerabilities via GitHub private vulnerability reporting (repository → Security → Report a vulnerability). Best-effort response. This is a personal project.
-
-Scope notes: this extension uses only the official omp extension API, makes no network requests, touches no files beyond omp's own settings scopes, treats all translation data as inert declarative strings, and isolates every failure path to fall back to English without affecting the CLI.

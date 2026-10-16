@@ -2,6 +2,18 @@
 
 [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/) 형식을 따르며 [유의적 버전](https://semver.org/lang/ko/)을 사용합니다.
 
+## [0.1.5] — 2026-10-16
+
+검색·문서 메타데이터 보강 릴리즈. 기준: **omp v18.11.1**.
+
+### 문서
+
+- README에 "한글화되지 않는 영역" 표 추가: 상태 공지·웰컴/팁·호스트 화면 등 API 경계와 이유를 명시(미번역 버그로 오해 방지).
+
+### 변경
+
+- npm 검색 노출용 키워드 보강(translation, language-pack, korean-language, tui, cli), GitHub 저장소 토픽 추가.
+
 ## [0.1.4] — 2026-10-16
 
 커버리지 재감사 릴리즈. 기준: **omp v18.11.1**.

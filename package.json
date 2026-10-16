@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "Korean UI language pack for omp (oh-my-pi), built strictly on the official extension API",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allbegray/omp-i18n-ko.git"
+  },
+  "homepage": "https://github.com/allbegray/omp-i18n-ko",
   "type": "module",
   "files": [
     "src",

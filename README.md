@@ -13,7 +13,7 @@ omp(oh-my-pi) 코딩 에이전트를 위한 **한국어 UI 언어팩** 확장입
 ### 개인 사용 (심링크, 권장)
 
 ```bash
-git clone <this-repo> ~/dev/omp-ko
+git clone https://github.com/allbegray/omp-i18n-ko.git ~/dev/omp-ko
 
 mkdir -p ~/.omp/agent/extensions
 ln -sfn ~/dev/omp-ko/src/index.ts ~/.omp/agent/extensions/omp-i18n-ko.ts

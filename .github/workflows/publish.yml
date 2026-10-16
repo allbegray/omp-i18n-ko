@@ -1,0 +1,86 @@
+# npm 게시 워크플로.
+#
+# 사전 준비(1회):
+#   1) 첫 버전을 수동으로 게시해 패키지 이름을 선점한다 (OIDC는 신규 패키지 첫 게시 불가).
+#   2) npmjs.com → 패키지 → Settings → Trusted Publisher → GitHub Actions 등록
+#      - Organization or user: allbegray
+#      - Repository: omp-i18n-ko
+#      - Workflow filename: publish.yml
+#      - Environment name: (빈칸)
+#      - Allowed actions: "Allow npm publish" 체크 (직접 게시 허용)
+#   3) 등록 후 2일 안에 아래 흐름으로 실제 게시가 성공해야 신뢰 관계가 검증된다.
+#
+# 릴리스 절차: package.json 버전 범프 → 커밋 → 태그(v*) 푸시.
+#   예) git tag v0.1.1 && git push origin v0.1.1
+# OIDC(Trusted Publishing)로 게시하며 provenance가 자동 생성된다. 토큰 불필요.
+
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: npm-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Resolve package version
+        id: version
+        run: echo "value=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Verify tag matches package.json version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg="${{ steps.version.outputs.value }}"
+          if [ "$tag" != "$pkg" ]; then
+            echo "::error::tag v$tag does not match package.json version $pkg"
+            exit 1
+          fi
+
+      - name: Check registry for existing version
+        id: check
+        run: |
+          if npm view "omp-i18n-ko@${{ steps.version.outputs.value }}" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::omp-i18n-ko@${{ steps.version.outputs.value }} is already published — skipping."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: oven-sh/setup-bun@v2
+        if: steps.check.outputs.published == 'false'
+        with:
+          bun-version: latest
+
+      - name: Run tests
+        if: steps.check.outputs.published == 'false'
+        run: bun test
+
+      - uses: actions/setup-node@v6
+        if: steps.check.outputs.published == 'false'
+        with:
+          node-version: "24.x"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+
+      - name: Ensure npm CLI supports trusted publishing
+        if: steps.check.outputs.published == 'false'
+        run: npm install -g npm@latest
+
+      # OIDC 환경을 자동 감지해 토큰 없이 게시한다. provenance는 자동 생성된다.
+      - name: Publish to npm
+        if: steps.check.outputs.published == 'false'
+        run: npm publish --access public

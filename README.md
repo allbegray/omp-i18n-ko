@@ -108,16 +108,3 @@ npm판·개발판·심링크를 동시에 걸면 중복 로드되므로 **한 �
 ## License
 
 MIT. 소스·이슈: [GitHub](https://github.com/allbegray/omp-i18n-ko). 이 프로젝트는 [omp(oh-my-pi)](https://omp.sh)와 별개의 독립 확장이며, omp 팀과 무관합니다.
-
----
-
-## English
-
-Korean UI localization for the [omp (oh-my-pi)](https://omp.sh) coding agent, implemented strictly with the official extension API.
-
-- **Never breaks the CLI**: every failure path is isolated and falls back to the original English string. Removing the extension leaves no trace.
-- **Identifiers stay English**: command names, model ids, MCP/SSH/LSP names remain typeable.
-- **Command keywords are annotated** as `한국어(english)` (e.g. `설정(settings) 메뉴 열기`) so you can read Korean and still recognize the original command.
-- **Korean settings panel**: `/ko settings`, or simply type `/settings` — the host's own settings component with translated labels, descriptions and chrome; every value is stored through the normal omp settings scopes and the built-in English panel remains the fallback.
-- Install: `omp install omp-i18n-ko` (npm; a git-clone flow for `main` is documented above), then use `/ko` (`toggle` / `on` / `off` / `status` / `reload` / `settings`; default ON).
-- Baseline: omp v18.11.1 (2026-10-15). Translated strings that omp later changes simply fall back to English.

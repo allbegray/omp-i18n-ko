@@ -57,7 +57,7 @@
   },
   "eval.tools.enabled": {
     "label": "Eval 정의 도구",
-    "description": "eval 셀에서 도구 정의 허용 (@tool in Python, tool(fn) in JS) — task, agent(), workpool() 서브에이전트가 호출 가능"
+    "description": "eval 셀에서 도구 정의 허용 (@tool in Python, tool(fn) in JS); task, agent(), workpool() 서브에이전트가 호출 가능"
   },
   "eval.workpool.freshAgents": {
     "label": "Workpool 새 에이전트",

@@ -131,7 +131,7 @@ describe("text patterns (key-hint bearing descriptions)", () => {
     const en =
       "[count|duration] [--while|--until '<cmd>'] [prompt] - Toggle loop mode. While enabled, the next prompt you send re-submits after every yield. Bound it with a count/duration, or gate it with `--until '<cmd>'` / `--while '<cmd>'` — the command's exit status decides whether the next iteration runs. esc suspends the ongoing loop; /loop again to disable.";
     expect(t.translateText(en)).toBe(
-      "[count|duration] [--while|--until '<cmd>'] [prompt] - 루프(loop) 모드 토글. 켜져 있으면 다음 프롬프트가 매 양보 후 다시 제출됨. count/duration으로 제한하거나 `--until '<cmd>'` / `--while '<cmd>'`로 게이트 — 명령 종료 상태가 다음 반복 여부를 결정. esc를 누르면 진행 중 루프 일시정지; /loop 재입력 시 끄기.",
+      "[count|duration] [--while|--until '<cmd>'] [prompt] - 루프(loop) 모드 토글. 켜져 있으면 다음 프롬프트가 매 양보 후 다시 제출됨. count/duration으로 제한하거나 `--until '<cmd>'` / `--while '<cmd>'`로 게이트; 명령 종료 상태가 다음 반복 여부를 결정. esc를 누르면 진행 중 루프 일시정지; /loop 재입력 시 끄기.",
     );
   });
 });

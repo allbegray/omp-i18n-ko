@@ -5,12 +5,12 @@
     ["Model", "모델"],
     ["Interaction", "상호작용"],
     ["Context", "컨텍스트"],
-    ["Memory", "기억"],
+    ["Memory", "메모리"],
     ["Files", "파일"],
     ["Shell", "셸"],
     ["Tools", "도구"],
     ["Tasks", "작업"],
-    ["Providers", "공급자"],
+    ["Providers", "제공자"],
     ["Plugins", "플러그인"]
   ],
   "groups": [
@@ -77,13 +77,13 @@
   "pairs": [
     ["Max In-Flight Requests", "최대 동시 요청"],
     ["Clear all limits", "전체 제한 해제"],
-    ["Make every provider unlimited", "모든 공급자를 무제한으로"],
+    ["Make every provider unlimited", "모든 제공자를 무제한으로"],
     ["Unlimited", "무제한"],
     ["Limit: ", "제한: "],
     ["Preview:", "미리보기:"],
     ["(preview not available)", "(미리보기 없음)"],
-    ["Enter a positive number. Decimals round down. Clear the field to make this provider unlimited.", "양수를 입력하세요. 소수는 내림 처리됩니다. 필드를 비우면 이 공급자는 무제한입니다."],
-    ["Limit must be a positive number.", "제한은 양수여야 합니다."]
+    ["Enter a positive number. Decimals round down. Clear the field to make this provider unlimited.", "양수만 입력. 소수는 내림 처리. 필드를 비우면 이 제공자는 무제한."],
+    ["Limit must be a positive number.", "제한은 양수만 허용."]
   ],
   "hintPairs": [
     ["to change", "변경"],

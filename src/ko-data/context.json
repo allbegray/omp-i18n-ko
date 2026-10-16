@@ -25,7 +25,7 @@
   },
   "compaction.midTurnEnabled": {
     "label": "턴 중간 압축",
-    "description": "다음 공급자 요청 전 안전한 턴 중간 도구 루프 경계에서 임계값 확인; 서브에이전트는 할당 전체가 한 턴이라 항상 확인"
+    "description": "다음 제공자 요청 전 안전한 턴 중간 도구 루프 경계에서 임계값 확인; 서브에이전트는 할당 전체가 한 턴이라 항상 확인"
   },
   "compaction.methodOrder": {
     "label": "압축 방식 순서",
@@ -69,7 +69,7 @@
   },
   "compaction.asyncEnabled": {
     "label": "비동기 압축",
-    "description": "컨텍스트가 임계값에 가까워지면 백그라운드에서 미리 요약하고, 임계값을 넘으면 준비된 결과를 이어 붙임"
+    "description": "컨텍스트가 임계값에 가까워지면 백그라운드에서 미리 요약하고 임계값을 넘으면 준비된 결과를 이어 붙임"
   },
   "compaction.idleEnabled": {
     "label": "유휴 압축",
@@ -125,7 +125,7 @@
   },
   "tools.format": {
     "label": "도구 호출 모드",
-    "description": "도구를 모델에 노출하는 방식. 자동=공급자 네이티브 도구 호출(미지원 모델은 GLM 소유 방언으로 폴백). Native=네이티브 강제; 나머지는 해당 소유 방언 강제.",
+    "description": "도구를 모델에 노출하는 방식. 자동=제공자 네이티브 도구 호출(미지원 모델은 GLM 소유 방언으로 폴백). Native=네이티브 강제; 나머지는 해당 소유 방언 강제.",
     "options": {
       "auto": "자동",
       "native": "Native",

@@ -350,7 +350,7 @@ export default function ompI18nKo(pi: ExtensionPiLike): void {
   });
 
   pi.registerCommand("ko", {
-    description: "한국어 UI — on/off/status/reload/settings",
+    description: "한국어 UI (on/off/status/reload/settings)",
     handler: async (args, ctx) => {
       try {
         const arg = (args ?? "").trim().toLowerCase();
@@ -358,13 +358,13 @@ export default function ompI18nKo(pi: ExtensionPiLike): void {
         if (arg === "on") {
           enabled = true;
           applyWorkingMessage(ctx, true);
-          notifyOn(ctx, "한국어 UI: 켜짐 — 다음 메뉴 렌더부터 적용");
+          notifyOn(ctx, "한국어 UI: 켜짐 (다음 메뉴 렌더부터 적용)");
           return;
         }
         if (arg === "off") {
           enabled = false;
           applyWorkingMessage(ctx, false);
-          notifyOn(ctx, "한국어 UI: 꺼짐 — 영어 원문 표시");
+          notifyOn(ctx, "한국어 UI: 꺼짐 (영어 원문 표시)");
           return;
         }
         if (arg === "status") {
@@ -383,14 +383,14 @@ export default function ompI18nKo(pi: ExtensionPiLike): void {
           const loaded = await reloadTranslator();
           settingsData = (await loadSettingsData()) ?? settingsData;
           const settingsCount = Object.keys(settingsData?.settings ?? {}).length;
-          if (!loaded) notifyOn(ctx, "번역 테이블 다시 로드 실패 — 이전 번역 유지", "warning");
+          if (!loaded) notifyOn(ctx, "번역 테이블 다시 로드 실패 (이전 번역 유지)", "warning");
           else notifyOn(ctx, `번역 테이블 다시 로드됨 (${loaded.size}개) · 설정 번역 ${settingsCount}개`);
           return;
         }
         if (arg === "settings") {
           if (!settingsData) settingsData = await loadSettingsData();
           if (!settingsData) {
-            notifyOn(ctx, "설정 번역 데이터(ko-data)를 찾을 수 없습니다 — /settings(영문) 사용", "warning");
+            notifyOn(ctx, "설정 번역 데이터(ko-data) 없음 → /settings(영문) 사용", "warning");
             return;
           }
           await openSettingsPanel({

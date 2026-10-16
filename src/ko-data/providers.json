@@ -1,15 +1,15 @@
 {
   "providers.maxInFlightRequests": {
     "label": "최대 동시 요청",
-    "description": "공급자 id별(예: \"openai\", \"anthropic\") 최대 동시 LLM 요청; 같은 설정 루트의 로컬 OMP 프로세스 간 공유. 미지정 공급자는 무제한."
+    "description": "제공자 id별(예: \"openai\", \"anthropic\") 최대 동시 LLM 요청; 같은 설정 루트의 로컬 OMP 프로세스 간 공유. 미지정 제공자는 무제한."
   },
   "providers.ollama-cloud.maxConcurrency": {
     "label": "Ollama Cloud 최대 동시성",
-    "description": "프로세스당 최대 동시 Ollama Cloud 서브에이전트 실행; 0=공급자별 한도 해제"
+    "description": "프로세스당 최대 동시 Ollama Cloud 서브에이전트 실행; 0=제공자별 한도 해제"
   },
   "providers.webSearchTimeoutSeconds": {
     "label": "웹 검색 타임아웃",
-    "description": "web_search가 다음 폴백으로 넘어가기 전 각 공급자 검색 전송의 하드 타임아웃(초, 최대 300)",
+    "description": "web_search가 다음 폴백으로 넘어가기 전 각 제공자 검색 전송의 하드 타임아웃(초, 최대 300)",
     "options": {
       "30": "30초",
       "60": "1분",
@@ -20,7 +20,7 @@
   },
   "providers.antigravityEndpoint": {
     "label": "Antigravity 엔드포인트 모드",
-    "description": "google-antigravity 공급자(chat, search, image, discovery)의 엔드포인트 라우팅 전략",
+    "description": "google-antigravity 제공자(chat, search, image, discovery)의 엔드포인트 라우팅 전략",
     "options": {
       "auto": "자동",
       "production": "프로덕션만",
@@ -29,7 +29,7 @@
   },
   "providers.fireworksTier": {
     "label": "Fireworks 티어",
-    "description": "Fireworks 요청의 서빙 경로. Priority는 피크 시간 높은 신뢰성을 위해 더 비싼 `service_tier: \"priority\"` 전송; Standard는 생략. Fast(`-fast`) 모델은 무시 — Fast는 자체 서빙 경로.",
+    "description": "Fireworks 요청의 서빙 경로. Priority는 피크 시간 높은 신뢰성을 위해 더 비싼 `service_tier: \"priority\"` 전송; Standard는 생략. Fast(`-fast`) 모델은 무시; Fast는 자체 서빙 경로.",
     "options": {
       "standard": "Standard",
       "priority": "Priority"
@@ -37,7 +37,7 @@
   },
   "providers.tinyModelDevice": {
     "label": "소형 모델 장치",
-    "description": "로컬 소형 모델(제목+메모리) 추론 백엔드: ONNX 실행 공급자, 또는 Apple 실리콘에서 MLX 가중치를 내려받아 mlx-lm으로 실행하는 `mlx`. 기본은 CPU 전용 ONNX. PI_TINY_DEVICE 환경 변수가 우선.",
+    "description": "로컬 소형 모델(제목+메모리) 추론 백엔드: ONNX 실행 제공자, 또는 Apple 실리콘에서 MLX 가중치를 내려받아 mlx-lm으로 실행하는 `mlx`. 기본은 CPU 전용 ONNX. PI_TINY_DEVICE 환경 변수가 우선.",
     "options": {
       "default": "기본",
       "gpu": "GPU",
@@ -66,7 +66,7 @@
   },
   "providers.kimiApiFormat": {
     "label": "Kimi API 형식",
-    "description": "Kimi Code 공급자의 API 형식(자동은 라이브 모델 메타데이터를 따름)",
+    "description": "Kimi Code 제공자의 API 형식(자동은 라이브 모델 메타데이터를 따름)",
     "options": {
       "auto": "자동",
       "openai": "OpenAI",
@@ -92,7 +92,7 @@
   },
   "providers.cacheRetention": {
     "label": "프롬프트 캐시 보존",
-    "description": "지원 공급자(Anthropic, Bedrock, OpenRouter, OpenAI)로 전달하는 프롬프트 캐시 보존",
+    "description": "지원 제공자(Anthropic, Bedrock, OpenRouter, OpenAI)로 전달하는 프롬프트 캐시 보존",
     "options": {
       "auto": "자동",
       "short": "짧게 (5분)",
@@ -111,7 +111,7 @@
   },
   "providers.streamFirstEventTimeoutSeconds": {
     "label": "스트림 첫 이벤트 타임아웃",
-    "description": "첫 모델 스트림 이벤트 대기 초; -1=공급자·환경 기본, 0=워치독 비활성",
+    "description": "첫 모델 스트림 이벤트 대기 초; -1=제공자·환경 기본, 0=워치독 비활성",
     "options": {
       "-1": "자동",
       "0": "끔",
@@ -122,7 +122,7 @@
   },
   "providers.streamIdleTimeoutSeconds": {
     "label": "스트림 유휴 타임아웃",
-    "description": "이벤트 사이 모델 스트림이 조용할 수 있는 초; -1=공급자·환경 기본, 0=워치독 비활성",
+    "description": "이벤트 사이 모델 스트림이 조용할 수 있는 초; -1=제공자·환경 기본, 0=워치독 비활성",
     "options": {
       "-1": "자동",
       "0": "끔",
@@ -210,7 +210,7 @@
     }
   },
   "providers.fetch": {
-    "label": "Fetch 공급자",
+    "label": "Fetch 제공자",
     "description": "fetch/read URL 도구의 리더 백엔드 우선순위",
     "options": {
       "auto": "자동",
@@ -232,7 +232,7 @@
   },
   "codexResets.keepCredits": {
     "label": "Codex 자동 사용 예비",
-    "description": "저장 리셋이 이 수 미만이면 자동 사용 안 함(0=마지막 크레딧도 자동 사용 가능). 곧 만료되는 크레딧은 예외 — 만료되는 예비 크레딧은 아무것도 보존하지 않음."
+    "description": "저장 리셋이 이 수 미만이면 자동 사용 안 함(0=마지막 크레딧도 자동 사용 가능). 곧 만료되는 크레딧은 예외; 만료되는 예비 크레딧은 아무것도 보존하지 않음."
   },
   "codexResets.salvageHorizonHours": {
     "label": "Codex 리셋 구조 기한",
@@ -257,11 +257,11 @@
   },
   "claudeResets.salvageHorizonHours": {
     "label": "Claude 리셋 구조 기한",
-    "description": "자동 사용이 켜져 있을 때 보장 창에 유의미한 사용량이 있으면 만료 이 시간 전에 서버 선택 Cedar 리셋 사용. 0=조기 구조 비활성; 5분 내 만료 적격 Cedar·Juniper 리셋은 사용량·예비와 무관하게 시도. 공급자 한도 요건은 그대로."
+    "description": "자동 사용이 켜져 있을 때 보장 창에 유의미한 사용량이 있으면 만료 이 시간 전에 서버 선택 Cedar 리셋 사용. 0=조기 구조 비활성; 5분 내 만료 적격 Cedar·Juniper 리셋은 사용량·예비와 무관하게 시도. 제공자 한도 요건은 그대로."
   },
   "provider.appendOnlyContext": {
     "label": "추가 전용 컨텍스트",
-    "description": "시스템 프롬프트+도구 스펙을 캐시하고 추가 전용 메시지 로그를 유지해 공급자 프리픽스 캐시(DeepSeek, Xiaomi/SGLang, Anthropic) 적중률 극대화. 알려진 프리픽스 캐시 공급자는 자동 활성.",
+    "description": "시스템 프롬프트+도구 스펙을 캐시하고 추가 전용 메시지 로그를 유지해 제공자 프리픽스 캐시(DeepSeek, Xiaomi/SGLang, Anthropic) 적중률 극대화. 알려진 프리픽스 캐시 제공자는 자동 활성.",
     "options": {
       "auto": "자동",
       "on": "켬",
@@ -274,7 +274,7 @@
   },
   "exa.enabled": {
     "label": "Exa",
-    "description": "Exa 웹 검색 공급자 활성화"
+    "description": "Exa 웹 검색 제공자 활성화"
   },
   "exa.searchDelayMs": {
     "label": "Exa 검색 지연",
@@ -286,6 +286,6 @@
   },
   "secrets.enabled": {
     "label": "비밀 가리기",
-    "description": "AI 공급자에 보내기 전 설정된 비밀을 난독화하고 자격 증명 형태 토큰을 가림"
+    "description": "AI 제공자에 보내기 전 설정된 비밀을 난독화하고 자격 증명 형태 토큰을 가림"
   }
 }

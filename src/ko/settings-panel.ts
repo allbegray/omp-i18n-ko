@@ -529,20 +529,20 @@ export async function openSettingsPanel(options: OpenSettingsOptions): Promise<b
 
   if (panelOpen) return false;
   if (ctx?.mode !== "tui" || typeof ctx?.ui?.custom !== "function") {
-    notify("한국어 설정 패널은 대화형(TUI) 모드에서만 열 수 있습니다", "warning");
+    notify("한국어 설정 패널은 대화형(TUI) 모드 전용", "warning");
     return false;
   }
 
   const loaded = await loadSettingsModules();
   if (!loaded.ok) {
-    notify(`한국어 설정 패널을 불러올 수 없습니다 — /settings(영문) 사용 (${loaded.error})`, "warning");
+    notify(`한국어 설정 패널 로드 실패 → /settings(영문) 사용 (${loaded.error})`, "warning");
     return false;
   }
   const mods = modules!;
 
   const scope = pi?.pi?.settings;
   if (!scope) {
-    notify("설정 저장소(pi.pi.settings)를 찾을 수 없습니다 — /settings(영문) 사용", "warning");
+    notify("설정 저장소(pi.pi.settings) 없음 → /settings(영문) 사용", "warning");
     return false;
   }
 
@@ -616,7 +616,7 @@ export async function openSettingsPanel(options: OpenSettingsOptions): Promise<b
   } catch (error) {
     panelOpen = false;
     const message = error instanceof Error ? error.message : String(error);
-    notify(`한국어 설정 패널 오류: ${message} — /settings(영문) 사용`, "error");
+    notify(`한국어 설정 패널 오류: ${message} → /settings(영문) 사용`, "error");
     return false;
   }
 }

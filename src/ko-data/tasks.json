@@ -79,7 +79,7 @@
   },
   "task.batch": {
     "label": "배치 작업 호출",
-    "description": "task 도구를 배치 형태로 전환: 한 호출이 { context, tasks[] } — 항목당 서브에이전트 1개, 항목별 agent(기본: 세션 spawn-policy 에이전트)·격리 선택 가능, 모든 할당 앞에 필수 공유 context. async.enabled=true면 각 스폰이 정상 라이프사이클의 독립 백그라운드 에이전트로 실행; 아니면 호출이 병합 결과까지 블록. 끄면 평면 단일 스폰 스키마 복원."
+    "description": "task 도구를 배치 형태로 전환: 한 호출이 { context, tasks[] }; 항목당 서브에이전트 1개, 항목별 agent(기본: 세션 spawn-policy 에이전트)·격리 선택 가능, 모든 할당 앞에 필수 공유 context. async.enabled=true면 각 스폰이 정상 라이프사이클의 독립 백그라운드 에이전트로 실행; 아니면 호출이 병합 결과까지 블록. 끄면 평면 단일 스폰 스키마 복원."
   },
   "task.structured": {
     "label": "구조화 작업 결과",
@@ -109,7 +109,7 @@
   },
   "task.enableLsp": {
     "label": "서브에이전트 LSP",
-    "description": "task 도구로 스폰된 서브에이전트가 lsp 도구 사용 허용. 서브에이전트 비용 절약을 위해 기본 끔; LSP 인지 위임이 토큰값을 할 때 켜기."
+    "description": "task 도구로 스폰된 서브에이전트가 lsp 도구 사용 허용. 서브에이전트 비용 절약을 위해 기본 끔; LSP 인지 위임이 토큰을 쓸 만할 때 켜기."
   },
   "task.maxRecursionDepth": {
     "label": "최대 작업 재귀",
@@ -124,7 +124,7 @@
   },
   "task.maxRuntimeMs": {
     "label": "최대 서브에이전트 런타임",
-    "description": "서브에이전트당 하드 월클록 한도(ms). 0=비활성. 추론 계층 워치독을 벗어난 공급자 스트림 행 대비; 'timed out' 사유의 정상 중단을 트리거.",
+    "description": "서브에이전트당 하드 월클록 한도(ms). 0=비활성. 추론 계층 워치독을 벗어난 제공자 스트림 행 대비; 'timed out' 사유의 정상 중단을 트리거.",
     "options": {
       "0": "무제한",
       "300000": "5분",

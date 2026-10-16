@@ -9,7 +9,7 @@
   },
   "prewalk.enabled": {
     "label": "프리워크",
-    "description": "활성 모델로 시작한 뒤 계획 너지의 할 일 목록 생성 후 첫 편집/쓰기에서 빠르고 저렴한 모델(기본 'smol' 역할)로 전환 — 강한 모델이 계획·할 일 커밋·구현 착수까지 맡고 넘김. --prewalk/--no-prewalk로 세션별 재정의."
+    "description": "활성 모델로 시작한 뒤, 계획 유도로 할 일 목록이 생기면 첫 편집/쓰기에서 빠르고 저렴한 모델(기본 'smol' 역할)로 전환; 강한 모델이 계획·할 일 커밋·구현 착수까지 맡고 넘김. --prewalk/--no-prewalk로 세션별 재정의."
   },
   "images.describeForTextModels": {
     "label": "텍스트 모델용 이미지 설명",
@@ -33,7 +33,7 @@
   },
   "omitThinking": {
     "label": "사고 요약 생략",
-    "description": "지원되는 경우 업스트림 공급자에 사고 요약을 완전히 생략하도록 지시"
+    "description": "지원되는 경우 업스트림 제공자에 사고 요약을 완전히 생략하도록 지시"
   },
   "externalThinking": {
     "label": "외부 사고",
@@ -65,7 +65,7 @@
   },
   "inlineToolDescriptors": {
     "label": "인라인 도구 설명",
-    "description": "시스템 프롬프트에 전체 도구 설명을 렌더하고 공급자 도구 스키마의 설명을 제거해 한 번만 전송. Gemini는 자동으로 켜지고 그 외는 꺼짐",
+    "description": "시스템 프롬프트에 전체 도구 설명을 렌더하고 제공자 도구 스키마의 설명을 제거해 한 번만 전송. Gemini는 자동으로 켜지고 그 외는 꺼짐",
     "options": {
       "auto": "자동",
       "on": "켬",
@@ -96,42 +96,42 @@
   },
   "temperature": {
     "label": "Temperature",
-    "description": "샘플링 온도 (0=결정적, 1=창의적, -1=공급자 기본)",
+    "description": "샘플링 온도 (0=결정적, 1=창의적, -1=제공자 기본)",
     "options": {
       "-1": "기본"
     }
   },
   "topP": {
     "label": "Top P",
-    "description": "Nucleus 샘플링 컷오프 (0-1, -1=공급자 기본)",
+    "description": "Nucleus 샘플링 컷오프 (0-1, -1=제공자 기본)",
     "options": {
       "-1": "기본"
     }
   },
   "topK": {
     "label": "Top K",
-    "description": "상위 K개 토큰에서 샘플링 (-1=공급자 기본)",
+    "description": "상위 K개 토큰에서 샘플링 (-1=제공자 기본)",
     "options": {
       "-1": "기본"
     }
   },
   "minP": {
     "label": "Min P",
-    "description": "최소 확률 임계값 (0-1, -1=공급자 기본)",
+    "description": "최소 확률 임계값 (0-1, -1=제공자 기본)",
     "options": {
       "-1": "기본"
     }
   },
   "presencePenalty": {
     "label": "Presence Penalty",
-    "description": "이미 등장한 토큰의 재등장 페널티 (-1=공급자 기본)",
+    "description": "이미 등장한 토큰의 재등장 페널티 (-1=제공자 기본)",
     "options": {
       "-1": "기본"
     }
   },
   "repetitionPenalty": {
     "label": "Repetition Penalty",
-    "description": "반복 토큰 페널티 (-1=공급자 기본)",
+    "description": "반복 토큰 페널티 (-1=제공자 기본)",
     "options": {
       "-1": "기본"
     }
@@ -146,7 +146,7 @@
     }
   },
   "tier.openai": {
-    "label": "서비스 티어 — OpenAI",
+    "label": "OpenAI 서비스 티어",
     "description": "OpenAI/OpenAI-Codex 및 OpenRouter 경유 OpenAI 계열 요청의 처리 티어 (none=생략). service_tier로 전송.",
     "options": {
       "none": "없음",
@@ -159,7 +159,7 @@
     }
   },
   "tier.anthropic": {
-    "label": "서비스 티어 — Anthropic",
+    "label": "Anthropic 서비스 티어",
     "description": "Claude 요청의 처리 티어. priority는 지원되는 직접 Anthropic 모델에서 빠른 모드를 실현; Bedrock/Vertex Claude·OpenRouter에서는 무시.",
     "options": {
       "none": "없음",
@@ -167,7 +167,7 @@
     }
   },
   "tier.google": {
-    "label": "서비스 티어 — Google",
+    "label": "Google 서비스 티어",
     "description": "Gemini(Google AI Studio+Vertex) 및 OpenRouter 경유 Google 계열 요청의 처리 티어 (none=생략). 최상위 serviceTier 필드로 전송.",
     "options": {
       "none": "없음",
@@ -176,7 +176,7 @@
     }
   },
   "tier.subagent": {
-    "label": "서비스 티어 — 서브에이전트",
+    "label": "서브에이전트 서비스 티어",
     "description": "생성된 task/eval 서브에이전트의 서비스 티어. 상속=메인 에이전트의 계열별 라이브 티어 추종(/fast 연동); 값을 고르면 서브에이전트 모델 계열에 적용.",
     "options": {
       "inherit": "상속",
@@ -190,7 +190,7 @@
     }
   },
   "tier.advisor": {
-    "label": "서비스 티어 — 어드바이저",
+    "label": "어드바이저 서비스 티어",
     "description": "어드바이저 모델의 서비스 티어. 없음=표준 처리; 상속=메인 에이전트의 계열별 라이브 티어 추종; 값을 고르면 어드바이저 모델 계열에 적용.",
     "options": {
       "inherit": "상속",
@@ -216,15 +216,15 @@
   },
   "retry.maxDelayMs": {
     "label": "최대 재시도 지연",
-    "description": "재시도 사이 최대 대기(ms). 공급자가 이보다 긴 대기를 요구하고 자격 증명·모델 폴백도 실패하면 잠들지 않고 즉시 실패 (예: 3시간 Anthropic 레이트리밋). 0=상한 해제 — 공급자가 알린 쿼터 리셋까지 세션 자동 재개 허용."
+    "description": "재시도 사이 최대 대기(ms). 제공자가 이보다 긴 대기를 요구하고 자격 증명·모델 폴백도 실패하면 기다리지 않고 즉시 실패 (예: 3시간 Anthropic 레이트리밋). 0=상한 해제; 제공자가 알린 쿼터 리셋까지 세션 자동 재개 허용."
   },
   "retry.waitForUsageReset": {
     "label": "사용량 리셋까지 대기",
-    "description": "공급자가 리셋 시각과 함께 사용량 소진을 보고하면(모든 공급자의 5시간·주간 쿼터) 빠른 실패 대신 리셋까지 대기. ⎋로 중단 가능하지만 서브에이전트도 붙잡으므로 무인 실행에는 끄기 권장."
+    "description": "제공자가 리셋 시각과 함께 사용량 소진을 보고하면(모든 제공자의 5시간·주간 쿼터) 빠른 실패 대신 리셋까지 대기. ⎋로 중단 가능하지만 서브에이전트도 붙잡으므로 무인 실행에는 끄기 권장."
   },
   "retry.modelFallback": {
     "label": "모델 폴백 재시도",
-    "description": "공급자 오류 후 재시도 복구가 retry.fallbackChains의 모델로 전환하도록 허용. Auto-Promote Context와 무관"
+    "description": "제공자 오류 후 재시도 복구가 retry.fallbackChains의 모델로 전환하도록 허용. Auto-Promote Context와 무관"
   },
   "retry.fallbackOn": {
     "label": "폴백 트리거",
@@ -237,7 +237,7 @@
   },
   "retry.usageAwareFallback": {
     "label": "사용량 인지 폴백",
-    "description": "신뢰할 수 있는 코딩 플랜 쿼터 보고를 사용해 하드 한도 전에 같은 공급자 계정, 그다음 구성된 폴백 모델을 선호. 일반 API 키는 제외."
+    "description": "신뢰할 수 있는 코딩 플랜 쿼터 보고를 사용해 하드 한도 전에 같은 제공자 계정, 그다음 구성된 폴백 모델을 선호. 일반 API 키는 제외."
   },
   "retry.usageReservePct": {
     "label": "잔여 마진",
@@ -252,7 +252,7 @@
   },
   "retry.usageReservePolicy": {
     "label": "잔여 정책",
-    "description": "모든 같은 공급자 코딩 플랜 계정이 잔여 마진 안일 때의 동작.",
+    "description": "모든 같은 제공자 코딩 플랜 계정이 잔여 마진 안일 때의 동작.",
     "options": {
       "confirm": "대화형 확인",
       "auto": "자동 폴백",
@@ -261,7 +261,7 @@
   },
   "retry.fallbackChains": {
     "label": "재시도 폴백 체인",
-    "description": "모델 역할·모델 선택자(\"provider/model-id\")·공급자 와일드카드(\"provider/*\")를 순서 있는 폴백 선택자로 매핑하는 JSON 객체. 모델 키는 해당 모델/공급자가 활성이면 역할과 무관하게 적용; \"provider/*\" 항목은 실패한 모델 id를 유지하고 공급자만 교체. 일반 항목은 실패 턴의 effort를 상속하고 \"provider/model:low\"처럼 사고 접미사 지정 가능."
+    "description": "모델 역할·모델 선택자(\"provider/model-id\")·제공자 와일드카드(\"provider/*\")를 순서 있는 폴백 선택자로 매핑하는 JSON 객체. 모델 키는 해당 모델/제공자가 활성이면 역할과 무관하게 적용; \"provider/*\" 항목은 실패한 모델 id를 유지하고 제공자만 교체. 일반 항목은 실패 턴의 effort를 상속하고 \"provider/model:low\"처럼 사고 접미사 지정 가능."
   },
   "retry.fallbackRevertPolicy": {
     "label": "폴백 복귀 정책",
@@ -273,7 +273,7 @@
   },
   "providers.anthropic.serverSideFallback": {
     "label": "Anthropic 서버측 폴백",
-    "description": "Claude Fable 5/Mythos 5 요청이 Anthropic 안전 분류기로 차단되면 서버측에서 Claude Opus 5로 재시도(Anthropic server-side-fallback 베타). 옵트인 — 끄면 기존 동작 유지."
+    "description": "Claude Fable 5/Mythos 5 요청이 Anthropic 안전 분류기로 차단되면 서버측에서 Claude Opus 5로 재시도(Anthropic server-side-fallback 베타). 옵트인; 끄면 기존 동작 유지."
   },
   "providers.autoThinkingMaxEffort": {
     "label": "auto 사고 상한",
@@ -339,15 +339,15 @@
   },
   "images.urls.enabled": {
     "label": "이미지를 URL로 제공",
-    "description": "나가는 이미지를 구성된 백엔드 체인으로 게시하고 URL 가져오기 공급자에 인라인 base64 대신 짧은 URL 전송. 모든 백엔드·공급자 가져오기 실패 시 인라인으로 자동 폴백"
+    "description": "나가는 이미지를 구성된 백엔드 체인으로 게시하고 URL 가져오기 제공자에 인라인 base64 대신 짧은 URL 전송. 모든 백엔드·제공자 가져오기 실패 시 인라인으로 자동 폴백"
   },
   "images.urls.backends": {
     "label": "이미지 URL 백엔드",
-    "description": "이미지를 공급자 접근용으로 게시할 때 시도할 순서 있는 대상",
+    "description": "이미지를 제공자 접근용으로 게시할 때 시도할 순서 있는 대상",
     "options": {
       "direct": "직접 공개 URL",
       "shared-folder": "공유 폴더",
-      "provider-files": "모델 공급자 파일",
+      "provider-files": "모델 제공자 파일",
       "command": "업로더 명령",
       "ssh": "SSH 역터널",
       "cloudflared": "Cloudflare 빠른 터널",
@@ -364,7 +364,7 @@
   },
   "images.urls.ttlHours": {
     "label": "이미지 URL 수명 (시간)",
-    "description": "로컬 호스팅 이미지 URL의 제공 기간 — 대화가 마지막으로 보낸 시점부터 계산; 대화 재개 시 같은 링크로 창 재시작. 0=브로커 실행 중 계속 유지"
+    "description": "로컬 호스팅 이미지 URL의 제공 기간: 대화가 마지막으로 보낸 시점부터 계산; 대화 재개 시 같은 링크로 창 재시작. 0=브로커 실행 중 계속 유지"
   },
   "images.urls.bindHost": {
     "label": "이미지 URL 바인드 호스트",

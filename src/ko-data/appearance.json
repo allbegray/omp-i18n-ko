@@ -26,7 +26,7 @@
   },
   "composer.tokenRate": {
     "label": "생성 속도",
-    "description": "실시간 생성 tok/s 표시 — 작업 행(세션 제목 옆) 또는 네이티브 컴포저 바(사고 수준 뒤)에 표시. 스트림 델타로 추정하고 메시지 완료 시 청구된 출력 수로 보정."
+    "description": "작업 행(세션 제목 옆) 또는 네이티브 컴포저 바(사고 수준 뒤)에 실시간 생성 tok/s 표시. 스트림 델타로 추정하고 메시지 완료 시 청구된 출력 수로 보정."
   },
   "statusLine.preset": {
     "label": "상태줄 프리셋",
@@ -90,7 +90,7 @@
   },
   "images.blockImages": {
     "label": "이미지 차단",
-    "description": "이미지를 LLM 공급자로 보내지 않음"
+    "description": "이미지를 LLM 제공자로 보내지 않음"
   },
   "tui.resizeScrollback": {
     "label": "스크롤백 재작성",
@@ -107,7 +107,7 @@
   },
   "terminal.programStatus": {
     "label": "프로그램 상태 (OSC 7501)",
-    "description": "OSC 7501로 작업 중·대기·완료·실패 여부 보고 — 터미널 탭 표시·에이전트 수신함용"
+    "description": "OSC 7501로 작업 중·대기·완료·실패 여부 보고 (터미널 탭 표시·에이전트 수신함용)"
   },
   "tui.textSizing": {
     "label": "큰 제목 (Kitty)",
@@ -119,7 +119,7 @@
   },
   "tui.renderSvg": {
     "label": "SVG 도형 렌더",
-    "description": "에이전트가 SVG로 다이어그램·차트를 그리도록 유도 — 그래픽 지원 터미널에서 인라인 이미지로 렌더"
+    "description": "에이전트가 SVG로 다이어그램·차트를 그리도록 유도; 그래픽 지원 터미널에서 인라인 이미지로 렌더"
   },
   "tui.autoGraph": {
     "label": "표 자동 그래프",
@@ -140,11 +140,11 @@
   },
   "tui.titleState": {
     "label": "터미널 제목 실행 상태",
-    "description": "터미널 제목 구분자에 실행 상태 표시 — 작업 중엔 애니메이션 스피너(WSL은 ':' 고정), 내 차례 '>', 대기 중 '!'"
+    "description": "터미널 제목 구분자에 실행 상태 표시: 작업 중엔 애니메이션 스피너(WSL은 ':' 고정), 내 차례 '>', 대기 중 '!'"
   },
   "tui.titleSpinner": {
     "label": "터미널 제목 스피너",
-    "description": "터미널 제목 작업 스피너 글리프 세트 — braille 스윕, 차오르는 달, 단일 점 순환, ASCII 안전 라인",
+    "description": "터미널 제목 작업 스피너 글리프 세트: braille 스윕, 차오르는 달, 단일 점 순환, ASCII 안전 라인",
     "options": {
       "braille": "Braille",
       "pulse": "Pulse",
@@ -158,7 +158,7 @@
   },
   "tui.mouse": {
     "label": "마우스 클릭 포커스",
-    "description": "메인 세션에서 마우스 클릭 캡처 — 서브에이전트 카드·HUD 행 클릭 포커스, 호버 하이라이트. 켜면 텍스트 선택은 ⇧+드래그, 휠 스크롤은 ⇧+휠."
+    "description": "메인 세션에서 마우스 클릭 캡처; 서브에이전트 카드·HUD 행 클릭 포커스, 호버 하이라이트. 켜면 텍스트 선택은 ⇧+드래그, 휠 스크롤은 ⇧+휠."
   },
   "tui.tight": {
     "label": "타이트 레이아웃",

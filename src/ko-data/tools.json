@@ -9,7 +9,7 @@
   },
   "tools.artifactHeadBytes": {
     "label": "아티팩트 머리 크기 (KB)",
-    "description": "출력이 아티팩트로 넘칠 때 꼬리와 함께 인라인 유지하는 머리 크기 (중간 생략). 0=비활성 — 꼬리만 유지."
+    "description": "출력이 아티팩트로 넘칠 때 꼬리와 함께 인라인 유지하는 머리 크기 (중간 생략). 0=비활성; 꼬리만 유지."
   },
   "tools.outputMaxColumns": {
     "label": "출력 열 상한",
@@ -169,7 +169,7 @@
   },
   "images.questionTimeoutMs": {
     "label": "이미지 질문 타임아웃",
-    "description": "read의 ?q= 이미지 질문 뒤 비전 모델 호출의 요청당 타임아웃(ms). 멈춘 공급자는 수동 중단까지 기다리지 않고 타임아웃 오류로 빠르게 실패. 0=타임아웃 비활성.",
+    "description": "read의 ?q= 이미지 질문 뒤 비전 모델 호출의 요청당 타임아웃(ms). 멈춘 제공자는 수동 중단까지 기다리지 않고 타임아웃 오류로 빠르게 실패. 0=타임아웃 비활성.",
     "options": {
       "0": "비활성",
       "60000": "1분",
@@ -228,7 +228,7 @@
   },
   "tools.speculativeExecution.enabled": {
     "label": "실험적 투기 실행",
-    "description": "폐기 안전한 첫 조각 활성화: 직접 read 호출과 중첩 eval을 통한 검증된 로컬 읽기. 네트워크 요청·공급자 완성·실시간 파일 쓰기는 이 기준선에 없음."
+    "description": "폐기 안전한 첫 조각 활성화: 직접 read 호출과 중첩 eval을 통한 검증된 로컬 읽기. 네트워크 요청·제공자 완성·실시간 파일 쓰기는 이 기준선에 없음."
   },
   "tools.speculativeExecution.maxInFlight": {
     "label": "투기 실행 동시성",

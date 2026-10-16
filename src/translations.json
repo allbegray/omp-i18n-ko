@@ -316,8 +316,8 @@
     "no active tools": "활성 도구 없음",
     "plan mode inactive": "계획(plan) 모드 비활성",
     "disabled in settings": "설정(settings)에서 비활성화됨",
-    "blocked by plan mode": "계획(plan) 모드에 의해 차단됨",
-    "blocked by goal mode": "목표(goal) 모드에 의해 차단됨",
+    "blocked by plan mode": "계획(plan) 모드로 차단됨",
+    "blocked by goal mode": "목표(goal) 모드로 차단됨",
     "context unavailable": "컨텍스트(context) 정보 없음",
     "drop context, keep session": "컨텍스트(context)만 삭제, 세션 유지",
     "unavailable while streaming": "스트리밍 중 사용 불가",
@@ -349,7 +349,7 @@
   "textPatterns": [
     { "pattern": "^Switch model for this session \\(same as (.+)\\); accepts fuzzy ids, provider/id, @role, :level$", "replacement": "이 세션의 모델(model) 전환 (단축키 $1); 퍼지 id, provider/id, @role, :level 허용" },
     { "pattern": "^Set reasoning effort \\(thinking level, intelligence\\) for this session; (.+) cycles levels$", "replacement": "이 세션의 추론(effort) 강도 설정 (thinking level, intelligence); $1로 수준 순환" },
-    { "pattern": "^Toggle loop mode\\. While enabled, the next prompt you send re-submits after every yield\\. Bound it with a count/duration, or gate it with `--until '<cmd>'` / `--while '<cmd>'` — the command's exit status decides whether the next iteration runs\\. (.+) suspends the ongoing loop; /loop again to disable\\.$", "replacement": "루프(loop) 모드 토글. 켜져 있으면 다음 프롬프트가 매 양보 후 다시 제출됨. count/duration으로 제한하거나 `--until '<cmd>'` / `--while '<cmd>'`로 게이트 — 명령 종료 상태가 다음 반복 여부를 결정. $1를 누르면 진행 중 루프 일시정지; /loop 재입력 시 끄기." }
+    { "pattern": "^Toggle loop mode\\. While enabled, the next prompt you send re-submits after every yield\\. Bound it with a count/duration, or gate it with `--until '<cmd>'` / `--while '<cmd>'` — the command's exit status decides whether the next iteration runs\\. (.+) suspends the ongoing loop; /loop again to disable\\.$", "replacement": "루프(loop) 모드 토글. 켜져 있으면 다음 프롬프트가 매 양보 후 다시 제출됨. count/duration으로 제한하거나 `--until '<cmd>'` / `--while '<cmd>'`로 게이트; 명령 종료 상태가 다음 반복 여부를 결정. $1를 누르면 진행 중 루프 일시정지; /loop 재입력 시 끄기." }
   ],
 
   "suffixes": [

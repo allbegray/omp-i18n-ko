@@ -2,6 +2,19 @@
 
 [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/) 형식을 따르며, [유의적 버전](https://semver.org/lang/ko/)을 사용합니다.
 
+## [0.1.1] — 2026-10-16
+
+첫 npm 배포 릴리즈. 기준: **omp v18.11.1**.
+
+### 추가
+
+- **npm 배포** — 한 줄 설치: `omp install omp-i18n-ko`. 신규 패키지의 OIDC 첫 게시는 npm이 지원하지 않아 0.1.0은 수동 게시로 이름을 선점했고, **0.1.1부터는 전부 GitHub Actions가 자동 게시**합니다.
+- **GitHub Actions 릴리스 파이프라인** — `v*` 태그 푸시 → npm **Trusted Publishing(OIDC)** 게시 + provenance 자동 생성 (`.github/workflows/publish.yml`). 테스트 CI 워크플로(`.github/workflows/test.yml`) 추가.
+
+### 변경
+
+- README 설치 안내 — npm 설치를 1차 경로로, git clone은 개발판 설치로 재정리.
+
 ## [0.1.0] — 2026-10-16
 
 첫 공개 릴리즈. 기준: **omp v18.11.1**.

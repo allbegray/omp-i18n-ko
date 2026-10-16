@@ -1,5 +1,7 @@
 # omp-i18n-ko
 
+[![npm](https://img.shields.io/npm/v/omp-i18n-ko)](https://www.npmjs.com/package/omp-i18n-ko) [![CI](https://github.com/allbegray/omp-i18n-ko/actions/workflows/test.yml/badge.svg)](https://github.com/allbegray/omp-i18n-ko/actions/workflows/test.yml)
+
 omp(oh-my-pi) 코딩 에이전트를 위한 **한국어 UI 언어팩** 확장입니다. omp **공식 확장 API만** 사용하며, 국가별 패치·포크·dist 수정을 하지 않습니다.
 
 핵심 원칙:
@@ -20,18 +22,27 @@ omp(oh-my-pi) 코딩 에이전트를 위한 **한국어 UI 언어팩** 확장입
 
 ## 설치
 
-한 줄 설치 (권장 — omp 공식 `omp install`로 플러그인 등록):
+한 줄 설치 (npm):
 
 ```bash
-git clone https://github.com/allbegray/omp-i18n-ko.git ~/omp-i18n-ko && omp install ~/omp-i18n-ko
+omp install omp-i18n-ko
 ```
 
 omp를 재시작하면 `/` 메뉴가 한국어로 표시됩니다. 기본값은 **켜짐**입니다.
 
 ```bash
-omp plugin list                    # 설치 확인 (omp-i18n-ko@0.1.0)
+omp plugin list                    # 설치 확인
+omp plugin upgrade omp-i18n-ko     # 업데이트
+omp plugin uninstall omp-i18n-ko   # 제거 (omp 재시작 후 반영)
+```
+
+### 개발판 설치 (git)
+
+npm 릴리스보다 최신 main을 쓰고 싶다면:
+
+```bash
+git clone https://github.com/allbegray/omp-i18n-ko.git ~/omp-i18n-ko && omp install ~/omp-i18n-ko
 cd ~/omp-i18n-ko && git pull       # 업데이트 → omp 재시작 후 반영
-omp plugin uninstall omp-i18n-ko   # 제거
 ```
 
 ### 수동 심링크 (대안)
@@ -45,13 +56,13 @@ mkdir -p ~/.omp/agent/extensions
 ln -sfn ~/dev/omp-ko/src/index.ts ~/.omp/agent/extensions/omp-i18n-ko.ts
 ```
 
-한 가지 방식만 사용하세요(둘 다 걸면 중복 로드).
-
 ### 일회성 로드
 
 ```bash
 omp -e /path/to/omp-ko/src/index.ts
 ```
+
+한 가지 방식만 사용하세요 — npm판과 개발판을 동시에 걸면 중복 로드됩니다.
 
 ## 사용법
 
@@ -129,5 +140,5 @@ Korean UI localization for the [omp (oh-my-pi)](https://github.com/can1357/oh-my
 - **Identifiers stay English**: command names, model ids, MCP/SSH/LSP names remain typeable.
 - **Command keywords are annotated** as `한국어(english)` (e.g. `설정(settings) 메뉴 열기`) so you can read Korean and still recognize the original command.
 - **Korean settings panel**: `/ko settings`, or simply type `/settings` — the host's own settings component with translated labels, descriptions and chrome; every value is stored through the normal omp settings scopes and the built-in English panel remains the fallback.
-- Install: `git clone https://github.com/allbegray/omp-i18n-ko.git ~/omp-i18n-ko && omp install ~/omp-i18n-ko` (official plugin link; a manual symlink fallback is documented above), then use `/ko` (`toggle` / `on` / `off` / `status` / `reload` / `settings`; default ON).
+- Install: `omp install omp-i18n-ko` (npm; a git-clone flow for `main` and a manual symlink fallback are documented above), then use `/ko` (`toggle` / `on` / `off` / `status` / `reload` / `settings`; default ON).
 - Baseline: omp v18.11.1 (2026-10-15). Translated strings that omp later changes simply fall back to English.

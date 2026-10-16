@@ -70,8 +70,14 @@ omp(oh-my-pi) 한국어 언어팩 프로젝트. 그릴링 완료 (2026-10-16) �
   - 근거: `omp install <path>`는 `~/.omp/plugins/node_modules/<name>` 심링크 + `omp-plugins.lock.json` 등록을 만들고, 확장 로더(`extensions/loader.ts`)가 `getAllPluginExtensionPaths`로 플러그인 `omp.extensions` 매니페스트를 로드한다 — 공식 경로, 관리(`omp plugin list/uninstall/enable/disable`)까지 붙는다.
   - 검증: 임시 HOME 3중 부팅(설치=로드됨 · 무설치=미로드 · 기존 심링크=로드됨), `ready`+`available_commands` 카탈로그에 `/ko` 표시, `extension_error` 0, stderr 0줄. 실사용 환경도 심링크 → 플러그인 링크로 마이그레이션 완료.
   - 수동 심링크는 대안으로 문서 유지(구버전 omp용). 동시 사용 금지(중복 로드).
-  - npm 배포는 보류: `npm whoami` 미로그인 + `omp install <npm spec>` 경로는 계정 준비 후 v2 후보.
+  - npm 배포는 D13에서 진행 (2026-10-16).
   - 문서 자산: README 스크린샷은 실제 omp v18.11.1 TUI를 **VHS**(`brew install vhs`, 테이프 `tmp/shots/*.tape` — 로컬 전용)로 캡처해 `assets/`에 저장. CHANGELOG(Keep a Changelog ko)·SECURITY.md 추가.
+
+- **D13. npm 배포·릴리스 자동화** (사용자 지시: "npmjs 같은곳에 배포", "github workflow로 배포", 2026-10-16) — 1차 설치 경로를 npm으로 승격: README 한 줄 `omp install omp-i18n-ko`. 이후 모든 릴리스는 **`v*` 태그 푸시 → GitHub Actions가 npm Trusted Publishing(OIDC)으로 자동 게시**(provenance 자동 생성, 토큰 없음).
+  - npm 제약 실측·확인: (a) 계정 2FA 없이는 레지스트리가 게시를 거부(`npm profile get` → `two-factor auth: disabled`, 게시 시 403 "Two-factor authentication ... is required"), (b) 신규 패키지의 OIDC 첫 게시는 미지원(npm/cli#8544 open — "package must exist"), `npm trust`도 동일 전제 + 계정 2FA 필수. → **첫 버전 0.1.0만 수동 게시**로 이름을 선점하고, `npm trust github omp-i18n-ko --file publish.yml --repo allbegray/omp-i18n-ko --allow-publish`로 신뢰 관계 등록(등록 후 2일 내 실제 게시로 검증 — 0.1.1 태그로 즉시 검증), 0.1.1부터 전부 CI 자동 게시.
+  - 워크플로(`.github/workflows/publish.yml`): 태그 = package.json 버전 검증, 이미 게시된 버전은 스킵(멱등 — 과거 태그 재푸시 안전), `permissions: id-token: write` + `npm publish --access public`. npm CLI는 `npm@latest`로 최신화(11.15+ 필요). 테스트 CI(`test.yml`)는 push/PR마다 `bun test`.
+  - npm 패키지 내용: `src/**`(테스트 제외)·README·CHANGELOG·LICENSE — `npm pack --dry-run` 20개 파일/60.6kB 확인. `prepublishOnly: bun test` 게이트로 로컬 게시 사고 방지.
+  - 부트스트랩 실측 (2026-10-16): npmjs TOTP 단종 → **패스키** 2FA 활성화(`npm profile get` → `auth-and-writes`). `npm publish`는 브라우저 인증 흐름(`Authenticate your account at: https://www.npmjs.com/auth/cli/…` — ENTER로 브라우저 열고 승인)으로 0.1.0 게시. 신규 패키지는 npm이 **`0.0.0-stage` 자리표시자를 자동 생성**한 뒤 0.1.0을 공개 — 2026-10-02부터 신규 패키지 게시가 스테이징 체계로 바뀌어 자리표시자 버전이 versions 목록에 남는다(무해, latest=0.1.0). `npm trust github omp-i18n-ko --file publish.yml --repo allbegray/omp-i18n-ko --allow-publish -y`로 신뢰 관계 등록(id `e7bc451c…`, permissions: `publish, stage publish`). 등록 후 2일(48시간) 내 OIDC 실제 게시로 검증해야 하므로 **v0.1.1 태그로 즉시 검증**.
 
 ## 그릴링 종료 (2026-10-16)
 
